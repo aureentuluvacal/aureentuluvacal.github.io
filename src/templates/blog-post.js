@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
@@ -27,10 +26,21 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           >
             {post.frontmatter.title}
           </h1>
+          {post.frontmatter.subtitle && (
+            <h2
+              style={{
+                marginTop: rhythm(0.5),
+                marginBottom: 0,
+              }}
+            >
+              {post.frontmatter.subtitle}
+            </h2>
+          )}
           <p
             style={{
               ...scale(-1 / 5),
               display: `block`,
+              marginTop: rhythm(0.2),
               marginBottom: rhythm(1),
             }}
           >
@@ -43,9 +53,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             marginBottom: rhythm(1),
           }}
         />
-        <footer>
-          <Bio />
-        </footer>
       </article>
 
       <nav>
@@ -61,7 +68,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                ← {previous.frontmatter.title} <br />
+                {previous.frontmatter.subtitle}
               </Link>
             )}
           </li>
@@ -69,6 +77,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
+                <br />
+                {next.frontmatter.subtitle}
               </Link>
             )}
           </li>
@@ -95,6 +105,8 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        subtitle
+        hero
       }
     }
   }

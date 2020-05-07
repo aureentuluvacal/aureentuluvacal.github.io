@@ -1,13 +1,11 @@
 ---
 title: Big O
 date: 2018-08-08
+description: Brief overview of Big O.
 tags: [Cracking the Coding Interview, Big O]
-path: /big-o
 ---
 
 Big O is the metric the industry uses to describe the efficiency of algorithms.
-
-<!--more-->
 
 When calculating Big O:
 

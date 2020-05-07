@@ -1,8 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: `Caryssa Perez`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: {
+      summary: `CTO of Iris Works in Indianapolis, IN.`,
+    },
+    description: `Caryssa Perez's blog`,
+    siteUrl: `https://caryssaperez.com/`,
   },
   plugins: [
     {
@@ -22,7 +25,6 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        excerpt_separator: `<!--more-->`,
         plugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -66,7 +68,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/logo.svg`,
       },
     },
     `gatsby-plugin-react-helmet`,
