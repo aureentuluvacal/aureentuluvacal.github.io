@@ -1,4 +1,4 @@
 # ToDo for Me
 
-- Setup basic theme
-- Migrate posts over
+- Migrate all posts over
+- Add heroes to posts

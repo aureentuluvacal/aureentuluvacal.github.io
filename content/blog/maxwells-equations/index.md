@@ -2,7 +2,8 @@
 title: Maxwell's Equations
 date: 2018-10-11
 description: "I learn best when I understand the high level overview of a topic. So when I want to learn about how computers work and why they work the way they work I need to start at the beginning: the fundamentals of electromagnetism."
-hero: "https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/abstract-ball-shaped-bright.jpg"
+heroUrl: https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/abstract-ball-shaped-bright.jpg
+heroAlt: "Ball of electricity"
 tags: [Electrical Engineering]
 ---
 

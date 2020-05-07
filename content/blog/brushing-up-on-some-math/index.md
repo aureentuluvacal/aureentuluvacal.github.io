@@ -19,7 +19,7 @@ $$
 
 which looks like
 
-![Vector Field Example](./vector-field-example.jpg)
+![Vector Field Example](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//vector-field-example.jpg)
 
 Each arrow represents a vector, which is a collection of values like a magnitude with a direction. Typically, color is used to denote magnitude instead of length to avoid a messy graph. In this example, the pink denotes a higher magnitude.
 
@@ -56,7 +56,7 @@ $$
 \end{bmatrix}
 $$
 
-![Vectors a=[3,-1,2], b=[-1,4,1]](./3d-vectors.png)
+![Vectors a=[3,-1,2], b=[-1,4,1]](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//3d-vectors.png)
 
 I want to illustrate transformations that you can make on vectors in the next few sections to better understand vector's uses.
 
@@ -185,11 +185,11 @@ I'm not going to over how to find the derivatives of exponential or trigonometri
 
 Integrals are the answer to finding the area underneath a curve between a set of boundaries.
 
-![Sample Graph with Area](./integrals.png)
+![Sample Graph with Area](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//integrals.png)
 
 So if we wanted the area under the curve between $$a$$ and $$b$$ then we would need to do $$ \int_{a}^{b} f(x) \, dx $$ where $$dx$$ is an infinitesimally small change in $$x$$, $$f(x)$$ is the value of the function at some $$x$$, and the $$\int$$ is the summation of all of those infinitesimally small slices of area.
 
-![Graph with smaller and smaller slices](./integrals-slices.png)
+![Graph with smaller and smaller slices](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//integrals-slices.png)
 
 Why do we use integrals, though?
 
@@ -217,7 +217,7 @@ $$
 
 Both of the examples above describe integrals along a straight line (the x axis typically), but what do we do when we're trying to find the area of the "wall" created by the intersection of this graph and this path?
 
-![Example graph for line integral](./line-integral-graph.png)
+![Example graph for line integral](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//line-integral-graph.png)
 
 Notice how the blue curve on the xy plane is following a winding path instead of a straight line. This is how line integrals get their name, even though it would make more sense to call them path integrals or curve integrals.
 
@@ -232,7 +232,7 @@ Now, how do we solve for the area under this curve along this path?
 
 Basically, we're taking small changes in $$x$$ and small changes in $$y$$ to represent a section of the curve. Like this:
 
-![Example graph for line integral](./line-integral-dS.png)
+![Example graph for line integral](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//line-integral-dS.png)
 
 We know we can represent $$\Delta S$$ as $$dS$$ for an infinitesimally small change. Using Pythagorean Theorem, we know that
 

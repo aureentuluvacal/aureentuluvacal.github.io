@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -46,6 +47,18 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           >
             {post.frontmatter.date}
           </p>
+          {post.hero && (
+            <Image
+              fixed={post.hero.childImageSharp.fixed}
+              alt={post.frontmatter.heroAlt}
+              style={{
+                margin: 0,
+              }}
+              imgStyle={{
+                width: `100%`,
+              }}
+            />
+          )}
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -101,12 +114,19 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      hero {
+        childImageSharp {
+          fixed(width: 600) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
         subtitle
-        hero
+        heroAlt
       }
     }
   }

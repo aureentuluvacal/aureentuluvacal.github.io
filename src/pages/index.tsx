@@ -17,15 +17,16 @@ type Data = {
     edges: {
       node: {
         excerpt: string
+        fields: {
+          slug: string
+        }
         frontmatter: {
           title: string
           date: string
           description: string
           subtitle: string
-          hero: string
-        }
-        fields: {
-          slug: string
+          heroUrl: string
+          heroAlt: string
         }
       }
     }[]
@@ -45,15 +46,23 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
         return (
           <article key={node.fields.slug}>
             <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+              <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <h3
+                  style={{
+                    marginBottom: 0,
+                  }}
+                >
                   {title}
-                </Link>
-              </h3>
+                </h3>
+                <h4
+                  style={{
+                    marginTop: rhythm(0.2),
+                    marginBottom: 0,
+                  }}
+                >
+                  {node.frontmatter.subtitle}
+                </h4>
+              </Link>
               <small>{node.frontmatter.date}</small>
             </header>
             <section>
@@ -91,7 +100,8 @@ export const pageQuery = graphql`
             title
             description
             subtitle
-            hero
+            heroUrl
+            heroAlt
           }
         }
       }

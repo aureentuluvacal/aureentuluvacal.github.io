@@ -1,5 +1,17 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const {
+  createFilePath,
+  createRemoteFileNode,
+} = require(`gatsby-source-filesystem`)
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type MarkdownRemark implements Node {
+      hero: File @link(from: "hero___NODE")
+    }
+  `)
+}
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -20,6 +32,8 @@ exports.createPages = async ({ graphql, actions }) => {
               frontmatter {
                 title
                 subtitle
+                heroUrl
+                heroAlt
               }
             }
           }
@@ -51,9 +65,14 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode, createNodeField },
+  store,
+  cache,
+  createNodeId,
+  getNode,
+}) => {
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
     createNodeField({
@@ -61,5 +80,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value,
     })
+
+    if (node.frontmatter.heroUrl !== null) {
+      let fileNode = await createRemoteFileNode({
+        url: node.frontmatter.heroUrl,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+
+      if (fileNode) {
+        node.hero___NODE = fileNode.id
+      }
+    }
   }
 }
