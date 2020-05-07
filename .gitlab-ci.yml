@@ -3,6 +3,7 @@ image: node:latest
 pages:
   script:
     - npm install
+    - npm install gatsby-cli
     - gatsby build
   artifacts:
     paths:
