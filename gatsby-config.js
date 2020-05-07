@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: `/caryssaperez.gitlab.io`,
   siteMetadata: {
     title: `Caryssa Perez`,
     author: {
