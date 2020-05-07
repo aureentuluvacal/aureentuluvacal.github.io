@@ -7,3 +7,5 @@
 import "katex/dist/katex.min.css"
 import "prismjs/themes/prism-okaidia.css"
 import "prismjs/plugins/command-line/prism-command-line.css"
+import "typeface-montserrat"
+import "typeface-merriweather"
