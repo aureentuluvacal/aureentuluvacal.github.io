@@ -4,7 +4,7 @@ pages:
   script:
     - npm install
     - npm install gatsby-cli
-    - gatsby build
+    - node_modules/.bin/gatsby build
   artifacts:
     paths:
       - public
