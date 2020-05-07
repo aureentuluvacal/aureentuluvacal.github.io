@@ -1,8 +1,6 @@
 ---
 title: "I Learned Rust!"
 date: 2019-03-25
-heroUrl: "https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/rust-cover.jpg"
-heroAlt: Rust logo.
 description: "I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust."
 tags: [Software Engineering, Rust]
 ---

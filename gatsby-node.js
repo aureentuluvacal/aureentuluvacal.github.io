@@ -1,22 +1,10 @@
-const path = require(`path`)
-const {
-  createFilePath,
-  createRemoteFileNode,
-} = require(`gatsby-source-filesystem`)
-
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  createTypes(`
-    type MarkdownRemark implements Node {
-      hero: File @link(from: "hero___NODE")
-    }
-  `)
-}
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.js`);
   const result = await graphql(
     `
       {
@@ -32,26 +20,24 @@ exports.createPages = async ({ graphql, actions }) => {
               frontmatter {
                 title
                 subtitle
-                heroUrl
-                heroAlt
               }
             }
           }
         }
       }
     `
-  )
+  );
 
   if (result.errors) {
-    throw result.errors
+    throw result.errors;
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const posts = result.data.allMarkdownRemark.edges;
 
   posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+    const next = index === 0 ? null : posts[index - 1].node;
 
     createPage({
       path: post.node.fields.slug,
@@ -61,39 +47,21 @@ exports.createPages = async ({ graphql, actions }) => {
         previous,
         next,
       },
-    })
-  })
-}
+    });
+  });
+};
 
 exports.onCreateNode = async ({
   node,
-  actions: { createNode, createNodeField },
-  store,
-  cache,
-  createNodeId,
+  actions: { createNodeField },
   getNode,
 }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
       value,
-    })
-
-    if (node.frontmatter.heroUrl !== null) {
-      let fileNode = await createRemoteFileNode({
-        url: node.frontmatter.heroUrl,
-        parentNodeId: node.id,
-        createNode,
-        createNodeId,
-        cache,
-        store,
-      })
-
-      if (fileNode) {
-        node.hero___NODE = fileNode.id
-      }
-    }
+    });
   }
-}
+};

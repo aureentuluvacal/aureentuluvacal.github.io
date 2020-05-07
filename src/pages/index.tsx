@@ -26,8 +26,6 @@ type Data = {
           date: string;
           description: string;
           subtitle: string;
-          heroUrl: string;
-          heroAlt: string;
         };
       };
     }[];
@@ -104,8 +102,6 @@ export const pageQuery = graphql`
             title
             description
             subtitle
-            heroUrl
-            heroAlt
           }
         }
       }
