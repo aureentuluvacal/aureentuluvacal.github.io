@@ -45,7 +45,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               marginBottom: rhythm(1),
             }}
           >
-            {post.frontmatter.date}
+            {post.frontmatter.date} • {`${post.timeToRead} min read`}
           </p>
           {post.hero && (
             <Image
@@ -113,6 +113,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
+      timeToRead
       html
       hero {
         childImageSharp {

@@ -16,6 +16,7 @@ type Data = {
   allMarkdownRemark: {
     edges: {
       node: {
+        timeToRead: number;
         excerpt: string;
         fields: {
           slug: string;
@@ -39,7 +40,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title="My Blog" />
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
@@ -63,7 +64,9 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                   {node.frontmatter.subtitle}
                 </h4>
               </Link>
-              <small>{node.frontmatter.date}</small>
+              <small>
+                {node.frontmatter.date} • {`${node.timeToRead} min read`}
+              </small>
             </header>
             <section>
               <p
@@ -92,6 +95,7 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
+          timeToRead
           fields {
             slug
           }
