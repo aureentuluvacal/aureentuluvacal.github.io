@@ -1,10 +1,10 @@
 ---
 title: Diversity and Inclusion
-description: Most times I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.
+description: Whenever I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.
 tags: [Personal]
 ---
 
-Most times I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.
+Whenever I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.
 
 It's a difficult – and sometimes painful – thing to talk about. I wanted to write this to clarify my thoughts as a lesbian WOC frustrated in an industry that doesn't do enough.
 

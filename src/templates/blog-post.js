@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Tag from "../components/tag";
 import { rhythm, scale } from "../utils/typography";
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
@@ -44,7 +45,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               marginBottom: rhythm(1),
             }}
           >
-            {post.frontmatter.date} • {`${post.timeToRead} min read`}
+            {post.frontmatter.date} • {`${post.timeToRead} min read`} {post.frontmatter.tags.map(tag => <Tag name={tag} />)}
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -107,6 +108,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         subtitle
+        tags
       }
     }
   }

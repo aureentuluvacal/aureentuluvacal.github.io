@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Caryssa Perez`,
     author: {
-      summary: `CTO of Iris Works. I live in Indianapolis with my partner, Irma; my two dogs, Lolita and Milo; and my cat, Genevieve. I like to code, cook, paint, play D&D. Currently getting into Warhammer 40k.`,
+      summary: `CTO of Iris Works. I live in Indianapolis with my partner, Irma; my two dogs, Lolita and Milo; and my cat, Genevieve. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k.`,
     },
     description: `Caryssa Perez's blog`,
     siteUrl: `https://caryssaperez.com/`,
