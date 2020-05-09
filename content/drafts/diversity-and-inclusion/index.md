@@ -1,7 +1,7 @@
 ---
 title: Diversity and Inclusion
 description: Most times I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.
-tags: [Diversity and Inclusion]
+tags: [Personal]
 ---
 
 Most times I hear about a company's diversity and inclusion initiatives, I expect to be disappointed. And that's a terrible thing to feel.

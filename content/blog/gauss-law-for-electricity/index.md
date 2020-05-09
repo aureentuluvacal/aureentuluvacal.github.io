@@ -3,7 +3,7 @@ title: "Maxwell's Equations"
 subtitle: "Gauss' Law for Electricity"
 date: 2018-11-23
 description: Let's start our Maxwell equation journey with Gauss' Law for Electricity.
-tags: [Electrical Engineering]
+tags: [Science, Math]
 ---
 
 Let's start our Maxwell equation journey with Gauss' Law for Electricity.

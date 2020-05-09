@@ -2,7 +2,7 @@
 title: "🎉 I'm a CTO Now! 🎉"
 date: 2019-09-11
 description: I haven't written anything in like 8 years but that's because right as I was trying to wrap up my Maxwell's equations series in May, I interviewed for a CTO position and got it!
-tags: [About Me]
+tags: [Personal]
 ---
 
 I haven't written anything in like 8 years but that's because right as I was trying to wrap up my Maxwell's equations series in May, I interviewed for a CTO position and got it! 🎉🎉🎉🎉🎉🎉🎉

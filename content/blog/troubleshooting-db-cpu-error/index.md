@@ -2,7 +2,7 @@
 title: "Troubleshooting Rails Database Connection Issue"
 date: 2019-10-13
 description: Production died then I fixed it.
-tags: [Software Engineering, Database, MySQL]
+tags: [Code]
 ---
 
 A few weeks ago I was seeing a lot of these errors in production:

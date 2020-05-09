@@ -2,7 +2,7 @@
 title: Brushing Up On Some Math
 date: 2018-08-28
 description: It's been a while since I've used the math I learned in high school and college. I wanted to review topics that I felt were relevant to understanding something like Maxwell's Equations, which I'll cover in my next post.
-tags: [Mathematics]
+tags: [Math]
 ---
 
 It's been a while since I've used the math I learned in high school and college. I wanted to review topics that I felt were relevant to understanding something like Maxwell's Equations, which I'll cover in my next post.

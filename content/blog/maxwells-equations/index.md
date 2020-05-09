@@ -2,7 +2,7 @@
 title: Maxwell's Equations
 date: 2018-10-11
 description: "I learn best when I understand the high level overview of a topic. So when I want to learn about how computers work and why they work the way they work I need to start at the beginning: the fundamentals of electromagnetism."
-tags: [Electrical Engineering]
+tags: [Science, Math]
 ---
 
 I learn best when I understand the high level overview of a topic. So when I want to learn about how computers work and why they work the way they work I need to start at the beginning: the fundamentals of electromagnetism.

@@ -3,7 +3,7 @@ title: "Maxwell's Equations"
 subtitle: "Gauss' Law for Magnetism"
 date: 2018-12-31
 description: Fortunately, this equation is much simpler than the last one.
-tags: [Electrical Engineering]
+tags: [Science, Math]
 ---
 
 Fortunately, this equation is much simpler than the last one.

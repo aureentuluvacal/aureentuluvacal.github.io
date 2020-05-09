@@ -2,7 +2,7 @@
 title: "I Learned Rust!"
 date: 2019-03-25
 description: "I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust."
-tags: [Software Engineering, Rust]
+tags: [Code]
 ---
 
 I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust. I'm mostly taking a break because it takes me like 7 years to create all the diagrams for those posts.

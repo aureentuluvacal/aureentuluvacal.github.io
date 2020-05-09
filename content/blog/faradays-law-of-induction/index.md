@@ -3,7 +3,7 @@ title: "Maxwell's Equations"
 subtitle: "Faraday's Law of Induction"
 description: Now we're back to complicated.
 date: 2019-02-27
-tags: [Electrical Engineering]
+tags: [Science, Math]
 ---
 
 Now we're back to complicated. Let's start, as normal, with the equation:
