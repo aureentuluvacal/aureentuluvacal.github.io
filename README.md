@@ -1,3 +1,9 @@
-# ToDo for Me
+# Welcome to My Blog's Code
 
-- Adjust styles
+I'm not as cool as Dan Abramov or DHH, but here I am.
+
+## ToDo for Me
+
+- Add dark mode
+- Add filter by tag
+- Contact me form?

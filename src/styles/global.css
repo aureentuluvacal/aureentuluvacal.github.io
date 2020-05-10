@@ -2,8 +2,20 @@ ul {
   margin-left: 1.75rem;
 }
 
+nav ul {
+  margin-left: 0;
+}
+
 :not(pre) > code[class*="language-"] {
-  padding: 0.1em 0.3em;
+  padding: 0 0.3em 0.1em;
   border-radius: 0.3em;
   white-space: normal;
+}
+
+a {
+  color: #031A6B;
+}
+
+a:hover {
+  color: #2541B2;
 }

@@ -4,15 +4,15 @@ const Tag = ({ name }) => {
   const getTagColor = () => {
     switch (name) {
       case 'Code':
-        return '#0014cc';
+        return '#031A6B';
       case 'Math':
-        return '#00ccb8';
+        return '#034748';
       case 'Personal':
-        return '#cc5200';
+        return '#0A1128';
       case 'Science':
-        return '#2b2f47'
+        return '#2541B2'
       default:
-        return '#0014cc';
+        return '#031A6B';
     }
   };
 
@@ -23,7 +23,8 @@ const Tag = ({ name }) => {
     borderRadius: '20px',
     margin: '0 4px',
     padding: '2px 4px',
-    fontWeight: 'bold'
+    fontSize: '100%',
+    fontFamily: 'Courier New, monospace'
   };
 
   return (<span style={styles}>{name}</span>);

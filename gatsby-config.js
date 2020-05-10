@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Caryssa Perez`,
     author: {
-      summary: `CTO of Iris Works. I live in Indianapolis with my partner, Irma; my two dogs, Lolita and Milo; and my cat, Genevieve. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k.`,
+      summary: `CTO of Iris Works. I live in Indianapolis with my partner, Irma. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k. This blog documents my thoughts about the tech industry, best practices, my failures, with some random things I like sprinkled in.`,
     },
     description: `Caryssa Perez's blog`,
     siteUrl: `https://caryssaperez.com/`,
@@ -59,7 +59,7 @@ module.exports = {
         short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#031A6B`,
         display: `minimal-ui`,
         icon: `content/assets/logo.svg`,
       },
