@@ -25,11 +25,17 @@ We have:
 - Vacuum permittivity, $$\varepsilon_0$$
 - A change in
 
+In other words, a magnetic field 
+
 ## Visible light and magnetic fields
 
 ## Application of Ampere's Law
 
-If you've ever done that experiment where you wrapped a coil of wire around a piece of metal and ran a current through it, then you've encountered Ampere's Law.
+If you've ever done that experiment where you ran a current through a wire and used a series of compasses to track the change in direction of the magnetic field, then you've encountered Ampere's Law. Here's an example:
+
+<a href="https://www.youtube.com/watch?v=4BvHq5CwfT8&t=0m34s" target="_blank">
+    <img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/lenzs-law-video-screenshot.png"/>
+</a>
 
 ## Uniting all the equations
 
