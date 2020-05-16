@@ -10,7 +10,7 @@ const Tag = ({ name }) => {
       case 'Personal':
         return '#0A1128';
       case 'Science':
-        return '#2541B2'
+        return '#2541B2';
       default:
         return '#031A6B';
     }
@@ -24,10 +24,10 @@ const Tag = ({ name }) => {
     margin: '0 4px',
     padding: '2px 4px',
     fontSize: '100%',
-    fontFamily: 'Courier New, monospace'
+    fontWeight: 'bold',
   };
 
-  return (<span style={styles}>{name}</span>);
-}
+  return <span style={styles}>{name}</span>;
+};
 
 export default Tag;

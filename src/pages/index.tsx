@@ -1,12 +1,12 @@
 // Gatsby supports TypeScript natively!
-import React from "react";
-import { PageProps, Link, graphql } from "gatsby";
+import React from 'react';
+import { PageProps, Link, graphql } from 'gatsby';
 
-import Bio from "../components/bio";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Tag from "../components/tag";
-import { rhythm } from "../utils/typography";
+import Bio from '../components/bio';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import Tag from '../components/tag';
+import { rhythm } from '../utils/typography';
 
 type Data = {
   site: {
@@ -40,7 +40,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="My Blog" />
+      <SEO title="Blog" />
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
@@ -65,7 +65,10 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                 </h4>
               </Link>
               <small>
-                {node.frontmatter.date} • {`${node.timeToRead} min read`} {node.frontmatter.tags.map((tag: string) => <Tag name={tag} />)}
+                {node.frontmatter.date} • {`${node.timeToRead} min read`}{' '}
+                {node.frontmatter.tags.map((tag: string) => (
+                  <Tag name={tag} />
+                ))}
               </small>
             </header>
             <section>
