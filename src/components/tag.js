@@ -24,7 +24,7 @@ const Tag = ({ name }) => {
     margin: '0 4px',
     padding: '2px 4px',
     fontSize: '100%',
-    fontFamily: 'Courier New, monospace'
+    fontWeight: 'bold'
   };
 
   return (<span style={styles}>{name}</span>);
