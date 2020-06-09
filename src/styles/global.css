@@ -36,3 +36,7 @@ a:hover {
 table tr td {
   text-align: center;
 }
+
+table th {
+  text-align: center;
+}
