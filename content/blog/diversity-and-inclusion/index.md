@@ -11,7 +11,7 @@ Diversity is a difficult – and sometimes painful – thing to talk about, espe
 
 I recently had a discussion with my mentor about my frustrations. I went on a rant that started with my previous company's lack of effort with their diversity and inclusion group and touched on like 15 other things that were related, but really just represented my level of frustration with everything. It was like word vomit.
 
-In Indianapolis, when you think about diversity and inclusion in the workplace, you might think of meeting a certain hiring quota of candidates. Like your company shouldn't be too white or too male or too insert-majority-here. Or you might think of mandatory courses with cringey videos and shitty acting to illustrate how not to be a sexist or a racist in the workplace. Or you might think of panels with bigwigs in the industry telling people why diversity and inclusion is important and that we need to "do better" for but better never comes.
+In Indianapolis, when you think about diversity and inclusion in the workplace, you might think of meeting a certain hiring quota of candidates. Like your company shouldn't be too white or too male or too insert-majority-here. Or you might think of mandatory courses with cringey videos and shitty acting to illustrate how not to be a sexist or a racist in the workplace. Or you might think of panels with bigwigs in the industry telling people why diversity and inclusion is important and that we need to "do better" but better never comes.
 
 The fundamental flaw with all of these approaches, besides being easy, is that they're superficial. This country was founded on prejudice just as much as it was founded on the idea of freedom. That prejudice – the racism, the sexism, the homophobia, the transphobia – is woven into the fabric of this nation, so it makes sense that something like hiring quotas won't magically fix everything.
 
@@ -24,7 +24,6 @@ Tech leaders tend to rave about books on how to be a better leader or how to com
 ## Books I've committed to reading
 
 This is a list of books that people have recommended to me or are considered must-read for the communities they describe. I'll keep adding to the list as I go on.
-
 
 ### Books about race
 
