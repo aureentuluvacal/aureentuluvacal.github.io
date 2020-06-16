@@ -35,15 +35,17 @@ This is a list of books that people have recommended to me or are considered mus
 
 - [For the Love of Men: From Toxic to a More Mindful Masculinity by Liz Plank](https://www.goodreads.com/book/show/43263540-for-the-love-of-men)
 - [Beyond the Gender Binary by Alok Vaid-Menon](https://www.goodreads.com/book/show/51794301-beyond-the-gender-binary)
-- [Trap Door: Trans Cultural Production and the Politics of Visibility](https://www.goodreads.com/book/show/34540062-trap-door)
-- [Transgender History by Susan Stryker](https://www.goodreads.com/book/show/2420983.Transgender_History?ac=1&from_search=true&qid=8KUMGapLmK)
+- [Trap Door: Trans Cultural Production and the Politics of Visibility by Reina Gossett (Editor), Eric A. Stanley, et al.](https://www.goodreads.com/book/show/34540062-trap-door)
 
 ### Books about disabilities and disability rights
 
 - [No Pity: People with Disabilities Forging a New Civil Rights Movement](https://www.goodreads.com/book/show/359140.No_Pity?ac=1&from_search=true&qid=WE4ntT7Mo2)
 - [The Ragged Edge: The Disability Experience from the Pages of the Disability Rag](https://www.goodreads.com/book/show/1707757.The_Ragged_Edge?ac=1&from_search=true&qid=V4HM5Q17TQ)
+- [Haben: The Deafblind Woman Who Conquered Harvard Law by Haben Girma](https://www.goodreads.com/book/show/43211952-haben)
+- [Capitalism and Disability: Essays by Marta Russell](https://www.goodreads.com/book/show/42900928-capitalism-and-disability)
 
 ### Books about sexual orientation and LGBTQ history
 
 - [The Gay Revolution: The Story of the Struggle](https://www.goodreads.com/book/show/23492771-the-gay-revolution?ac=1&from_search=true&qid=d2qI1BN0MC)
 - [And the Band Played On: Politics, People, and the AIDS Epidemic](https://www.goodreads.com/book/show/28212.And_the_Band_Played_On?ac=1&from_search=true&qid=eWL6DVdwTo)
+- [Transgender History by Susan Stryker](https://www.goodreads.com/book/show/2420983.Transgender_History?ac=1&from_search=true&qid=8KUMGapLmK)
