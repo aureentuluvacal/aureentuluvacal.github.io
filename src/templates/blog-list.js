@@ -1,6 +1,6 @@
 // Gatsby supports TypeScript natively!
 import React from 'react';
-import { PageProps, Link, graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import Bio from '../components/bio';
 import Layout from '../components/layout';
@@ -8,35 +8,14 @@ import SEO from '../components/seo';
 import Tag from '../components/tag';
 import { rhythm } from '../utils/typography';
 
-type Data = {
-  site: {
-    siteMetadata: {
-      title: string;
-    };
-  };
-  allMarkdownRemark: {
-    edges: {
-      node: {
-        timeToRead: number;
-        excerpt: string;
-        fields: {
-          slug: string;
-        };
-        frontmatter: {
-          title: string;
-          date: string;
-          description: string;
-          subtitle: string;
-          tags: [string];
-        };
-      };
-    }[];
-  };
-};
-
-const BlogIndex = ({ data, location }: PageProps<Data>) => {
+const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata.title;
   const posts = data.allMarkdownRemark.edges;
+  const { currentPage, numPages } = pageContext;
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
+  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
+  const nextPage = (currentPage + 1).toString()
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -66,7 +45,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
               </Link>
               <small>
                 {node.frontmatter.date} • {`${node.timeToRead} min read`}{' '}
-                {node.frontmatter.tags.map((tag: string) => (
+                {node.frontmatter.tags.map(tag => (
                   <Tag name={tag} />
                 ))}
               </small>
@@ -81,6 +60,30 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
           </article>
         );
       })}
+      <div style={{ display: 'flex' }}>
+        <div style={{ width: '33%' }}>
+          {!isFirst && (
+            <Link to={prevPage} rel="prev" style={{ justifyContent: 'flex-start' }}>
+              ← Previous Page
+            </Link>
+          )}
+        </div>
+
+        <div className="pageNumbers">
+          {Array.from({ length: numPages }, (_, i) => (
+            <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? "" : i + 1}`} >
+              {i + 1}
+            </Link>
+          ))}
+        </div>
+        <div style={{ width: '33%', textAlign: 'right' }}>
+          {!isLast && (
+            <Link to={nextPage} rel="next" style={{ justifyContent: 'flex-end' }}>
+              Next Page →
+            </Link>
+          )}
+        </div>
+      </div>
     </Layout>
   );
 };
@@ -88,13 +91,17 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query {
+  query blogPageQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           excerpt
