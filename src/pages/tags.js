@@ -1,8 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import kebabCase from "lodash/kebabCase"
-import { Helmet } from "react-helmet"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import kebabCase from 'lodash/kebabCase';
+import { Helmet } from 'react-helmet';
+import { Link, graphql } from 'gatsby';
+import Layout from '../components/layout';
+import Tag from '../components/tag';
 
 const TagsPage = ({
   data: {
@@ -10,22 +12,26 @@ const TagsPage = ({
     site: {
       siteMetadata: { title },
     },
-  }
+  },
 }) => (
-    <div style={{ textAlign: "center" }}>
-      <Helmet title={title} />
-      <div>
-        <h1>Tags</h1>
-        {group.map(tag => (
+  <Layout location={'/tags'} title={title}>
+    <Helmet title={title} />
+    <div>
+      <h1>Tags</h1>
+      {group.map(tag => (
+        <>
           <article key={tag.fieldValue}>
+            <Tag name={tag.fieldValue} />
             <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-              {tag.fieldValue} ({tag.totalCount})
+              ({tag.totalCount})
             </Link>
           </article>
-        ))}
-      </div>
+          <br />
+        </>
+      ))}
     </div>
-  )
+  </Layout>
+);
 
 TagsPage.propTypes = {
   data: PropTypes.shape({
@@ -43,9 +49,9 @@ TagsPage.propTypes = {
       }),
     }),
   }),
-}
+};
 
-export default TagsPage
+export default TagsPage;
 
 export const pageQuery = graphql`
   query {
@@ -61,4 +67,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

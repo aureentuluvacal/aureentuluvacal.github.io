@@ -1,31 +1,35 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link, graphql } from 'gatsby';
+import Layout from '../components/layout';
 
-const Tags = ({ data, pageContext }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMarkdownRemark
+const Tags = ({ data, pageContext, location }) => {
+  const { tag } = pageContext;
+  const { edges, totalCount } = data.allMarkdownRemark;
   const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-    } tagged with "${tag}"`
+    totalCount === 1 ? '' : 's'
+  } tagged with "${tag}"`;
 
   return (
-    <div>
+    <Layout location={location} title="Caryssa Perez">
       <h1>{tagHeader}</h1>
       {edges.map(({ node }) => {
-        const { slug } = node.fields
-        const { title } = node.frontmatter
+        const { slug } = node.fields;
+        const { title, subtitle } = node.frontmatter;
+        const fullTitle = subtitle ? `${title}: ${subtitle}` : title;
+
         return (
           <article key={slug}>
-            <Link to={slug}>{title}</Link>
-
+            <Link to={slug}>
+              <h4>{fullTitle}</h4>
+            </Link>
           </article>
-        )
+        );
       })}
       <Link to="/tags">All tags</Link>
-    </div>
+    </Layout>
   );
-}
+};
 
 Tags.propTypes = {
   pageContext: PropTypes.shape({
@@ -48,28 +52,29 @@ Tags.propTypes = {
       ),
     }),
   }),
-}
+};
 
-export default Tags
+export default Tags;
 
 export const pageQuery = graphql`
   query($tag: String) {
-          allMarkdownRemark(
-            limit: 2000
-      sort: {fields: [frontmatter___date], order: DESC }
-      filter: {frontmatter: {tags: { in: [$tag] } } }
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
-          totalCount
+      totalCount
       edges {
-          node {
+        node {
           fields {
-          slug
-        }
+            slug
+          }
           frontmatter {
-          title
-        }
+            title
+            subtitle
+          }
         }
       }
     }
   }
-`
+`;
