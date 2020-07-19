@@ -1,6 +1,6 @@
 ---
 title: '2 Logic 2 Furious'
-description: "More complicated propositional logic!"
+description: 'More complicated propositional logic!'
 date: 2020-07-12
 tags: [Math]
 ---
@@ -33,9 +33,9 @@ This truth table is a little weird, but remember exclusive OR is true if one and
 
 In conditional statements, $$p$$ is the hypothesis (the _if_), and $$q$$ is the conclusion (the _then_). So, "if I get 8 hours of sleep, then I will feel rested", or, "if the Earth rotates, then we will have a day/night cycle."
 
-The only time a conditional statement is false is if the hypothesis is false and the conclusion is true. Why does this make sense? The hypothesis and conclusion aren't cause and effect, which means if the hypothesis is true, it doesn't mean that the conclusion would be true. Like I could get 8 hours of sleep and still feel like shit the next day. That makes sense because it's in the realm of possiblility so the statement in of itself is true. 
+The only time a conditional statement is false is if the hypothesis is false and the conclusion is true. Why does this make sense? The hypothesis and conclusion aren't cause and effect, which means if the hypothesis is true, it doesn't mean that the conclusion would be true. Like I could get 8 hours of sleep and still feel like shit the next day. That makes sense because it's in the realm of possiblility so the statement in of itself is true.
 
-However, if the hypothesis is false and the conclusion is true then it wouldn't make any sense at all. For example, in "if the Sun is a black hole, then I will make a sandwich", I'd never be able to make a sandwich because the Sun isn't a black hole. It's a scenario where the conclusion could never be true and because it is an impossiblity, it is false.
+However, if the hypothesis is false and the conclusion is true then it wouldn't make any sense at all. For example, in "if the Sun is a black hole, then I will make a sandwich", I'd never be able to make a sandwich because the Sun isn't a black hole. It's a scenario where the conclusion could never be true and, because it is an impossiblity, it is false.
 
 #### Biconditional ($$\longleftrightarrow$$)
 
@@ -48,6 +48,8 @@ However, if the hypothesis is false and the conclusion is true then it wouldn't 
 
 Since the conditional is pointing both ways, it will be false both times there's a false hypothesis and true conclusion.
 
-### More laws!
+### Bit operations
+
+Last time I mentioned how this type of logic is related to circuits, and by extension, bits because of how true and false maps to 1 and 0.
 
 ### Examples
