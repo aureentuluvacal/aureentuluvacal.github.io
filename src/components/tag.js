@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "gatsby"
 
 const Tag = ({ name }) => {
   const getTagColor = () => {
@@ -27,7 +28,7 @@ const Tag = ({ name }) => {
     fontWeight: 'bold',
   };
 
-  return <span style={styles}>{name}</span>;
+  return <Link to={`/tags/${name.toLowerCase()}`} style={styles}>{name}</Link>;
 };
 
 export default Tag;

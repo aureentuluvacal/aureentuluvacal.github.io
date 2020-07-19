@@ -15,6 +15,10 @@ nav ul, nav ol {
   margin-left: 0;
 }
 
+nav ul > li {
+  max-width: 300px;
+}
+
 p > img {
   margin: 0 auto;
   display: block;
