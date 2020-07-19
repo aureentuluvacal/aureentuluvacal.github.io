@@ -135,9 +135,9 @@ Let's try applying these laws to figure out how to simplify an example.
 
 $$
 \begin{aligned}
-\color{red} \neg \color{black} (\neg p \wedge \neg q) &= \\
-&= \color{red} \neg \color{black} (\neg p) \vee \color{red} \neg \color{black} (\neg q) \qquad \text{DeMorgan's Law}\\
-&= p \vee q \qquad \text{Negations cancel out}
+\color{red} \neg \color{black} (\neg p \wedge \neg q) & \equiv \\
+& \equiv \color{red} \neg \color{black} (\neg p) \vee \color{red} \neg \color{black} (\neg q) \qquad \text{DeMorgan's Law}\\
+& \equiv p \vee q \qquad \text{Negations cancel out}
 \end{aligned}
 $$
 
@@ -145,14 +145,14 @@ And another:
 
 $$
 \begin{aligned}
-\color{red}\neg \color{black} (p \vee (\neg p \wedge q)) &= \\
-&= \color{red}\neg \color{black} p \wedge \color{red} \neg \color{black}(\neg p \wedge q) \qquad \text{DeMorgan's Law}\\
-&= \neg p \wedge [\color{red} \neg \color{black} (\neg p) \vee \color{red}\neg \color{black} q] \qquad \text{DeMorgan's Law}\\
-&= \neg p \color{red} \wedge \color{black} (p \vee \neg q) \qquad \text{Negations cancel out}\\
-&= (\neg p \color{red} \wedge  \color{black} p) \vee (\neg p \color{red} \wedge \color{black} \neg q) \qquad \text{Distributive Law}\\
-&= \bold{F} \vee (\neg p \wedge \neg q) \qquad \text{Negation Law}\\
-&= (\neg p \wedge \neg q) \vee \bold{F} \qquad \text{Commutative Law}\\
-&= \neg p \wedge \neg q \qquad \text{Identity Law}
+\color{red}\neg \color{black} (p \vee (\neg p \wedge q)) & \equiv \\
+& \equiv \color{red}\neg \color{black} p \wedge \color{red} \neg \color{black}(\neg p \wedge q) \qquad \text{DeMorgan's Law}\\
+& \equiv \neg p \wedge [\color{red} \neg \color{black} (\neg p) \vee \color{red}\neg \color{black} q] \qquad \text{DeMorgan's Law}\\
+& \equiv \neg p \color{red} \wedge \color{black} (p \vee \neg q) \qquad \text{Negations cancel out}\\
+& \equiv (\neg p \color{red} \wedge  \color{black} p) \vee (\neg p \color{red} \wedge \color{black} \neg q) \qquad \text{Distributive Law}\\
+& \equiv \bold{F} \vee (\neg p \wedge \neg q) \qquad \text{Negation Law}\\
+& \equiv (\neg p \wedge \neg q) \vee \bold{F} \qquad \text{Commutative Law}\\
+& \equiv \neg p \wedge \neg q \qquad \text{Identity Law}
 \end{aligned}
 $$
 
