@@ -1,7 +1,7 @@
 ---
 title: '2 Logic 2 Furious'
 description: 'More complicated propositional logic!'
-date: 2020-07-12
+date: 2020-07-18
 tags: [Math]
 ---
 
