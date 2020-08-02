@@ -29,6 +29,7 @@ const Bio = () => {
     <div
       style={{
         display: `flex`,
+        fontSize: `16px`,
         marginBottom: rhythm(0.75),
       }}
     >
