@@ -1,3 +1,7 @@
+body {
+  font-size: 18px;
+}
+
 footer {
   margin-top: 40px;
   text-align: center;
@@ -35,11 +39,14 @@ p > img {
 }
 
 a {
-  color: #031A6B;
+  color: #2541B2;
+  text-decoration: none;
+  box-shadow: none;
 }
 
 a:hover {
-  color: #2541B2;
+  box-shadow: #2541B2;
+  text-decoration: underline;
 }
 
 table tr td {
@@ -57,4 +64,20 @@ table th {
 
 .pageNumbers a {
   margin-right: 8px;
+}
+
+p.katex {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 680px;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    width: 100%;
+  };
 }

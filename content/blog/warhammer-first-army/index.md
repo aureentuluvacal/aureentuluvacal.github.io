@@ -7,9 +7,7 @@ tags: [Personal]
 
 Quarantine boredom introduced me to Warhammer 40k. I had heard about it before but I didn't realize how deep the rabbit hole went, especially how much time and effort people put into painting their armies. I paint regularly, both oil and acrylic, but I never painted models before. That was a bridge of nerddom I had yet to cross. I'm so glad I did.
 
-Irma actually wanted to play Warhammer with me. I showed her all the factions and she thought the Craftworld Eldar were the prettiest. I went with a color scheme similar to the [Mymeara Eldar](https://wh40k.lexicanum.com/wiki/Mymeara). I bought a Guardians set and the Start Collecting! box for the Eldar, which seemed right to me at the time. 
-
-Honestly, I really am just winging it.
+Irma actually wanted to play Warhammer with me (😭). I showed her all the factions and she thought the Craftworld Eldar were the prettiest. I went with a color scheme similar to the [Mymeara Eldar](https://wh40k.lexicanum.com/wiki/Mymeara) and bought Guardians set and the Start Collecting! box.
 
 So here they are:
 
@@ -36,6 +34,8 @@ So here they are:
 
 ![Wraithlord](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/wraithguard.jpg)
 
-Not bad for my first time. I decided on Grey Knights as my army because they seem like super paladins, which is very on brand for me. RIP Irma's army.
+Not bad for my first time. I also was able to magnetize the majority of the weapons so I can swap them out in the future (I truly am blindly following whatever is on the Warhammer 40k subreddit).
 
-To keep up with the theme of complicated color schemes, I'm going to try painting their armor as damascus steel. It's going to be hard as fuck.
+Next on my list is purchasing some Grey Knights. They seem like super paladins, which is very on brand for me. RIP Irma's army.
+
+To keep up with the theme of complicated color schemes, I'm going to try painting their armor as damascus steel. Plain steel seems too boring.

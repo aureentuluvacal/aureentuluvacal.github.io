@@ -1,6 +1,6 @@
 ---
-title: How I caused another outage
-date: 2020-07-19
-description: And the new process I'll be using going forward.
+title: GraphQL, Node, Rails, and Schema Stitching
+date: 2020-07-27
+description: We recently built a support app that uses two GraphQL schemas from a Node app and a Rails app.
 tags: [Code]
 ---

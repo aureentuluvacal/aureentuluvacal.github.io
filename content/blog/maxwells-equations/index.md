@@ -21,15 +21,15 @@ $$\oint \vec{E} \cdotp d\vec{A} = \frac{Q_{enc}}{\varepsilon_0}$$
 
 **Gauss' law for magnetism**
 
-$$\oint \vec{B} \cdotp d\vec{A} = 0$$
+$$\oiint \vec{B} \cdotp d\vec{A} = 0$$
 
 **Faraday's law of induction**
 
-$$\oint \vec{E} \cdotp d\vec{L} = - {d \phi_B \over dt}$$
+$$ \oint \vec{E} \cdotp d\vec{L} = - {d \phi_B \over dt} $$
 
 **Ampere's law**
 
-$$\oint \vec{B} \cdotp d\vec{L} = \mu_0 (I + \varepsilon_0{d \phi\varepsilon \over d t})$$
+$$ \oint \vec{B} \cdotp d\vec{L} = \mu_0I_{encl} + \mu_0\varepsilon_0{d\phi_E \over dt} $$
 
 If all of the symbols seem confusing, don't worry, I cover a brief math review [here]({{ site.baseurl }}{% post_url 2018-08-28-brushing-up-on-some-math %}). In the meantime, we'll define some variables and explore why the equations matter in the first place.
 
