@@ -39,7 +39,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           )}
           <p
             style={{
-              ...scale(-1 / 5),
+              ...scale(-1 / 10),
               display: `block`,
               marginTop: rhythm(0.2),
               marginBottom: rhythm(1),
@@ -60,21 +60,22 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <ul
           style={{
             display: `flex`,
-            flexWrap: `wrap`,
+            flexWrap: `no-wrap`,
             justifyContent: `space-between`,
             listStyle: `none`,
             padding: 0,
+            fontSize: '16px'
           }}
         >
-          <li>
+          <li style={{ width: '340px' }}>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title} <br />
-                {previous.frontmatter.subtitle}
+              <Link to={previous.fields.slug} rel="prev" style={{ width: '340px' }}>
+                ← {previous.frontmatter.title}
+                {previous.frontmatter.subtitle && `: ${previous.frontmatter.subtitle}`}
               </Link>
             )}
           </li>
-          <li>
+          <li style={{ minWidth: '340px', textAlign: 'right' }}>
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
