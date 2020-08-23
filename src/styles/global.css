@@ -7,15 +7,18 @@ footer {
   text-align: center;
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 1.75rem;
 }
 
-ul > li, ol > li {
+ul > li,
+ol > li {
   margin-bottom: 8px;
 }
 
-nav ul, nav ol {
+nav ul,
+nav ol {
   margin-left: 0;
 }
 
@@ -24,8 +27,8 @@ p > img {
   display: block;
 }
 
-:not(pre) > code[class*="language-"] {
-  padding: 0 0.3em 0.1em;
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em 0.3em 0.1em;
   border-radius: 0.3em;
   white-space: normal;
 }
@@ -34,14 +37,44 @@ p > img {
   margin-bottom: 40px;
 }
 
+.gatsby-highlight pre[class*='language-'].line-numbers {
+  padding-left: 4em;
+}
+
+.line-numbers-rows {
+  width: 3em !important;
+  top: 19px !important;
+}
+
+command-line-prompt > span:before {
+  color: #999;
+  content: ' ';
+  display: block;
+  padding-right: 0.8em;
+}
+
+/* Prompt for all users */
+.command-line-prompt > span[data-user]:before {
+  content: '[' attr(data-user) '@' attr(data-host) '] $';
+}
+
+/* Prompt for root */
+.command-line-prompt > span[data-user='root']:before {
+  content: '[' attr(data-user) '@' attr(data-host) '] #';
+}
+
+.command-line-prompt > span[data-prompt]:before {
+  content: attr(data-prompt);
+}
+
 a {
-  color: #2541B2;
+  color: #2541b2;
   text-decoration: none;
   box-shadow: none;
 }
 
 a:hover {
-  box-shadow: #2541B2;
+  box-shadow: #2541b2;
   text-decoration: underline;
 }
 
@@ -75,5 +108,5 @@ main {
 @media only screen and (max-width: 600px) {
   main {
     width: 100%;
-  };
+  }
 }
