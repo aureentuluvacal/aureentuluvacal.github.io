@@ -1,54 +1,45 @@
 ---
-title: Electric Components and Why They Work
-date: 2020-06-06
-tags: [Electrical Engineering]
+title: "Electrical Components: Resistor"
+date: 2020-09-24
+description: Now that Maxwell's equations are covered, we can dive into some hardware.
+tags: [Science]
 ---
+  
+A while ago I purchased an [Arduino kit from Elegoo](https://www.elegoo.com/product/elegoo-uno-project-super-starter-kit/). I have zero experience with Arduinos, Raspberry Pis, and other nerd hardware, outside of the basic experiments I did in school, but I figured I'd give it a shot.
 
-## Uniting all the equations
+I spent a lot of time researching and writing about Maxwell's Equations because I want to understand why computers work at the most fundamental level and slowly move up levels of abstraction to software. The next level, in this case, are circuits and the components that make the circuits interesting. I won't be diving into the Arduino kit itself (yet), but rather the pieces that are in the kit.
 
-How do all of these equations work together? Recall the equations:
+I want to start with the resistor because it's the simplest.
 
-**Gauss' Law for Electricity**
+## What is a resistor?
+
+![Resistor](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/resistor.jpg)
+
+The name itself is a huge clue for what the resistor does: it resists _something_. Within a circuit, where electrons are flowing freely as a current, that _something_ is the current. But how does it work?
+
+Well if we break apart the resistor and look at what's inside we'd see...
+
+![Cut resistor](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/cut-resistor.jpg)
+
+...not metal in the middle.
+
+But this makes sense! If you remember electric permittivity ($$\epsilon$$) then we know that metallic materials have a high electric permittivity while rubber and plastic materials have low electric permittivity. The material that's inside this resistor is a ["mixture of finely powdered carbon and an insulating material, usually ceramic".](https://en.wikipedia.org/wiki/Resistor) The more ceramic in the mixture, the more resistance, because ceramic is an insulator and hinders the flow of electrons through itself.
+
+I think I should pause here and clarify the difference between the terms resistance, insulating [material], and electric permittivity.  
+
+### Resistance
+
+Resistance influences the current and can be described by Ohm's Law
 
 $$
-\oint \vec{E} \cdotp d\vec{A} = \frac{Q_{enc}}{\varepsilon_0}
+V = I \times R
 $$
 
-Electric charges within a surface create an electric flux. Positive charges create an "outward" flux (a source) and negative charges create an "inward" flux (a sink).
+where $$V$$ is voltage, $$I$$ is current, and $$R$$ is resistance.
 
-![Distribution of charges](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/distribution-angles.png)
+Just looking at this equation you'd think that raising the resistance would increase the voltage forever. However, 
 
-**Gauss' Law for Magnetism**
+## Resources
 
-$$
-\oiint \vec{B} \cdotp d\vec{A} = 0
-$$
-
-The magnetic flux passing through an enclosed surface will equal zero. Unlike the previous equation, where charges create a flux, there are no magnetic charges that generate the magnetic flux.
-
-![Bar magnet with Gaussian sphere](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/gauss-law-magnetism.png)
-
-**Faraday's Law of Induction**
-
-$$
-\oint \vec{E} \cdotp d\vec{L} = - {d \phi_B \over dt}
-$$
-
-A magnetic field or changing magnetic flux generates an electric current.
-
-![Induced magnetic field](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/induced-magnetic-field.png)
-
-**Ampere's Law**
-
-An electric current or changing electric flux generates a magnetic field.
-
-We can combine the equations with an example of a capacitor.
-
-
-Electric flux density: $$\vec{D} = \vec{E}\varepsilon$$
-
-$$\varepsilon$$ doesn't change unless the material changes. Increases the stretchier the molecules are. Higher permittivity the lower the E field for a given D field.
-
-Parallel plate capacitor. Positive charges on top and negative charges on botton. There will be an electric field between the two sides. D field will be constant across the surface.
-
-Say we start with just the plates. There's an E field and a corresponding D field. This is an impressed field. If we add some other material between the plates then the material's molecules will stretch and distort because the electrons of the molecule will want to head towards the positive end and the positive nuclei will want to head towards the negative end. This distortion causes a countervailing dipole. The electric field local to the molecule points in the oppositve direction of the impressed field. The material creates then the polarization field, which gives capacitors their ability to store energy without raising the voltage. The total field is then much smaller. The E field has vectors that are smaller.
+- [Ohm's Law](https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/voltage-current-resistance-relate/)
+- [Always helpful wiki page](https://en.wikipedia.org/wiki/Resistor)
