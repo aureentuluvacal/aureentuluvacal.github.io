@@ -31,10 +31,20 @@ p > img {
   padding: 0.2em 0.3em 0.1em;
   border-radius: 0.3em;
   white-space: normal;
+  color: #2541b2;
+  background: none;
+}
+
+pre[class*="language-"] {
+  background-color: #000000;
 }
 
 .gatsby-highlight {
   margin-bottom: 40px;
+  width: 130%;
+  transform: translate(-50%, 0);
+  position: relative;
+  left: 50%;
 }
 
 .gatsby-highlight pre[class*='language-'].line-numbers {
