@@ -1,5 +1,5 @@
 ---
-title: "I Learned Rust!"
+title: 'I Learned Rust!'
 date: 2019-03-25
 description: "I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust."
 tags: [Code]

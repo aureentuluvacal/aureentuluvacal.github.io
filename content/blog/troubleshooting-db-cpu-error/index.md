@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting Rails Database Connection Issue"
+title: 'Troubleshooting Rails Database Connection Issue'
 date: 2019-10-13
 description: Production died then I fixed it.
 tags: [Code]

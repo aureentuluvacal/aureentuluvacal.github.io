@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
-import { Helmet } from 'react-helmet';
-import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
-import Tag from '../components/tag';
+import React from 'react'
+import PropTypes from 'prop-types'
+import kebabCase from 'lodash/kebabCase'
+import { Helmet } from 'react-helmet'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
+import Tag from '../components/tag'
 
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
     site: {
-      siteMetadata: { title },
-    },
-  },
+      siteMetadata: { title }
+    }
+  }
 }) => (
-  <Layout location={'/tags'} title={title}>
+  <Layout location='/tags' title={title}>
     <Helmet title={title} />
     <div>
       <h1>Tags</h1>
@@ -31,7 +31,7 @@ const TagsPage = ({
       ))}
     </div>
   </Layout>
-);
+)
 
 TagsPage.propTypes = {
   data: PropTypes.shape({
@@ -39,19 +39,19 @@ TagsPage.propTypes = {
       group: PropTypes.arrayOf(
         PropTypes.shape({
           fieldValue: PropTypes.string.isRequired,
-          totalCount: PropTypes.number.isRequired,
+          totalCount: PropTypes.number.isRequired
         }).isRequired
-      ),
+      )
     }),
     site: PropTypes.shape({
       siteMetadata: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      }),
-    }),
-  }),
-};
+        title: PropTypes.string.isRequired
+      })
+    })
+  })
+}
 
-export default TagsPage;
+export default TagsPage
 
 export const pageQuery = graphql`
   query {
@@ -67,4 +67,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

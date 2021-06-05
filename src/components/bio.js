@@ -1,8 +1,8 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import Image from "gatsby-image";
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
-import { rhythm } from "../utils/typography";
+import { rhythm } from '../utils/typography'
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -22,15 +22,15 @@ const Bio = () => {
         }
       }
     }
-  `);
+  `)
 
-  const { author } = data.site.siteMetadata;
+  const { author } = data.site.siteMetadata
   return (
     <div
       style={{
-        display: `flex`,
-        fontSize: `16px`,
-        marginBottom: rhythm(0.75),
+        display: 'flex',
+        fontSize: '16px',
+        marginBottom: rhythm(0.75)
       }}
     >
       <Image
@@ -40,15 +40,17 @@ const Bio = () => {
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
           minWidth: 140,
-          borderRadius: `100%`,
+          borderRadius: '100%'
         }}
         imgStyle={{
-          borderRadius: `50%`,
+          borderRadius: '50%'
         }}
       />
       <p>{author.summary}</p>
+      <h3>Coming Soon: "How to..." Series</h3>
+      <p>There's approximately 8 billion code courses out there, but I thought I'd try my hand at one.</p>
     </div>
-  );
-};
+  )
+}
 
-export default Bio;
+export default Bio

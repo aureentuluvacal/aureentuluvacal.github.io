@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
 
 const Tags = ({ data, pageContext, location }) => {
-  const { tag } = pageContext;
-  const { edges, totalCount } = data.allMarkdownRemark;
+  const { tag } = pageContext
+  const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
-  } tagged with "${tag}"`;
+  } tagged with "${tag}"`
 
   return (
-    <Layout location={location} title="Caryssa Perez">
+    <Layout location={location} title='Caryssa Perez'>
       <h1>{tagHeader}</h1>
       {edges.map(({ node }) => {
-        const { slug } = node.fields;
-        const { title, subtitle } = node.frontmatter;
-        const fullTitle = subtitle ? `${title}: ${subtitle}` : title;
+        const { slug } = node.fields
+        const { title, subtitle } = node.frontmatter
+        const fullTitle = subtitle ? `${title}: ${subtitle}` : title
 
         return (
           <article key={slug}>
@@ -24,16 +24,16 @@ const Tags = ({ data, pageContext, location }) => {
               <h4>{fullTitle}</h4>
             </Link>
           </article>
-        );
+        )
       })}
-      <Link to="/tags">All tags</Link>
+      <Link to='/tags'>All tags</Link>
     </Layout>
-  );
-};
+  )
+}
 
 Tags.propTypes = {
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired
   }),
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
@@ -42,19 +42,19 @@ Tags.propTypes = {
         PropTypes.shape({
           node: PropTypes.shape({
             frontmatter: PropTypes.shape({
-              title: PropTypes.string.isRequired,
+              title: PropTypes.string.isRequired
             }),
             fields: PropTypes.shape({
-              slug: PropTypes.string.isRequired,
-            }),
-          }),
+              slug: PropTypes.string.isRequired
+            })
+          })
         }).isRequired
-      ),
-    }),
-  }),
-};
+      )
+    })
+  })
+}
 
-export default Tags;
+export default Tags
 
 export const pageQuery = graphql`
   query($tag: String) {
@@ -77,4 +77,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

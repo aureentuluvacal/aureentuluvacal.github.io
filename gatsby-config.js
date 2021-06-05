@@ -1,86 +1,86 @@
 module.exports = {
   siteMetadata: {
-    title: `Caryssa Perez`,
+    title: 'Caryssa Perez',
     author: {
-      summary: `Senior Software Engineer at Praxis Labs. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k. This blog documents my thoughts about the tech industry, best practices, my failures, with some random things I like sprinkled in.`,
+      summary: 'Senior Software Engineer at Praxis Labs. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k. This blog documents my thoughts about the tech industry, best practices, my failures, with some random things I like sprinkled in.'
     },
-    description: `Caryssa Perez's blog`,
-    siteUrl: `https://caryssaperez.com/`,
+    description: 'Caryssa Perez\'s blog',
+    siteUrl: 'https://caryssaperez.com/'
   },
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
+        name: 'blog'
+      }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/assets`,
-        name: `assets`,
-      },
+        name: 'assets'
+      }
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: `gatsby-remark-katex`,
-            options: {
-              strict: `ignore`,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              inlineCodeMarker: `±`,
-              aliases: { js: `javascript` },
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
-              },
+              maxWidth: 590
             }
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
+          {
+            resolve: 'gatsby-remark-katex',
+            options: {
+              strict: 'ignore'
+            }
+          },
+          {
+            resolve: 'gatsby-remark-responsive-iframe',
+            options: {
+              wrapperStyle: 'margin-bottom: 1.0725rem'
+            }
+          },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              inlineCodeMarker: '±',
+              aliases: { js: 'javascript' },
+              prompt: {
+                user: 'root',
+                host: 'localhost',
+                global: false
+              }
+            }
+          },
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants'
+        ]
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#031A6B`,
-        display: `minimal-ui`,
-        icon: `content/assets/logo.svg`,
-      },
+        name: 'Gatsby Starter Blog',
+        short_name: 'GatsbyJS',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#031A6B',
+        display: 'minimal-ui',
+        icon: 'content/assets/logo.svg'
+      }
     },
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
-  ],
-};
+        pathToConfigModule: 'src/utils/typography'
+      }
+    }
+  ]
+}

@@ -9,7 +9,7 @@ We haven't had an outage at Iris in like 8 months. I guess it was just a matter 
 
 Oh well. I learned what I have to do, so when it does happen again, it won't feel so fan shit hitty.
 
-Now...database flaws, what does that mean? If you've guessed an unindexed table, you'd be correct! 🎉 
+Now...database flaws, what does that mean? If you've guessed an unindexed table, you'd be correct! 🎉
 
 Regrettably, I made a noob mistake merging a database migration adding an index to a beefy table and the code that required the migration to work effectively in the same release. I should have released the migration first then the feature after the table was done indexing in production. But it turns out, that wasn't the direct cause of the outage.
 
@@ -25,7 +25,7 @@ Our plan is composed of three steps: (1) Diagnosis, (2) Reverting master, and (3
 
 ### Diagnosis
 
-This step should take less than 20 minutes because it's about identifying the fix, not actually fixing it. I laid out common sources of outages after a release, including the code itself, the code exposing a database flaw, and a deployment failure. 
+This step should take less than 20 minutes because it's about identifying the fix, not actually fixing it. I laid out common sources of outages after a release, including the code itself, the code exposing a database flaw, and a deployment failure.
 
 We use Rollbar to track 4XX and 5XX errors, so finding the tracked issue that relates to a code issue is easy. The fix inherently could be more complicated because the faulty code could be anywhere.
 
@@ -35,7 +35,7 @@ The last source to check is the Kubernetes deployment. The logs for our `deploy-
 
 ### Revert master
 
-This step should have happened within the first 15-20 minutes of us noticing the outage. Instead, I focused my energy on finding the fix for a source I had yet to find because I looked at Kubernetes last and caused the app to be down for way longer than it should have been. 
+This step should have happened within the first 15-20 minutes of us noticing the outage. Instead, I focused my energy on finding the fix for a source I had yet to find because I looked at Kubernetes last and caused the app to be down for way longer than it should have been.
 
 ![image](https://media.giphy.com/media/X7jENDat6V5Je/giphy.gif)
 
@@ -45,10 +45,9 @@ At least this is the easiest step.
 
 The actual fix can vary in complexity depending on if it's an actual code issue that's the source of the outage. This makes sense since the codebase is so large; some areas you don't want to touch and some of the newer areas are pleasant because _you_ wrote them.
 
-Database and deployment issues are easier to fix, in my opinion, because the former requires a migration while the latter requires you to fix errors that occur during a single command (`rails db:migrate`). 
+Database and deployment issues are easier to fix, in my opinion, because the former requires a migration while the latter requires you to fix errors that occur during a single command (`rails db:migrate`).
 
->  I covered how to add a new index asynchronously in [Troubleshooting Rails Database Connection Issue](https://caryssaperez.com/troubleshooting-db-cpu-error).
-
+> I covered how to add a new index asynchronously in [Troubleshooting Rails Database Connection Issue](https://caryssaperez.com/troubleshooting-db-cpu-error).
 
 ## Going forward
 

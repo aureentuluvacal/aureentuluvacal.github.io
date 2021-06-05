@@ -21,7 +21,7 @@ Now, while it'd be easy to look at a bunch of sentences and see whether they're 
 - Or $$\vee$$
 - Not $$\neg$$
 
-For sentence components, we can sub in variables, $$p$$ (for "proposition") and $$q$$ (because it's after "p"). So if, "the sky is blue" is $$p$$ and "tomatoes are aqua" is  $$q$$, we can recreate the above as
+For sentence components, we can sub in variables, $$p$$ (for "proposition") and $$q$$ (because it's after "p"). So if, "the sky is blue" is $$p$$ and "tomatoes are aqua" is $$q$$, we can recreate the above as
 
 $$
 p \wedge q
@@ -50,7 +50,7 @@ This is where truth tables come in. A truth table for $$p \wedge q$$ would look 
 | F     | T     | F              |
 | F     | F     | F              |
 
-where $$p$$ and  $$q$$ could be either true (T) or false (F). The truthiness of $$p \wedge q$$ is one of the foundational concepts that we can use to build more complex arguments.
+where $$p$$ and $$q$$ could be either true (T) or false (F). The truthiness of $$p \wedge q$$ is one of the foundational concepts that we can use to build more complex arguments.
 
 The other two truth tables that, at minimum, should be memorized are for $$p \vee q$$ and $$\neg p$$, or for "or" and "not", which I'll refer to in all caps from now on.
 
@@ -120,6 +120,7 @@ $$
 The second operand doesn't matter because the first operand is the only proposition that can affect the overall truthiness.
 
 #### Negation Laws
+
 $$
 p \vee \neg p \equiv \bold{T}\\
 p \wedge \neg p \equiv \bold{F}
@@ -177,6 +178,5 @@ if foo && bar {
 ![Kronk](https://media.giphy.com/media/KFszZKN9kP8UJk7BlS/giphy.gif)
 
 It shows just how integrated this topic is with computer science, electrical engineering, and mathematics.
-
 
 > This is a tiny bit of what I learned in the course. I'll do a part two with more complicated arguments and notation and maybe a part three with predicate logic.

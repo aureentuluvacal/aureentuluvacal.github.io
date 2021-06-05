@@ -18,6 +18,7 @@ The first component I wrote was a basic button styled with an SCSS module.
 > Note: Our codebase uses Javascript, SASS modules, and the **classnames** package for conditional styling. You can sub in **styled-components** or Typescript.
 
 #### Button.jsx
+
 ```jsx
 // This is what it looked like a year ago.
 import React from 'react';
@@ -47,7 +48,7 @@ export default Button;
 #### Button.module.scss
 
 ```scss
- // We have a Webpack alias pointing to our global variables.
+// We have a Webpack alias pointing to our global variables.
 @import '~styles/_variables';
 
 .Button {
@@ -61,8 +62,7 @@ export default Button;
   padding: 0 16px;
   cursor: pointer;
   line-height: 36px;
-  box-shadow: 0 1px 1px 0 rgba(black, 0.05),
-    inset 0 1px 0 0 rgba(white, 0.1);
+  box-shadow: 0 1px 1px 0 rgba(black, 0.05), inset 0 1px 0 0 rgba(white, 0.1);
 
   &:hover {
     background-color: rgba($mauve, 0.9);
@@ -71,7 +71,6 @@ export default Button;
 }
 ```
 
-
 The styles themselves don't matter, but rather how the component is built. It needed to be simple enough to be reusable across the entire site, but complex enough to grant us the ability to customize its visuals and functionality.
 
 I feel like we've found the right system for balancing the two, including leveraging `classnames` to use specific styles in the presence of certain props.
@@ -79,6 +78,7 @@ I feel like we've found the right system for balancing the two, including levera
 For example:
 
 #### Button.jsx
+
 ```jsx
 // We would destructure props before this.
 const hasClassName = !!className;
@@ -101,8 +101,8 @@ And prepare styles, like "Button--danger" , in the SCSS file as follows:
 
 ```scss
 .Button {
- // Styles from before...
- // "danger" shamelessly stolen from Bootstrap.
+  // Styles from before...
+  // "danger" shamelessly stolen from Bootstrap.
   &--danger {
     background-color: $cinnabar-red;
     border-color: $cinnabar-red;
@@ -132,7 +132,7 @@ I first encountered this iteration of a UI Library from one of my awesome cowork
     └── index.js
 ```
 
-where the *ui* directory houses all the UI components in our library and each directory within it is named after a different component. There should be five files in each component directory:
+where the _ui_ directory houses all the UI components in our library and each directory within it is named after a different component. There should be five files in each component directory:
 
 1. The actual component.
 2. A file for styles.
@@ -140,7 +140,7 @@ where the *ui* directory houses all the UI components in our library and each di
 4. An index.js file for easy exporting.
 5. A README.md to describe the different variations of the component and how it will be used.
 
-The *index.js* file in the root of *ui* directory serves to export each component from one place. Like so:
+The _index.js_ file in the root of _ui_ directory serves to export each component from one place. Like so:
 
 #### ui/index.js
 

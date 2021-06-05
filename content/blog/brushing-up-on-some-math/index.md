@@ -187,7 +187,7 @@ Integrals are the answer to finding the area underneath a curve between a set of
 
 ![Sample Graph with Area](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//integrals.png)
 
-So if we wanted the area under the curve between $$a$$ and $$b$$ then we would need to do $$ \int_{a}^{b} f(x) \, dx $$ where $$dx$$ is an infinitesimally small change in $$x$$, $$f(x)$$ is the value of the function at some $$x$$, and the $$\int$$ is the summation of all of those infinitesimally small slices of area.
+So if we wanted the area under the curve between $$a$$ and $$b$$ then we would need to do $$ \int\_{a}^{b} f(x) \, dx $$ where $$dx$$ is an infinitesimally small change in $$x$$, $$f(x)$$ is the value of the function at some $$x$$, and the $$\int$$ is the summation of all of those infinitesimally small slices of area.
 
 ![Graph with smaller and smaller slices](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts//integrals-slices.png)
 

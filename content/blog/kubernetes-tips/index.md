@@ -5,7 +5,7 @@ description: I had to learn Kubernetes on the job when I first started at Iris. 
 tags: [Code]
 ---
 
-Kubernetes (or k8s as I'll refer to it from now on) was extremely intimidating when I first started at Iris. I was coming from a software engineering background that had nothing to do with DevOps of any kind, so that was understandable. DevOps felt like the realm of those Linux and networking wizards who look very much unlike me and wield shell scripts as easily as I can write HTML. 
+Kubernetes (or k8s as I'll refer to it from now on) was extremely intimidating when I first started at Iris. I was coming from a software engineering background that had nothing to do with DevOps of any kind, so that was understandable. DevOps felt like the realm of those Linux and networking wizards who look very much unlike me and wield shell scripts as easily as I can write HTML.
 
 In retrospect, I was definitely being dramatic about it, but imposter syndrome is hard to extricate yourself from when you're new _and_ you're learning something new. Also, I wasn't learning something new with the buffer of a team. I _had_ to learn this because I was the only person on the Dev team.
 
@@ -33,9 +33,9 @@ Anyway, I noticed in AWS that CPU usage for one k8s node was the only one spikin
 
 I dug into it and noticed that most of our pods were running in this node. By default, the k8s scheduler decides where pods should run based on the resources available. However, production was using most of the node's resources. I needed to spread it out across the other three m4.larges(!) we have in the cluster.
 
-We weren't using the _replica_ setting at all. I upped only production to four because we have four worker nodes and the other environments will never get as much traffic. Just in case, I put in some CPU and memory limits under the _resources_ setting. 
+We weren't using the _replica_ setting at all. I upped only production to four because we have four worker nodes and the other environments will never get as much traffic. Just in case, I put in some CPU and memory limits under the _resources_ setting.
 
->The limits are subject to change since I honestly just picked random numbers until it looked ok in AWS.
+> The limits are subject to change since I honestly just picked random numbers until it looked ok in AWS.
 
 ```yaml
 # Truncated because it's a secret!
@@ -81,7 +81,7 @@ And more on the k8s site with [their handy dandy cheatsheet](https://kubernetes.
 The most helpful thing I made was a function in my `.zshrc` to save those precious seconds running a command in a pod.
 
 ```bash
-# Add this to .bashrc or .zshrc. 
+# Add this to .bashrc or .zshrc.
 # (I added the slashes for readability.)
 function k8s_exec() {
   kubectl -it exec -n $1 \
@@ -95,9 +95,9 @@ Let me break this down:
 
 - `kubectl -it exec`, open a shell
 - `-n $1`, in the specified namespace using the first argument
-- `kubectl get pods -n $1`, get pods in the same namespace which is piped into *grep*
+- `kubectl get pods -n $1`, get pods in the same namespace which is piped into _grep_
 - `grep -oh -m 1 "web-\w*-\w*"`, which finds the first match of the name that includes "web"
-- `-- ${@:2}`, then runs the command in the pod that *grep* found with the remaining arguments after the first one
+- `-- ${@:2}`, then runs the command in the pod that _grep_ found with the remaining arguments after the first one
 
 You'd run it like
 
@@ -105,4 +105,4 @@ You'd run it like
 k8sweb qa rails c
 ```
 
-if you wanted to open a Rails console in the "web" pod in QA. This is definitely unique to our setup. Your pod name could be "walrus" or something, so tweak it as needed. 
+if you wanted to open a Rails console in the "web" pod in QA. This is definitely unique to our setup. Your pod name could be "walrus" or something, so tweak it as needed.

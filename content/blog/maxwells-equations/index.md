@@ -1,7 +1,7 @@
 ---
 title: Maxwell's Equations
 date: 2018-10-11
-description: "I learn best when I understand the high level overview of a topic. So when I want to learn about how computers work and why they work the way they work I need to start at the beginning: the fundamentals of electromagnetism."
+description: 'I learn best when I understand the high level overview of a topic. So when I want to learn about how computers work and why they work the way they work I need to start at the beginning: the fundamentals of electromagnetism.'
 tags: [Science, Math]
 ---
 
@@ -29,7 +29,7 @@ $$ \oint \vec{E} \cdotp d\vec{L} = - {d \phi_B \over dt} $$
 
 **Ampere's law**
 
-$$ \oint \vec{B} \cdotp d\vec{L} = \mu_0I_{encl} + \mu_0\varepsilon_0{d\phi_E \over dt} $$
+$$ \oint \vec{B} \cdotp d\vec{L} = \mu*0I*{encl} + \mu_0\varepsilon_0{d\phi_E \over dt} $$
 
 If all of the symbols seem confusing, don't worry, I cover a brief math review [here]({{ site.baseurl }}{% post_url 2018-08-28-brushing-up-on-some-math %}). In the meantime, we'll define some variables and explore why the equations matter in the first place.
 

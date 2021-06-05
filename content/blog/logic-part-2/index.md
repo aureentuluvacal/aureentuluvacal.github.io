@@ -83,7 +83,6 @@ p \vee (p \wedge q) \equiv p \\
 p \wedge (p \vee q) \equiv p
 $$
 
-
 ### Bit operations
 
 Last time I mentioned how this type of logic is related to circuits, and by extension bits, because of how true and false maps to 1 and 0.
@@ -105,7 +104,7 @@ So we can make the same sorts of operations on bits because it's just a differen
 All the simple operators (AND, OR, XOR) show up in code you write when you're comparing values in `if` statements or following a procedure.
 
 ```javascript
-if (value === "this" && otherValue) {
+if (value === 'this' && otherValue) {
   // Do this.
 } else {
   // Do that.
@@ -138,7 +137,6 @@ Nothing wrong with a few practice problems.
 
 1. Show that $$p \longleftrightarrow q$$ is equivalent to $$(p \longrightarrow q) \wedge (q \longrightarrow p)$$.
 
-
 | $$p$$ | $$q$$ | $$p \longrightarrow q$$ | $$q \longrightarrow p$$ | $$(p \longrightarrow q) \wedge (q \longrightarrow p)$$ | $$p \longleftrightarrow q$$ |
 | ----- | ----- | ----------------------- | ----------------------- | ------------------------------------------------------ | --------------------------- |
 | T     | T     | T                       | T                       | T                                                      | T                           |
@@ -163,12 +161,12 @@ $$
 \end{aligned}
 $$
 
-They be the same. 
+They be the same.
 
 #### Bit Logic
 
 1. Evaluate $$1010 \wedge (1011 \vee 0111)$$. Follow order of operations.
- 
+
 $$
 \begin{aligned}
 & \quad 1\colorbox{#e9ecf7}{0}1\colorbox{#e9ecf7}{1} \\

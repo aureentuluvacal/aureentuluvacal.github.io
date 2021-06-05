@@ -44,18 +44,18 @@ The following examples illustrate different runtimes. I'm using Javascript for t
 
 ```js
 function foo(array) {
-  let sum = 0
-  let product = 1
+  let sum = 0;
+  let product = 1;
 
   for (let i = 0; i < array.length; i++) {
-    sum += array[i]
+    sum += array[i];
   }
 
   for (let i = 0; i < array.length; i++) {
-    product *= array[i]
+    product *= array[i];
   }
 
-  console.log(`${sum}, ${product}`)
+  console.log(`${sum}, ${product}`);
 }
 ```
 
@@ -67,11 +67,11 @@ There are two for loops, but since constants do not matter, the runtime is $O(n)
 
 ```js
 function printUnorderedPairs(array) {
-  let i = 1
+  let i = 1;
 
   for (let i = 0; i < array.length; i++) {
     for (let j = i + 1; j < array.length; j++) {
-      console.log(`${array[i]}, ${array[j]}`)
+      console.log(`${array[i]}, ${array[j]}`);
     }
   }
 }
@@ -98,7 +98,7 @@ function printUnorderedPairs(arrayA, arrayB) {
   for (let i = 0; i < arrayA.length; i++) {
     for (let j = 0; j < arrayB.length; j++) {
       if (i < j) {
-        console.log(`${arrayA[i]}, ${arrayB[j]}`)
+        console.log(`${arrayA[i]}, ${arrayB[j]}`);
       }
     }
   }
@@ -115,10 +115,10 @@ If `js> b = arrayB.length` and `js> a = arrayA.length`, then the runtime is $O(a
 function isPrime(n) {
   for (let i = 2; i * i <= n; i++) {
     if (n % i === 0) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 ```
 
@@ -129,14 +129,14 @@ The loop ends at $i^2 = n$ which is the same as saying $i = \sqrt{n}$. Therefore
 ```js
 function allFib(n) {
   for (let i = 0; i < n; i++) {
-    console.log(`${i}: ${fib(i)}`)
+    console.log(`${i}: ${fib(i)}`);
   }
 }
 
 function fib(n) {
-  if (n <= 0) return 0
-  else if (n == 1) return 1
-  return fib(n - 1) + fib(n - 2)
+  if (n <= 0) return 0;
+  else if (n == 1) return 1;
+  return fib(n - 1) + fib(n - 2);
 }
 ```
 

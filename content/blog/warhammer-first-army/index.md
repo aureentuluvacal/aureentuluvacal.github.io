@@ -17,16 +17,13 @@ So here they are:
 
 #### War Walker
 
-
 ![Wraithlord](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/warwalker.jpg)
 
 #### Heavy Weapon Platform
 
-
 ![Wraithlord](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/heavyweapon.jpg)
 
 #### Farseer & Guardians
-
 
 ![Wraithlord](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/farseer_guardians.jpg)
 

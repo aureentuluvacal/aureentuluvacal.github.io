@@ -1,15 +1,15 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
+import React from 'react'
+import { Link, graphql } from 'gatsby'
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-import Tag from "../components/tag";
-import { rhythm, scale } from "../utils/typography";
+import Layout from '../components/layout'
+import Seo from '../components/seo'
+import Tag from '../components/tag'
+import { rhythm, scale } from '../utils/typography'
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
-  const post = data.markdownRemark;
-  const siteTitle = data.site.siteMetadata.title;
-  const { previous, next } = pageContext;
+  const post = data.markdownRemark
+  const siteTitle = data.site.siteMetadata.title
+  const { previous, next } = pageContext
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -22,7 +22,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <h1
             style={{
               marginTop: rhythm(1),
-              marginBottom: 0,
+              marginBottom: 0
             }}
           >
             {post.frontmatter.title}
@@ -31,7 +31,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             <h2
               style={{
                 marginTop: rhythm(0.5),
-                marginBottom: 0,
+                marginBottom: 0
               }}
             >
               {post.frontmatter.subtitle}
@@ -40,9 +40,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <p
             style={{
               ...scale(-1 / 10),
-              display: `block`,
+              display: 'block',
               marginTop: rhythm(0.2),
-              marginBottom: rhythm(1),
+              marginBottom: rhythm(1)
             }}
           >
             {post.frontmatter.date} • {`${post.timeToRead} min read`} {post.frontmatter.tags.map(tag => <Tag name={tag} />)}
@@ -51,7 +51,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
-            marginBottom: rhythm(1),
+            marginBottom: rhythm(1)
           }}
         />
       </article>
@@ -59,17 +59,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       <nav>
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `no-wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
+            display: 'flex',
+            flexWrap: 'no-wrap',
+            justifyContent: 'space-between',
+            listStyle: 'none',
             padding: 0,
             fontSize: '16px'
           }}
         >
           <li style={{ width: '340px' }}>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev" style={{ width: '340px' }}>
+              <Link to={previous.fields.slug} rel='prev' style={{ width: '340px' }}>
                 ← {previous.frontmatter.title}
                 {previous.frontmatter.subtitle && `: ${previous.frontmatter.subtitle}`}
               </Link>
@@ -77,7 +77,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
           <li style={{ minWidth: '340px', textAlign: 'right' }}>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={next.fields.slug} rel='next'>
                 {next.frontmatter.title} →
                 <br />
                 {next.frontmatter.subtitle}
@@ -87,10 +87,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         </ul>
       </nav>
     </Layout>
-  );
-};
+  )
+}
 
-export default BlogPostTemplate;
+export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -113,4 +113,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
