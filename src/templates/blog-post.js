@@ -45,7 +45,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               marginBottom: rhythm(1)
             }}
           >
-            {post.frontmatter.date} • {`${post.timeToRead} min read`} {post.frontmatter.tags.map(tag => <Tag name={tag} />)}
+            {post.frontmatter.date} • {`${post.timeToRead} min read`} {post.frontmatter.tags.map(tag => <Tag key={tag} name={tag} />)}
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />

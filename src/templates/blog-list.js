@@ -46,7 +46,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
               <small>
                 {node.frontmatter.date} • {`${node.timeToRead} min read`}{' '}
                 {node.frontmatter.tags.map(tag => (
-                  <Tag name={tag} />
+                  <Tag key={tag} name={tag} />
                 ))}
               </small>
             </header>

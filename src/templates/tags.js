@@ -19,7 +19,7 @@ const Tags = ({ data, pageContext, location }) => {
         const fullTitle = subtitle ? `${title}: ${subtitle}` : title
 
         return (
-          <article key={slug}>
+          <article key={title}>
             <Link to={slug}>
               <h4>{fullTitle}</h4>
             </Link>

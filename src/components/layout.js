@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import { rhythm } from '../utils/typography'
 
 const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
+  const rootPath = `${__PATH_PREFIX__}/`// eslint-disable-line
   let header
 
   if (location.pathname === rootPath) {

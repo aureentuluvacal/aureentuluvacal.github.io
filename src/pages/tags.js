@@ -19,15 +19,15 @@ const TagsPage = ({
     <div>
       <h1>Tags</h1>
       {group.map(tag => (
-        <>
-          <article key={tag.fieldValue}>
+        <React.Fragment key={tag.fieldValue}>
+          <article>
             <Tag name={tag.fieldValue} />
             <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
               ({tag.totalCount})
             </Link>
           </article>
           <br />
-        </>
+        </React.Fragment>
       ))}
     </div>
   </Layout>

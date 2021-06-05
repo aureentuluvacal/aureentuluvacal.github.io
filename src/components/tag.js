@@ -20,7 +20,7 @@ const Tag = ({ name }) => {
   const styles = {
     backgroundColor: getTagColor(),
     color: name === 'Science' ? '#000' : '#fff',
-    border: `1px solid	${getTagColor()}`,
+    border: `1px solid ${getTagColor()}`,
     borderRadius: '20px',
     margin: '0 4px',
     padding: '2px 8px',
