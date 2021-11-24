@@ -2,11 +2,11 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: 'Caryssa Perez',
+    title: 'Cal Perez',
     author: {
       summary: 'Senior Software Engineer at Praxis Labs. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k. This blog documents my thoughts about the tech industry, best practices, my failures, with some random things I like sprinkled in.'
     },
-    description: 'Caryssa Perez\'s blog',
+    description: 'Cal Perez\'s blog',
     siteUrl: 'https://caryssaperez.com/'
   },
   plugins: [
