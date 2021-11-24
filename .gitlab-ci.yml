@@ -4,7 +4,9 @@ pages:
   script:
     - yarn
     - yarn add gatsby-cli
-    - node_modules/.bin/gatsby build
+    - export NODE_OPTIONS=--openssl-legacy-provider
+    - node_modules/.bin/gatsby build 
+
   artifacts:
     paths:
       - public
