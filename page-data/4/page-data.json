@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-blog-list-js",
+    "path": "/4",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Cal Perez"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"Big O is the metric the industry uses to describe the efficiency of algorithms. When calculating Big O: Time and space matter. An algorithm…","timeToRead":4,"fields":{"slug":"/big-o/"},"frontmatter":{"date":"August 08, 2018","title":"Big O","description":"Brief overview of Big O.","subtitle":null,"tags":["Code"]}}}]}},"pageContext":{"limit":8,"skip":24,"numPages":4,"currentPage":4}},
+    "staticQueryHashes": ["3000541721","3662927739"]}

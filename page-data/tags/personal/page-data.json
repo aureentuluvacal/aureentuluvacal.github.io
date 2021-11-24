@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-js",
+    "path": "/tags/personal",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":8,"edges":[{"node":{"fields":{"slug":"/fuck/"},"frontmatter":{"title":"Fuck","subtitle":null}}},{"node":{"fields":{"slug":"/2021-update/"},"frontmatter":{"title":"Woops","subtitle":null}}},{"node":{"fields":{"slug":"/update-for-2020/"},"frontmatter":{"title":"Update for the remainder of the year","subtitle":null}}},{"node":{"fields":{"slug":"/sobriety/"},"frontmatter":{"title":"Sobriety","subtitle":null}}},{"node":{"fields":{"slug":"/warhammer-first-army/"},"frontmatter":{"title":"Finished my first, almost 500 point army!","subtitle":null}}},{"node":{"fields":{"slug":"/diversity-and-inclusion/"},"frontmatter":{"title":"Diversity and Inclusion","subtitle":null}}},{"node":{"fields":{"slug":"/goals-for-blog/"},"frontmatter":{"title":"Goals for this Blog","subtitle":null}}},{"node":{"fields":{"slug":"/job-update/"},"frontmatter":{"title":"🎉 I'm a CTO Now! 🎉","subtitle":null}}}]}},"pageContext":{"tag":"Personal"}},
+    "staticQueryHashes": []}
