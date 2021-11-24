@@ -11,7 +11,7 @@ const Tags = ({ data, pageContext, location }) => {
   } tagged with "${tag}"`
 
   return (
-    <Layout location={location} title='Caryssa Perez'>
+    <Layout location={location} title='Cal Perez'>
       <h1>{tagHeader}</h1>
       {edges.map(({ node }) => {
         const { slug } = node.fields

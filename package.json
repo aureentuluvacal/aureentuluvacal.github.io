@@ -3,7 +3,7 @@
   "private": true,
   "description": "Personal site.",
   "version": "1.0.0",
-  "author": "Caryssa Perez <caryssaperez@gmail.com>",
+  "author": "Cal Perez <aure.entuluva.cal@gmail.com>",
   "dependencies": {
     "gatsby": "^3.5.1",
     "gatsby-image": "^3.5.0",
