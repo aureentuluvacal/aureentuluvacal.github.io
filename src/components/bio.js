@@ -52,8 +52,8 @@ const Bio = () => {
         <p>{author.summary}</p>
       </div>
       <div style={calloutStyles}>
-        <h3 style={{ margin: 0 }}>Coming Soon: "How to..." Series</h3>
-        <p style={{ margin: 0 }}>There's approximately 8 billion code courses out there, but I thought I'd try my hand at one.</p>
+        <h3 style={{ margin: 0 }}>Heads up!</h3>
+        <p style={{ margin: 0 }}>I'm changing my name because I'm non-binary so this site is no longer reachable at caryssaperez.com. </p>
       </div>
     </>
   )
