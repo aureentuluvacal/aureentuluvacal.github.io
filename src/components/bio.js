@@ -1,8 +1,8 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import Image from 'gatsby-image';
 
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../utils/typography';
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -22,10 +22,15 @@ const Bio = () => {
         }
       }
     }
-  `)
+  `);
 
-  const { author } = data.site.siteMetadata
-  const calloutStyles = { borderLeft: '4px solid #2541b2', borderRight: '4px solid #2541b2', padding: 24, marginTop: 10 }
+  const { author } = data.site.siteMetadata;
+  const calloutStyles = {
+    borderLeft: '4px solid #2541b2',
+    borderRight: '4px solid #2541b2',
+    padding: 24,
+    marginTop: 10,
+  };
 
   return (
     <>
@@ -33,7 +38,7 @@ const Bio = () => {
         style={{
           display: 'flex',
           fontSize: '16px',
-          marginBottom: rhythm(0.75)
+          marginBottom: rhythm(0.75),
         }}
       >
         <Image
@@ -43,20 +48,29 @@ const Bio = () => {
             marginRight: rhythm(1 / 2),
             marginBottom: 0,
             minWidth: 140,
-            borderRadius: '100%'
+            borderRadius: '100%',
           }}
           imgStyle={{
-            borderRadius: '50%'
+            borderRadius: '50%',
           }}
         />
         <p>{author.summary}</p>
       </div>
       <div style={calloutStyles}>
-        <h3 style={{ margin: 0 }}>Heads up!</h3>
-        <p style={{ margin: 0 }}>I'm changing my name because I'm non-binary so this site is no longer reachable at caryssaperez.com. </p>
+        <h3 style={{ margin: 0 }}>For the curious</h3>
+        <p style={{ margin: 0 }}>
+          Here's my{' '}
+          <a
+            href="https://caryssa-perez-images.s3.us-east-2.amazonaws.com/ResumeCP.pdf"
+            target="_blank"
+          >
+            resume
+          </a>
+          .
+        </p>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Bio
+export default Bio;
