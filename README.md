@@ -1,7 +1,5 @@
-# Welcome to My Blog's Code
+# Welcome to my blog's code
+
+It's made with Gatsby.
 
 I'm not as cool as Dan Abramov or Tatiana Mac, but here I am.
-
-## ToDo for Me
-
-- Add dark mode
