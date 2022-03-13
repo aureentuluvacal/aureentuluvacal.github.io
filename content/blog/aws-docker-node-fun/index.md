@@ -23,7 +23,7 @@ In my head the architecture looked like this:
 
 ![First version of the architecture](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/supportal-architecture-1.jpg)
 
-I Dockerized the apps with no problems and, with that momentum, plunged into AWS. First, I booted up one t2.micro instance in EC2 and a t2.micro instance in RDS running MySQL. We use Route 53 for all our `*.iris-works.com` sites, so a new subdomain that pointed to the EC2 instance was just a simple paste of the public IPv4 address of the instance.
+I Dockerized the apps with no problems and, with that momentum, plunged into AWS. First, I booted up one t2.micro instance in EC2 and a t2.micro instance in RDS running MySQL. We use Route 53 for all our _\*.iris-works.com_ sites, so a new subdomain that pointed to the EC2 instance was just a simple paste of the public IPv4 address of the instance.
 
 I tried to access the new site that pointed to the React app and got nothing. Then for the next several hours I struggled. It was one of those moments where I understood from a high level what was going on, but then also had no idea what was going on.
 

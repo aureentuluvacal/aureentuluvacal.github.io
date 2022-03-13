@@ -17,7 +17,7 @@ const TagsPage = ({
   <Layout location='/tags' title={title}>
     <Helmet title={title} />
     <div>
-      <h1>Tags</h1>
+      <h2>Tags</h2>
       {group.map(tag => (
         <React.Fragment key={tag.fieldValue}>
           <article>

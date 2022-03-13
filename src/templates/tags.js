@@ -12,7 +12,7 @@ const Tags = ({ data, pageContext, location }) => {
 
   return (
     <Layout location={location} title='Cal Perez'>
-      <h1>{tagHeader}</h1>
+      <h2>{tagHeader}</h2>
       {edges.map(({ node }) => {
         const { slug } = node.fields
         const { title, subtitle } = node.frontmatter
@@ -21,11 +21,12 @@ const Tags = ({ data, pageContext, location }) => {
         return (
           <article key={title}>
             <Link to={slug}>
-              <h4>{fullTitle}</h4>
+              <span>{fullTitle}</span>
             </Link>
           </article>
         )
       })}
+      <br/>
       <Link to='/tags'>All tags</Link>
     </Layout>
   )

@@ -33,17 +33,18 @@ p > img {
   padding: 0.2em 0.3em 0.1em;
   border-radius: 0.3em;
   white-space: normal;
-  color: #365df7;
+  color: rgb(255 189 48);
   background: none;
 }
 
 pre[class*='language-'] {
   background-color: #000000;
+  padding: 1.4em 18.6em;
 }
 
 .gatsby-highlight {
   margin-bottom: 40px;
-  width: 130%;
+  width: 200%;
   transform: translate(-50%, 0);
   position: relative;
   left: 50%;
@@ -117,8 +118,21 @@ main {
   width: 680px;
 }
 
+blockquote {
+  color: inherit;
+  background: rgba(54, 93, 247, 0.25);
+  border-color: #365df7;
+  font-size: 16px;
+  padding: 10px 24px;
+  margin-right: -1.25rem;
+}
+
 @media only screen and (max-width: 600px) {
   main {
     width: 100%;
+  }
+
+  pre[class*='language-'] {
+    padding: 1.4em 12.8em;
   }
 }

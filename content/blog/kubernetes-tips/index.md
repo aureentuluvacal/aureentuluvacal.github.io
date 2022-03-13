@@ -88,21 +88,20 @@ function k8s_exec() {
   $(kubectl get pods -n $1 | grep -oh -m 1 "web-\w*-\w*") \
   -- ${@:2}
 }
-alias k8sweb='k8s_exec'
 ```
 
 Let me break this down:
 
-- `kubectl -it exec`, open a shell
-- `-n $1`, in the specified namespace using the first argument
-- `kubectl get pods -n $1`, get pods in the same namespace which is piped into _grep_
-- `grep -oh -m 1 "web-\w*-\w*"`, which finds the first match of the name that includes "web"
-- `-- ${@:2}`, then runs the command in the pod that _grep_ found with the remaining arguments after the first one
+- Open a shell (`kubectl -it exec`)
+- in the specified namespace using the first argument (`-n $1`)
+- and get pods in the same namespace to pipe into _grep_ (`kubectl get pods -n $1`)
+- which finds the first match of the name that includes "web" (`grep -oh -m 1 "web-\w*-\w*"`)
+- and, finally, run the command in the pod that _grep_ found with the remaining arguments after the first one (`-- ${@:2}`)
 
 You'd run it like
 
 ```bash
-k8sweb qa rails c
+k8s_exec qa rails c
 ```
 
 if you wanted to open a Rails console in the "web" pod in QA. This is definitely unique to our setup. Your pod name could be "walrus" or something, so tweak it as needed.

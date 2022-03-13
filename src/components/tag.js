@@ -5,7 +5,7 @@ const Tag = ({ name }) => {
   const getTagColor = () => {
     switch (name) {
       case 'Code':
-        return '#0577CE'
+        return '#FF50F1'
       case 'Math':
         return '#8C55E5'
       case 'Personal':
@@ -17,14 +17,14 @@ const Tag = ({ name }) => {
     }
   }
 
+  const tagColor = getTagColor();
+
   const styles = {
-    backgroundColor: getTagColor(),
-    color: name === 'Science' ? '#000' : '#fff',
-    border: `1px solid ${getTagColor()}`,
+    color: tagColor,
+    border: `2px solid ${tagColor}`,
     borderRadius: '20px',
     margin: '0 4px',
     padding: '2px 8px',
-    fontSize: '100%',
     fontWeight: 'bold'
   }
 

@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Cal Perez',
     author: {
-      summary: 'Senior Software Engineer at Praxis Labs. I like to code, cook, paint, and play D&D. Currently getting into Warhammer 40k. This blog documents my thoughts about the tech industry, best practices, my failures, with some random things I like sprinkled in.'
+      summary: 'Senior Software Engineer at Praxis Labs. I like to code, cook, paint, and play D&D and Warhammer. This blog documents my thoughts about the tech industry, best practices, my failures, and some random things I like sprinkled in. Currently getting into building circuits.'
     },
     description: 'Cal Perez\'s blog',
     siteUrl: 'https://calperez.io/'
