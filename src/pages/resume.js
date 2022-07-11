@@ -22,6 +22,18 @@ const ResumePage = ({ data, location }) => {
     setNumPages(numPages);
   }
 
+  function onPrev() {
+    if (pageNumber !== 1) {
+      setPageNumber(1);
+    }
+  }
+
+  function onNext() {
+    if (pageNumber !== 2) {
+      setPageNumber(2);
+    }
+  }
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="Resume" />
@@ -32,9 +44,37 @@ const ResumePage = ({ data, location }) => {
       >
         <Page pageNumber={pageNumber} />
       </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <span
+          style={{ cursor: 'pointer' }}
+          onClick={onPrev}
+          role="button"
+          tabIndex={-1}
+          onKeyDown={event => {
+            if (event.key === 13) {
+              onPrev();
+            }
+          }}
+        >
+          &#9664;
+        </span>
+        <p>
+          Page {pageNumber} of {numPages}
+        </p>
+        <span
+          style={{ cursor: 'pointer' }}
+          onClick={onNext}
+          role="button"
+          tabIndex={-1}
+          onKeyDown={event => {
+            if (event.key === 13) {
+              onNext();
+            }
+          }}
+        >
+          &#9654;
+        </span>
+      </div>
     </Layout>
   );
 };

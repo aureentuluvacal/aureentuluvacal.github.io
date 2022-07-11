@@ -38,7 +38,7 @@ const Bio = () => {
         style={{
           display: 'flex',
           fontSize: '16px',
-          marginBottom: rhythm(0.75),
+          marginBottom: rhythm(1.25),
         }}
       >
         <Image
@@ -47,12 +47,10 @@ const Bio = () => {
           style={{
             marginRight: rhythm(1 / 2),
             marginBottom: 0,
-            minWidth: 140,
+            minWidth: 120,
             borderRadius: '100%',
           }}
-          imgStyle={{
-            borderRadius: '50%',
-          }}
+          imgStyle={{ objectFit: 'contain' }}
         />
         <p>{author.summary}</p>
       </div>

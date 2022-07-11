@@ -136,3 +136,7 @@ blockquote {
     padding: 1.4em 12.8em;
   }
 }
+
+canvas {
+  margin: 20px auto;
+}
