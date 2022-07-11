@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-pages-tags-js",
     "path": "/tags/",
     "result": {"data":{"site":{"siteMetadata":{"title":"Cal Perez"}},"allMarkdownRemark":{"group":[{"fieldValue":"Code","totalCount":9},{"fieldValue":"Math","totalCount":8},{"fieldValue":"Personal","totalCount":3},{"fieldValue":"Science","totalCount":6}]}},"pageContext":{}},
-    "staticQueryHashes": []}
+    "staticQueryHashes": ["731186232"]}
