@@ -56,7 +56,7 @@ const ResumePage = ({ data, location }) => {
             }
           }}
         >
-          &#9664;
+          ←
         </span>
         <p>
           Page {pageNumber} of {numPages}
@@ -72,7 +72,7 @@ const ResumePage = ({ data, location }) => {
             }
           }}
         >
-          &#9654;
+          →
         </span>
       </div>
     </Layout>

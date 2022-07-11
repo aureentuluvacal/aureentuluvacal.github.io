@@ -5,12 +5,13 @@ module.exports = {
     title: 'Cal Perez',
     author: {
       summary:
-        'Senior Software Engineer at Tanooki Labs. I like to code, cook, paint, and play D&D and Warhammer. This blog documents my thoughts about the tech industry, best practices, my failures, and some random things I like sprinkled in. Currently getting into building circuits.',
+        'Senior Software Engineer at Tanooki Labs. I like to code, cook, paint, and play D&D and Warhammer.',
     },
     description: "Cal Perez's blog",
     siteUrl: 'https://calperez.io/',
   },
   plugins: [
+    `gatsby-plugin-image`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
