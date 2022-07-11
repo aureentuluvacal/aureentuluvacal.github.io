@@ -5,7 +5,6 @@ import { rhythm } from '../utils/typography';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`; // eslint-disable-line
-  let header;
 
   const data = useStaticQuery(graphql`
     query LayoutQuery {
@@ -17,32 +16,6 @@ const Layout = ({ location, title, children }) => {
     }
   `);
 
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          marginBottom: rhythm(0.75),
-          marginTop: rhythm(0.75),
-          padding: 0,
-          display: 'inline-block',
-        }}
-      >
-        {title}
-      </h1>
-    );
-  } else {
-    header = (
-      <h3
-        style={{
-          fontFamily: 'Montserrat, sans-serif',
-          marginTop: 0,
-          display: 'inline-block',
-        }}
-      >
-        {title}
-      </h3>
-    );
-  }
   return (
     <div
       style={{
@@ -72,7 +45,18 @@ const Layout = ({ location, title, children }) => {
               height: 60,
             }}
           />
-          {header}
+          {location.pathname === rootPath && (
+            <h1
+              style={{
+                marginBottom: rhythm(0.75),
+                marginTop: rhythm(0.75),
+                padding: 0,
+                display: 'inline-block',
+              }}
+            >
+              {title}
+            </h1>
+          )}
         </Link>
       </header>
       <main>{children}</main>
