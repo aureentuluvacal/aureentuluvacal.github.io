@@ -7,7 +7,7 @@ tags: [Personal]
 
 Quarantine boredom introduced me to Warhammer 40k. I had heard about it before but I didn't realize how deep the rabbit hole went, especially how much time and effort people put into painting their armies. I paint regularly, both oil and acrylic, but I never painted models before. That was a bridge of nerddom I had yet to cross. I'm so glad I did.
 
-Irma actually wanted to play Warhammer with me (😭). I showed her all the factions and she thought the Craftworld Eldar were the prettiest. I went with a color scheme similar to the [Mymeara Eldar](https://wh40k.lexicanum.com/wiki/Mymeara) and bought Guardians set and the Start Collecting! box.
+My partner actually wanted to play Warhammer with me (😭). I showed her all the factions and she thought the Craftworld Eldar were the prettiest. I went with a color scheme similar to the [Mymeara Eldar](https://wh40k.lexicanum.com/wiki/Mymeara) and bought Guardians set and the Start Collecting! box.
 
 So here they are:
 
