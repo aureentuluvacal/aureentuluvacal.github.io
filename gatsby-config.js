@@ -5,7 +5,7 @@ module.exports = {
     title: 'Cal Perez',
     author: {
       summary:
-        'Senior Software Engineer at Tanooki Labs. I like to code, cook, paint, and play D&D and Warhammer.',
+        'Senior Software Engineer at Jane Technologies. I like to code, cook, paint, and play D&D and Warhammer.',
     },
     description: "Cal Perez's blog",
     siteUrl: 'https://calperez.io/',
