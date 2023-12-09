@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tags-js",
+    "path": "/tags/science",
+    "result": {"data":{"allMarkdownRemark":{"totalCount":6,"edges":[{"node":{"fields":{"slug":"/electrical-components/"},"frontmatter":{"title":"Electrical Components: Resistor","subtitle":null}}},{"node":{"fields":{"slug":"/amperes-law/"},"frontmatter":{"title":"Maxwell's Equations","subtitle":"Ampere's Law"}}},{"node":{"fields":{"slug":"/faradays-law-of-induction/"},"frontmatter":{"title":"Maxwell's Equations","subtitle":"Faraday's Law of Induction"}}},{"node":{"fields":{"slug":"/gauss-law-of-magnetism/"},"frontmatter":{"title":"Maxwell's Equations","subtitle":"Gauss' Law for Magnetism"}}},{"node":{"fields":{"slug":"/gauss-law-for-electricity/"},"frontmatter":{"title":"Maxwell's Equations","subtitle":"Gauss' Law for Electricity"}}},{"node":{"fields":{"slug":"/maxwells-equations/"},"frontmatter":{"title":"Maxwell's Equations","subtitle":null}}}]}},"pageContext":{"tag":"Science"}},
+    "staticQueryHashes": ["731186232"]}
