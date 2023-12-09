@@ -81,13 +81,13 @@ command-line-prompt > span:before {
 }
 
 a {
-  color: #365df7;
+  color: #2E8CE9;
   text-decoration: none;
   box-shadow: none;
 }
 
 a:hover {
-  box-shadow: #365df7;
+  box-shadow: #36baf7;
   text-decoration: underline;
 }
 
@@ -121,7 +121,7 @@ main {
 blockquote {
   color: inherit;
   background: rgba(54, 93, 247, 0.25);
-  border-color: #365df7;
+  border-color: #2E8CE9;
   font-size: 16px;
   padding: 10px 24px;
   margin-right: -1.25rem;
