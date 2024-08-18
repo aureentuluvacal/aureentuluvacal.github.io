@@ -1,63 +1,48 @@
 {
-  "name": "blog",
-  "private": true,
-  "description": "Personal site.",
-  "version": "1.0.0",
-  "author": "Cal Perez <aure.entuluva.cal@gmail.com>",
-  "dependencies": {
-    "canvas": "^2.8.0",
-    "gatsby": "^3.5.1",
-    "gatsby-image": "^3.5.0",
-    "gatsby-plugin-feed": "^3.5.0",
-    "gatsby-plugin-image": "^2.18.0",
-    "gatsby-plugin-manifest": "^3.5.0",
-    "gatsby-plugin-react-helmet": "^4.5.0",
-    "gatsby-plugin-sharp": "^3.5.0",
-    "gatsby-plugin-typography": "^3.5.0",
-    "gatsby-remark-copy-linked-files": "^4.2.1",
-    "gatsby-remark-images": "^5.2.1",
-    "gatsby-remark-katex": "^5.9.0",
-    "gatsby-remark-prismjs": "^5.3.0",
-    "gatsby-remark-responsive-iframe": "^4.2.1",
-    "gatsby-remark-smartypants": "^4.2.0",
-    "gatsby-source-filesystem": "^3.5.0",
-    "gatsby-transformer-remark": "^4.9.0",
-    "gatsby-transformer-sharp": "^3.5.0",
-    "graphql": "^15.5.0",
-    "katex": "^0.13.13",
-    "prismjs": "^1.27.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-pdf": "^5.5.0",
-    "react-typography": "^0.16.20",
-    "typeface-merriweather": "1.1.13",
-    "typeface-montserrat": "1.1.13",
-    "typography": "^0.16.21",
-    "typography-theme-wordpress-2016": "^0.16.19"
-  },
-  "devDependencies": {
-    "prettier": "2.3.0",
-    "standard": "^16.0.3"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "yarn run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+	"name": "svelte-practice",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "npm run test:integration && npm run test:unit",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test:integration": "playwright test",
+		"test:unit": "vitest"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/node": "^20.10.4",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-svelte": "^2.30.0",
+		"mdsvex": "^0.11.0",
+		"prettier": "^3.0.0",
+		"prettier-plugin-svelte": "^3.0.0",
+		"sass": "^1.69.5",
+		"svelte": "^5.0.0-next.1",
+		"svelte-check": "^3.6.0",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.0",
+		"vitest": "^1.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@types/markdown-it": "^14.1.1",
+		"@wangjiezhe/markdown-it-katex": "^4.0.3",
+		"highlight.js": "^11.9.0",
+		"markdown-it": "^14.1.0",
+		"markdown-it-front-matter": "^0.2.4",
+		"markdown-it-katex": "^2.0.3"
+	}
 }

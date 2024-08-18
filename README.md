@@ -1,5 +1,7 @@
-# Welcome to my blog's code
+# My site
 
-It's made with Gatsby.
+Powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-I'm not as cool as Dan Abramov or Tatiana Mac, but here I am.
+## Next up
+
+- Making sure all the articles can get rendered.
