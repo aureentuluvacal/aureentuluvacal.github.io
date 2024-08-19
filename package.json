@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-static": "^3.0.4",
 		"@types/markdown-it": "^14.1.1",
 		"@wangjiezhe/markdown-it-katex": "^4.0.3",
 		"highlight.js": "^11.9.0",
