@@ -1,4 +1,6 @@
 name: GH Pages Deploy
+permissions:
+  id-token: write
 
 on:
   push:
