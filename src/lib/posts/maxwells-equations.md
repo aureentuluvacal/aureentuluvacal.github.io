@@ -31,7 +31,7 @@ $$ \oint \vec{E} \cdotp d\vec{L} = -d\phi_{B} / dt $$
 
 $$ \oint \vec{B} \cdotp d\vec{L} = \mu_{0}I_{encl} + \mu_{0}\varepsilon_{0} d\phi_{E} / dt $$
 
-If all of the symbols seem confusing, don't worry, I cover a brief math review [here]('./2018-08-28-brushing-up-on-some-math'). In the meantime, we'll define some variables and explore why the equations matter in the first place.
+We'll define some variables and explore why the equations matter in the first place.
 
 ## Definition of Variables
 

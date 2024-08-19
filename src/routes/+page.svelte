@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
+	import { base } from '$app/paths';
 
 	export let data: PageServerData;
 </script>
@@ -7,7 +8,7 @@
 <ul>
 	{#each data.posts as post}
 		<li class="post">
-			<a href={`posts/${post.slug}`}>
+			<a href={`${base}/posts/${post.slug}`}>
 				<div class="post-header">
 					<div class="post-title">
 						<h3>{post.title}</h3>

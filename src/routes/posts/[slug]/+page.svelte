@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { base } from '$app/paths';
 	import Markdown from '$lib/components/Markdown.svelte';
 
 	export let data: PageData;
@@ -28,7 +29,7 @@
 		</div>
 		<div class="post-controlContainer">
 			{#if data.post.previous.slug}
-				<a href={`/posts/${data.post.previous.slug}`} target="_self" class="post-control">
+				<a href={`${base}/posts/${data.post.previous.slug}`} target="_self" class="post-control">
 					<p>
 						<i class="icons-arrow icons-arrow--left"></i>
 						Previous
@@ -38,7 +39,7 @@
 			{/if}
 			{#if data.post.next.slug}
 				<a
-					href={`/posts/${data.post.next.slug}`}
+					href={`${base}/posts/${data.post.next.slug}`}
 					target="_self"
 					class="post-control"
 					style="text-align: right;"
