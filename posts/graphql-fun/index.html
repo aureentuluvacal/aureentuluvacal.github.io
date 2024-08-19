@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>GraphQL and Schema Stitching</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>GraphQL and Schema Stitching</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>August 22, 2020</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>I'm having a great time building out the support app for Iris. I talked about deploying it on AWS in <a href="https://caryssaperez.com/aws-docker-node-fun">this post</a> and now we're gonna talk about the backend. The stack for the support app is a React app that communicates with a Node backend requesting data from a GraphQL server. All of it is written in Typescript.</p>
+<p>The Iris app was recently GraphQLified, meaning I used the <a href="https://github.com/rmosolgo/graphql-ruby">GraphQL gem</a> and Shopify's <a href="https://github.com/Shopify/graphql-batch">batching gem</a> to expose a new <code>/graphql</code> endpoint on the Rails backend.</p>
+<blockquote>
+<p>By the end of this post I'm going to get tired of typing GraphQL.</p>
+</blockquote>
+<p>Since I had two separate schemas, I had to combine them so both were usable in one go from the <code>/graphql</code> endpoint in the Node app.</p>
+<p>So how do we do this?</p>
+<h3>The code</h3>
+<p>I like to start with the full code then break it down. Obviously, this code is pared down to exclude Iris specific stuff.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { buildSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;type-graphql&#x27;</span>;
+<span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node-fetch&#x27;</span>;
+<span class="hljs-keyword">import</span> { print, <span class="hljs-title class_">DocumentNode</span>, <span class="hljs-title class_">GraphQLResolveInfo</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;graphql&#x27;</span>;
+<span class="hljs-keyword">import</span> {
+  introspectSchema,
+  mergeSchemas,
+  wrapSchema,
+  <span class="hljs-title class_">ExecutionResult</span>,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;graphql-tools&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserResolver</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./resolvers/UserResolver&#x27;</span>;
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Executor</span> = <span class="hljs-function">(<span class="hljs-params">operation: ExecutionParams</span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">ExecutionResult</span>&gt;;
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ExecutionParams</span> = {
+  <span class="hljs-attr">document</span>: <span class="hljs-title class_">DocumentNode</span>;
+  variables?: <span class="hljs-title class_">Object</span>;
+  context?: <span class="hljs-title class_">Object</span>;
+  info?: <span class="hljs-title class_">GraphQLResolveInfo</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">executor</span>: <span class="hljs-title class_">Executor</span> = <span class="hljs-keyword">async</span> ({ <span class="hljs-variable language_">document</span>, variables }) =&gt; {
+  <span class="hljs-keyword">const</span> query = <span class="hljs-title function_">print</span>(<span class="hljs-variable language_">document</span>);
+  <span class="hljs-keyword">const</span> fetchResult = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">URL</span>, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">headers</span>: {
+      <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,
+    },
+    <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+      query,
+      variables,
+    }),
+  });
+  <span class="hljs-keyword">return</span> fetchResult.<span class="hljs-title function_">json</span>();
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getSchema</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> localSchema = <span class="hljs-keyword">await</span> <span class="hljs-title function_">buildSchema</span>({
+      <span class="hljs-attr">resolvers</span>: [<span class="hljs-title class_">UserResolver</span>],
+      <span class="hljs-attr">emitSchemaFile</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">dateScalarMode</span>: <span class="hljs-string">&#x27;isoDate&#x27;</span>,
+    });
+
+    <span class="hljs-keyword">const</span> remoteSchema = <span class="hljs-title function_">wrapSchema</span>({
+      <span class="hljs-attr">schema</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">introspectSchema</span>(executor),
+      executor,
+    });
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">mergeSchemas</span>({
+      <span class="hljs-attr">schemas</span>: [localSchema, remoteSchema],
+    });
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  }
+};
+</code></pre>
+<h3>The explanation</h3>
+<p>Let's go section by section.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { buildSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;type-graphql&#x27;</span>;
+</code></pre>
+<p>We use <a href="https://typegraphql.com/">TypeGraphQL</a> to create the support app's schema and resolvers. I won't go into how it works, but you should definitely check it out.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> fetch <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node-fetch&#x27;</span>;
+<span class="hljs-keyword">import</span> { print, <span class="hljs-title class_">DocumentNode</span>, <span class="hljs-title class_">GraphQLResolveInfo</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;graphql&#x27;</span>;
+<span class="hljs-keyword">import</span> {
+  introspectSchema,
+  mergeSchemas,
+  wrapSchema,
+  <span class="hljs-title class_">ExecutionResult</span>,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;graphql-tools&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserResolver</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./resolvers/UserResolver&#x27;</span>;
+</code></pre>
+<p>The rest of the imports are <code>fetch</code>, the functions and types needed from the <code>graphql</code> and <code>graphql-tools</code> to merge the schemas, and our <code>UserResolver</code> that we made with TypeGraphQL.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Executor</span> = <span class="hljs-function">(<span class="hljs-params">operation: ExecutionParams</span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">ExecutionResult</span>&gt;;
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ExecutionParams</span> = {
+  <span class="hljs-attr">document</span>: <span class="hljs-title class_">DocumentNode</span>;
+  variables?: <span class="hljs-title class_">Object</span>;
+  context?: <span class="hljs-title class_">Object</span>;
+  info?: <span class="hljs-title class_">GraphQLResolveInfo</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">executor</span>: <span class="hljs-title class_">Executor</span> = <span class="hljs-keyword">async</span> ({ <span class="hljs-variable language_">document</span>, variables }) =&gt; {
+  <span class="hljs-keyword">const</span> query = <span class="hljs-title function_">print</span>(<span class="hljs-variable language_">document</span>);
+  <span class="hljs-keyword">const</span> fetchResult = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">URL</span>, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">headers</span>: {
+      <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,
+    },
+    <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+      query,
+      variables,
+    }),
+  });
+  <span class="hljs-keyword">return</span> fetchResult.<span class="hljs-title function_">json</span>();
+};
+</code></pre>
+<p>Line 11 just defines the type for our <code>executor()</code> function parameters, which is why we imported <code>DocumentNode</code>, and <code>GraphQLResolveInfo</code>. Line 18 defines <code>executor()</code> function that actually fetches GraphQL results from the URL defined in our <code>.env</code>.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getSchema</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> localSchema = <span class="hljs-keyword">await</span> <span class="hljs-title function_">buildSchema</span>({
+      <span class="hljs-attr">resolvers</span>: [<span class="hljs-title class_">UserResolver</span>],
+      <span class="hljs-attr">emitSchemaFile</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">dateScalarMode</span>: <span class="hljs-string">&#x27;isoDate&#x27;</span>,
+    });
+
+    <span class="hljs-keyword">const</span> remoteSchema = <span class="hljs-title function_">wrapSchema</span>({
+      <span class="hljs-attr">schema</span>: <span class="hljs-keyword">await</span> <span class="hljs-title function_">introspectSchema</span>(executor),
+      executor,
+    });
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">mergeSchemas</span>({
+      <span class="hljs-attr">schemas</span>: [localSchema, remoteSchema],
+    });
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  }
+};
+</code></pre>
+<p>Line 38 builds the local schema with TypeGraphQL, while line 44 introspects the remote schema and uses the <code>executor()</code> function from above to parse the results. Finally, <code>wrapSchema()</code> is called to avoid type and naming collisions between the two schemas.</p>
+<p>Line 49 combines both schemas, which makes it possible to send something like</p>
+<pre><code class="language-graphql"><span class="hljs-keyword">query</span> <span class="hljs-punctuation">{</span>
+ users <span class="hljs-punctuation">{</span>
+  id
+  name
+ <span class="hljs-punctuation">}</span>
+ studios <span class="hljs-punctuation">{</span>
+  name
+  clients <span class="hljs-punctuation">{</span>
+   email
+  <span class="hljs-punctuation">}</span>
+ <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>to the <em>one</em> GraphQL endpoint using both executable schemas to get data back from both data sources. (<code>users</code> belongs to the local schema and <code>studios</code> belongs to the remote schema.)</p>
+<p>It makes me feel super smart, but it's really just GraphQL doing all the heavy lifting.</p>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/sobriety" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">Sobriety</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/guard-in-docker" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">How to set up Guard in Docker</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"GraphQL and Schema Stitching",date:"2020-08-23T00:00:00.000Z",description:"We recently built a support app that combines two GraphQL schemas. This is just a guide for how to make it work in Typescript.",tags:["Code"],slug:"graphql-fun",next:{title:"How to set up Guard in Docker",date:"2021-05-30T00:00:00.000Z",description:"For when you want to run your test environment completely separate.",tags:["Code"],slug:"guard-in-docker"},previous:{title:"Sobriety",date:"2020-08-16T00:00:00.000Z",description:"I've been sober for almost 600 days and I wanted to collect my thoughts about it.",tags:["Personal"],slug:"sobriety"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

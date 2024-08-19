@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>Some Kubernetes tips I've learned</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>Some Kubernetes tips I've learned</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>August 8, 2020</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>Kubernetes (or k8s as I'll refer to it from now on) was extremely intimidating when I first started at Iris. I was coming from a software engineering background that had nothing to do with DevOps of any kind, so that was understandable. DevOps felt like the realm of those Linux and networking wizards who look very much unlike me and wield shell scripts as easily as I can write HTML.</p>
+<p>In retrospect, I was definitely being dramatic about it, but imposter syndrome is hard to extricate yourself from when you're new <em>and</em> you're learning something new. Also, I wasn't learning something new with the buffer of a team. I <em>had</em> to learn this because I was the only person on the Dev team.</p>
+<p>Now, 15 months later, I feel incredibly comfortable with k8s. There's definitely still stuff for me to learn, of course, but it's not soul crushingly stymying anymore.</p>
+<h2>A quick aside</h2>
+<p>When I was first learning, I watched <a href="https://www.youtube.com/watch?v=PH-2FfFD2PU">this video</a> because, you know, five minutes was all it was going to take.</p>
+<p>I still have yet to create my own copy of this diagram and fill in the more complicated bits that Steve Tegeler briefly mentions. When I do, I'll definitely post about it.</p>
+<p>The video definitely demystified how everything worked, though. It's just images on machines that are orchestrated by a series of processes and APIs that run on a master machine. I have no idea how, but that's not the point of the video.</p>
+<h2>Configuration adjustments</h2>
+<p>We have a lot of YAML files, settings for each environment we deploy, including QA, Demo, Staging, and Production. I had also inherited the files, but the myriad different settings intimidated me most. I understand that the purpose of the YAML is a declaration of state. Basically, &quot;I want this Docker image, with these environment variables, in this namespace running in my cluster.&quot; You don't care how k8s does it, you just trust that it does.</p>
+<p>But how could I make our deployments more efficient and not &quot;just work&quot;?</p>
+<p>Instead of studying all of the possible configurations, I started with the problem I had at hand: production would randomly spike in CPU usage then go down (🎉Yay!🎉). I like to think that it was because we have more users and this is just the next problem to solve at a scaling company. Right?</p>
+<p>Anyway, I noticed in AWS that CPU usage for one k8s node was the only one spiking.</p>
+<p><img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/y.jpg" alt="y tho"></p>
+<p>I dug into it and noticed that most of our pods were running in this node. By default, the k8s scheduler decides where pods should run based on the resources available. However, production was using most of the node's resources. I needed to spread it out across the other three m4.larges(!) we have in the cluster.</p>
+<p>We weren't using the <em>replica</em> setting at all. I upped only production to four because we have four worker nodes and the other environments will never get as much traffic. Just in case, I put in some CPU and memory limits under the <em>resources</em> setting.</p>
+<blockquote>
+<p>The limits are subject to change since I honestly just picked random numbers until it looked ok in AWS.</p>
+</blockquote>
+<pre><code class="language-yaml"><span class="hljs-comment"># Truncated because it&#x27;s a secret!</span>
+
+  <span class="hljs-attr">replicas:</span> <span class="hljs-number">4</span>
+    <span class="hljs-attr">spec:</span>
+      <span class="hljs-attr">containers:</span>
+          <span class="hljs-attr">resources:</span>
+            <span class="hljs-attr">requests:</span>
+              <span class="hljs-attr">memory:</span> <span class="hljs-number">2.</span><span class="hljs-string">5G</span>
+              <span class="hljs-attr">cpu:</span> <span class="hljs-string">500m</span>
+            <span class="hljs-attr">limits:</span>
+              <span class="hljs-attr">memory:</span> <span class="hljs-number">2.</span><span class="hljs-string">5G</span>
+              <span class="hljs-attr">cpu:</span> <span class="hljs-string">500m</span>
+</code></pre>
+<h2>Helpful commands</h2>
+<p>Here's the obvious commands:</p>
+<pre><code class="language-bash"><span class="hljs-comment"># List all the pods in a particular namespace.</span>
+kubectl get pods -n NAMESPACE
+
+<span class="hljs-comment"># Show details about a particular pod.</span>
+kubectl describe pod POD_NAME
+
+<span class="hljs-comment"># List the actual machines the cluster is running on.</span>
+kubectl get nodes
+
+<span class="hljs-comment"># Show details about a particular node.</span>
+kubectl describe node NODE
+
+<span class="hljs-comment"># Startup the proxy server to see that lovely GUI.</span>
+kubectl proxy
+
+<span class="hljs-comment"># Run a command in a pod.</span>
+kubectl -it <span class="hljs-built_in">exec</span> -n NAMESPACE -- CMD
+</code></pre>
+<p>And more on the k8s site with <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">their handy dandy cheatsheet</a>.</p>
+<p>The most helpful thing I made was a function in my <code>.zshrc</code> to save those precious seconds running a command in a pod.</p>
+<pre><code class="language-bash"><span class="hljs-comment"># Add this to .bashrc or .zshrc.</span>
+<span class="hljs-comment"># (I added the slashes for readability.)</span>
+<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">k8s_exec</span></span>() {
+  kubectl -it <span class="hljs-built_in">exec</span> -n <span class="hljs-variable">$1</span> \
+  $(kubectl get pods -n <span class="hljs-variable">$1</span> | grep -oh -m 1 <span class="hljs-string">&quot;web-\w*-\w*&quot;</span>) \
+  -- <span class="hljs-variable">${@:2}</span>
+}
+</code></pre>
+<p>Let me break this down:</p>
+<ul>
+<li>Open a shell (<code>kubectl -it exec</code>)</li>
+<li>in the specified namespace using the first argument (<code>-n $1</code>)</li>
+<li>and get pods in the same namespace to pipe into <em>grep</em> (<code>kubectl get pods -n $1</code>)</li>
+<li>which finds the first match of the name that includes &quot;web&quot; (<code>grep -oh -m 1 &quot;web-\w*-\w*&quot;</code>)</li>
+<li>and, finally, run the command in the pod that <em>grep</em> found with the remaining arguments after the first one (<code>-- ${@:2}</code>)</li>
+</ul>
+<p>You'd run it like</p>
+<pre><code class="language-bash">k8s_exec qa rails c
+</code></pre>
+<p>if you wanted to open a Rails console in the &quot;web&quot; pod in QA. This is definitely unique to our setup. Your pod name could be &quot;walrus&quot; or something, so tweak it as needed.</p>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/amperes-law" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">Maxwell's Equations</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/sobriety" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Sobriety</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"Some Kubernetes tips I've learned",date:"2020-08-09T00:00:00.000Z",description:"I had to learn Kubernetes on the job when I first started at Iris. Here's some things that helped me along the way.",tags:["Code"],slug:"kubernetes-tips",next:{title:"Sobriety",date:"2020-08-16T00:00:00.000Z",description:"I've been sober for almost 600 days and I wanted to collect my thoughts about it.",tags:["Personal"],slug:"sobriety"},previous:{title:"Maxwell's Equations",subtitle:"Ampere's Law",date:"2020-08-02T00:00:00.000Z",tags:["Science","Math"],slug:"amperes-law"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

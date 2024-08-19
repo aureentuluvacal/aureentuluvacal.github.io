@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>Building a UI Library</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>Building a UI Library</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>May 15, 2020</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>I inherited a decently large codebase with <em>a lot</em> of legacy code (Rails 4.2.7, Handlebars, and a lot of jQuery). React components were built in an effort to modernize the front end, but it was about 5% of the front end. I knew converting it all would be one of our years long projects, and I wanted to make that process as painless as possible. In my head, I saw what the front end would become: consistent, modular, easy to update, 100% in React. However, I had no foundation to start with, which prompted me to build a UI library.</p>
+<h2>Where I started</h2>
+<p>I've used <a href="https://material-ui.com/">MaterialUI</a> and <a href="https://semantic-ui.com/">SemanticUI</a> before so I already had a baseline for what a UI library was. That is, a collection of self-contained components that follow a specific design pattern. The design can either be super specific like MaterialUI (since it's based off of Google's material design) or be a little more customizable like Semantic.</p>
+<p>When I started on the library, we had just rebranded and the entire design of the app was wildly different. Different fonts, different colors, different usage of space, different shapes on the page, all of it. The upside to that situation was I could start from scratch using the new global variables I had set up for the new brand.</p>
+<p>The first component I wrote was a basic button styled with an SCSS module.</p>
+<blockquote>
+<p>Note: Our codebase uses Javascript, SASS modules, and the <strong>classnames</strong> package for conditional styling. You can sub in <strong>styled-components</strong> or Typescript.</p>
+</blockquote>
+<h4>Button.jsx</h4>
+<pre><code class="language-jsx"><span class="hljs-comment">// This is what it looked like a year ago.</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">PropTypes</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;prop-types&#x27;</span>;
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Button.module.scss&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Button</span> = (<span class="hljs-params">{ onClick, text }</span>) =&gt; {
+ <span class="hljs-keyword">return</span> (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{styles}</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{text}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+ );
+};
+
+<span class="hljs-title class_">Button</span>.<span class="hljs-property">propTypes</span> = {
+ <span class="hljs-attr">onClick</span>: <span class="hljs-title class_">PropTypes</span>.<span class="hljs-property">func</span>,
+ <span class="hljs-attr">text</span>: <span class="hljs-title class_">PropTypes</span>.<span class="hljs-property">string</span>.<span class="hljs-property">isRequired</span>
+};
+
+<span class="hljs-title class_">Button</span>.<span class="hljs-property">defaultProps</span> = {
+ <span class="hljs-attr">onClick</span>: <span class="hljs-function">() =&gt;</span> {}
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Button</span>;
+</code></pre>
+<h4>Button.module.scss</h4>
+<pre><code class="language-scss"><span class="hljs-comment">// We have a Webpack alias pointing to our global variables.</span>
+<span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~styles/_variables&#x27;</span>;
+
+<span class="hljs-selector-class">.Button</span> {
+ <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$mauve</span>;
+ <span class="hljs-attribute">color</span>: white;
+ <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-variable">$mauve</span>;
+ <span class="hljs-attribute">border-radius</span>: <span class="hljs-variable">$border-radius-button</span>;
+ <span class="hljs-attribute">display</span>: inline-block;
+ <span class="hljs-attribute">vertical-align</span>: middle;
+ <span class="hljs-attribute">height</span>: <span class="hljs-number">36px</span>;
+ <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">16px</span>;
+ <span class="hljs-attribute">cursor</span>: pointer;
+ <span class="hljs-attribute">line-height</span>: <span class="hljs-number">36px</span>;
+ <span class="hljs-attribute">box-shadow</span>:
+  <span class="hljs-number">0</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">0</span> <span class="hljs-built_in">rgba</span>(black, <span class="hljs-number">0.05</span>),
+  inset <span class="hljs-number">0</span> <span class="hljs-number">1px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-built_in">rgba</span>(white, <span class="hljs-number">0.1</span>);
+
+ &amp;<span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-variable">$mauve</span>, <span class="hljs-number">0.9</span>);
+  <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-variable">$mauve</span>, <span class="hljs-number">0.9</span>);
+ }
+}
+</code></pre>
+<p>The styles themselves don't matter, but rather how the component is built. It needed to be simple enough to be reusable across the entire site, but complex enough to grant us the ability to customize its visuals and functionality.</p>
+<p>I feel like we've found the right system for balancing the two, including leveraging <code>classnames</code> to use specific styles in the presence of certain props.</p>
+<p>For example:</p>
+<h4>Button.jsx</h4>
+<pre><code class="language-jsx"><span class="hljs-comment">// We would destructure props before this.</span>
+<span class="hljs-keyword">const</span> hasClassName = !!className;
+<span class="hljs-keyword">const</span> cx = classNames.<span class="hljs-title function_">bind</span>(styles);
+<span class="hljs-keyword">const</span> classes = <span class="hljs-title function_">cx</span>(<span class="hljs-string">&#x27;Button&#x27;</span>, {
+ <span class="hljs-string">&#x27;Button--danger&#x27;</span>: danger,
+ <span class="hljs-string">&#x27;Button--icon&#x27;</span>: !!icon,
+ <span class="hljs-string">&#x27;Button--loading&#x27;</span>: loading,
+ <span class="hljs-string">&#x27;Button--logo&#x27;</span>: logo,
+ <span class="hljs-string">&#x27;Button--small&#x27;</span>: small,
+ <span class="hljs-title class_">OutlinedButton</span>: category === <span class="hljs-string">&#x27;outlined&#x27;</span>,
+ <span class="hljs-title class_">IconButton</span>: category === <span class="hljs-string">&#x27;icon&#x27;</span>,
+ [className]: hasClassName
+});
+</code></pre>
+<p>And prepare styles, like &quot;Button--danger&quot; , in the SCSS file as follows:</p>
+<h4>Button.module.scss</h4>
+<pre><code class="language-scss"><span class="hljs-selector-class">.Button</span> {
+ <span class="hljs-comment">// Styles from before...</span>
+ <span class="hljs-comment">// &quot;danger&quot; shamelessly stolen from Bootstrap.</span>
+ &amp;<span class="hljs-attr">--danger</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$cinnabar-red</span>;
+  <span class="hljs-attribute">border-color</span>: <span class="hljs-variable">$cinnabar-red</span>;
+
+  &amp;<span class="hljs-selector-pseudo">:hover</span> {
+   <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$milano-red</span>;
+   <span class="hljs-attribute">border-color</span>: <span class="hljs-variable">$milano-red</span>;
+  }
+ }
+}
+</code></pre>
+<p>So if I did <code>&lt;Button text=&quot;Don't click me.&quot; danger /&gt;</code> it would render a red variant of our button because the <code>danger</code> prop is present.</p>
+<h2>Adding structure</h2>
+<p>I first encountered this iteration of a UI Library from one of my awesome coworkers at Lessonly. He saw the value of adding this level of structure to our UI. He also introduced a mandatory file structure for each new component. Within the context of the Button example, that structure looks like this:</p>
+<pre><code class="language-text">└── ui
+    ├── Button
+    │   ├── Button.jsx
+    │   ├── Button.module.scss
+    │   ├── Button.test.js
+    │   ├── index.js
+    │   └── README.md
+    └── index.js
+</code></pre>
+<p>where the <em>ui</em> directory houses all the UI components in our library and each directory within it is named after a different component. There should be five files in each component directory:</p>
+<ol>
+<li>The actual component.</li>
+<li>A file for styles.</li>
+<li>A unit test.</li>
+<li>An index.js file for easy exporting.</li>
+<li>A README.md to describe the different variations of the component and how it will be used.</li>
+</ol>
+<p>The <em>index.js</em> file in the root of <em>ui</em> directory serves to export each component from one place. Like so:</p>
+<h4>ui/index.js</h4>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> { <span class="hljs-title class_">Button</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Button&#x27;</span>;
+<span class="hljs-comment">// etc.</span>
+</code></pre>
+<p>so we can import it in other components just using <code>import { Button } from '~ui';</code></p>
+<h2>What I learned building my own</h2>
+<p>Building out the library was the easy part because we could justify adding new components based on need. The more challenging bit was making sure we refactored regularly as the number of ways to customize the component grew.</p>
+<p>Currently, our Button component sits at twelve props. This seems like a lot, but each prop reflects a solution to a problem we needed to address in the app. While the specific props may be unique to our situation, I think all props inherently should serve the user experience in a concrete fashion.</p>
+<p>The <code>danger</code> example above is an example of a visual variant, where the Button that's rendered with the &quot;Button--danger&quot; class looks different from the default Button, and also represents a change to the user's experience. We would only use this prop if users were about to delete something and we wanted to caution them. This is a concrete reason.</p>
+<p>Adding a prop like <code>thickBorder</code>, would be (1) weird and (2) serve no purpose other than to look a little different. I try to avoid those situations.</p>
+<p>I also realize, in retrospect, how grateful I am that I built the UI library right after the rebrand. The library has grown into 23 components. It's made writing React more fun because it forces me break down the UI into smaller building blocks and gives us the ability to propogate style changes with one adjustment in the component's SCSS file.</p>
+<p>I'm excited to see where it goes in the next year.</p>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/goals-for-blog" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">Goals for this Blog</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/logic" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Logic</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"Building a UI Library",date:"2020-05-16T00:00:00.000Z",description:"I built a UI library when I started at Iris. It's one of the best things I've ever made.",tags:["Code"],slug:"ui-libraries",next:{title:"Logic",description:"This was my favorite course at Purdue. I'm just going to nerd out over it for a bit.",date:"2020-06-09T00:00:00.000Z",tags:["Math"],slug:"logic"},previous:{title:"Goals for this Blog",date:"2020-05-09T00:00:00.000Z",description:"I wrote my last blog post last year. I was ashamed so I redid my site and wanted to talk about it.",tags:["Personal"],slug:"goals-for-blog"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

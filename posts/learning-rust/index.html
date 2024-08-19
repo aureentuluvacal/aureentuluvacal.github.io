@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>I Learned Rust!</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>I Learned Rust!</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>March 24, 2019</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust. I'm mostly taking a break because it takes me like 7 years to create all the diagrams for those posts.</p>
+<p>But anyhoo, what is Rust?</p>
+<p>According to Wikipedia, Rust &quot;is a multi-paradigm systems programming language focused on safety, especially safe concurrency&quot;.</p>
+<p>Cool.</p>
+<p>At first, that meant nothing to me since my only frame of reference was Ruby, Javascript, and — unfortunately — PHP, but as I slowly learned the language using <a href="https://doc.rust-lang.org/book/">&quot;The Book&quot;</a>, the pieces started to fall into place. Let's talk about them.</p>
+<h2>Systems programming</h2>
+<p>Systems programming languages are used to program systems. But what does that mean? And what qualifies a language to make it meant for systems programming?</p>
+<p>&quot;Systems&quot; is a term reserved for things like operating systems, kernels, compilers, game engines, drivers, and other &quot;platforms&quot; that we can run other programs on. Systems interact directly with hardware, and in the context of computers, rely on the OS to facilitate the manipulation of hardware.</p>
+<p>On the other side of systems are applications and the user. We, as users, directly interface with apps, which interface with systems, which interface with hardware.</p>
+<p>Rust is just another language, like C and C++, that we can use to program the things that interact with your hardware. There's even a kernel written in Rust called <a href="https://www.redox-os.org/">Redox</a>.</p>
+<p>So then what are the qualifiers for a language to program something like an operating system?</p>
+<p>If we defined a systems programming language as a language that we use to interact directly with hardware, then only assembly languages would count because the programmers at the time had only themselves and a dumb box of hardware.</p>
+<p>Every language from there would just be abstractions away from the hardware.</p>
+<p><img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/hierarchy-of-languages.png" alt="Hierarchy of programming languages"></p>
+<p>On the far left we have hardware, which is ultimately what our programs operate on. Then there's machine language, binaries that the hardware can understand and run. All programs eventually compile down to machine language. If we go up a layer in abstraction, we get to assembly languages, which are the first human readable programming languages tailored specifically to their respective types of hardware. Each line in an assembly program represents an actual operation that the computer does (and a massive amount of machine language). Rust, C, and Javascript are another abstraction up. They represent the high-level languages, where the code is even more undertstandable than assembly and represents an even more massive amount of binary.</p>
+<p>As we progress in the levels of abstraction, we're basically asking, <em>How can we represent this state in a smaller, simpler way</em>? So how can we represent patterns in our hardware, our state machine? Binaries. How can we represent patterns in our binaries in a smaller, simpler way? With assembly languages. How can we represent patterns in our assembly in a smaller, simpler way? With high-level languages.</p>
+<p>Naturally, as we get more and more abstract, we have to rely on more under the hood, which decreases speed and performance.</p>
+<p><img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/systems-languages.png" alt="Hierarchy of programming languages"></p>
+<p>Systems programming languages need to be fast, like an assembly language or C, so languages like Ruby and Javascript don't quite cut it. They also need to be directly compilable to machine language or binary. Ruby and Javascript rely on an intermediate stage before they're compiled to machine language.</p>
+<p>Rust is both fast and directly compiled to binary, making it a systems programming language.</p>
+<h2>Memory safety</h2>
+<p>Rust's compiler is a stickler for memory safe code. Let's take a look at an example.</p>
+<pre><code class="language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>];
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">10</span>]);
+}
+</code></pre>
+<p>We have a <code>main()</code> function that is the entrypoint for every Rust program, like the main method in Java or C. At compile time, the compiler throws an error because we're trying to access an out of bounds index. C or C++ would just try to give you whatever the corresponding value was at that place in memory even if the value didn't belong to the vector.</p>
+<p>Rust also has two baked in features called <strong>Ownership</strong> and <strong>Borrowing</strong> that help make Rust code more memory safe.</p>
+<h3>Ownership</h3>
+<p>Let's continue with the same basic example above.</p>
+<pre><code class="language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>];
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<p>We have our vector variable <code>v</code> that has three elements in it. Those three elements are <em>owned by</em> <code>v</code> and when <code>v</code> goes out of scope, its three elements get deallocated in memory.</p>
+<pre><code class="language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>];
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]);
+} <span class="hljs-comment">// v goes out of scope, so do the values it owns.</span>
+</code></pre>
+<p>In the context of passing arguments to functions, we'll see <strong>Ownership</strong> where it's most valuable. Let's say I had my <code>main()</code> function that calls another function named <code>print_first_value()</code></p>
+<pre><code class="language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">print_first_value</span>(vector: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, vector[<span class="hljs-number">0</span>]);
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>];
+
+    <span class="hljs-title function_ invoke__">print_first_value</span>(v);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<p>When a variable is passed to a function, the function takes ownership of the variable. In this case, <code>v</code> would be owned by <code>print_first_value()</code> and made available in <code>print_first_value()</code>'s scope. This code wouldn't compile because I'm trying to use <code>v</code> in the <code>main()</code> function's scope.</p>
+<p>We could rewrite it this way:</p>
+<pre><code class="language-rust"><span class="hljs-title function_ invoke__">main</span>() {
+  <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>]; <span class="hljs-comment">// v belongs to main.</span>
+
+  <span class="hljs-title function_ invoke__">print_first_value</span>(v) { <span class="hljs-comment">// Transfer of ownership.</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]); <span class="hljs-comment">// v belongs to print_first_value.</span>
+  } <span class="hljs-comment">// v goes out of scope.</span>
+
+  <span class="hljs-comment">// Trying to access v, which has gone out of scope.</span>
+  <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<p>There's definitely more to <strong>Ownership</strong>, but even in this small example, we can see how it helps keeps your code honest; your functions can change what they own without worrying about weird side effects.</p>
+<p>However, there may be moments when you may want to perform several operations on the same value or collection. If each function takes ownership of your value, then how can you chain operations on it? This is where <strong>Borrowing</strong> comes in.</p>
+<h3>Borrowing</h3>
+<p>If I wanted to perform several operations on <code>v</code> then I would let my functions borrow the value in <code>v</code>.</p>
+<pre><code class="language-rust"><span class="hljs-comment">// I know this example is contrived.</span>
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">print_first_value</span>(vector: &amp;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, vector[<span class="hljs-number">0</span>]);
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">print_size</span>(vector: &amp;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The size of my vector is: {}&quot;</span>, vector.<span class="hljs-title function_ invoke__">len</span>())
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">10</span>, <span class="hljs-number">4</span>, -<span class="hljs-number">3</span>];
+
+    <span class="hljs-title function_ invoke__">print_first_value</span>(&amp;v);
+    <span class="hljs-title function_ invoke__">print_size</span>(&amp;v)
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v[<span class="hljs-number">0</span>]);
+}
+</code></pre>
+<p>Using the <code>&amp;</code> operator, I can pass a reference to <code>v</code> into <code>print_first_value()</code> and <code>print_size()</code>. Since both functions are borrowing the value of <code>v</code>, they don't take ownership, and I'm free to continue using <code>v</code> in the <code>main()</code> function.</p>
+<p>If we excluded the <code>&amp;</code> in the arguments for both functions, the compiler would throw an error. <strong>Borrowing</strong> is baked into the compiler just like <strong>Ownership</strong>, and when used in tandem, they give you more granular control of the memory in your program.</p>
+<h2>Safe concurrency</h2>
+<p>Concurrency in Rust is safe thanks to <strong>Ownership</strong> and <strong>Borrowing</strong>. Before I get into why, I want to dive a little into what concurrency means.</p>
+<p>Sometimes you may want to split out the functionality of your code into multiple threads. Threads are independent tasks that run concurrently in a process. A process is what runs your code in the first place.</p>
+<p>For example, you may want to write a super fast multi-threaded server. Each connection between a client and your server would live on a separate thread, while your server runs on a single process. If threads didn't exist in this example, the connections would occur sequentially, which would impact performance.</p>
+<p>Rust gives you tools to write multi-threaded code and attempts to steer you away from common pitfalls in multi-threaded programming, including:</p>
+<blockquote>
+<ul>
+<li>Race conditions, where threads are accessing data or resources in an inconsistent order</li>
+<li>Deadlocks, where two threads are waiting for each other to finish using a resource the other thread has, preventing both threads from continuing</li>
+<li>Bugs that happen only in certain situations and are hard to reproduce and fix reliably</li>
+</ul>
+<p><em>Source: <a href="https://doc.rust-lang.org/stable/book/ch16-01-threads.html">the Rust book</a></em></p>
+</blockquote>
+<p>The compiler's <strong>Ownership</strong> and <strong>Borrowing</strong> rules are also applied in your multi-threaded code and they prevent you from using variables that one thread has ownership of and the others do not.</p>
+<h2>Why Rust?</h2>
+<p>There were two reasons why I was drawn to Rust: (1) it's <a href="https://rustwasm.github.io/docs/book/">compilable to WebAssembly</a> and (2) it's the new hotness. (I'm not ashamed to admit #2). I've wanted to mess around with WASM for a while so I've started a very small project called Synesthete.</p>
+<p>Like the name suggests it's about <a href="https://en.wikipedia.org/wiki/Synesthesia">synesthesia</a>, particularly seeing colors when visualizing numbers. Still need to design it, but the general idea is you'd map all digits (0-9) to a color, type out a bunch of random numbers, and see what it looks like with the palette you chose.</p>
+<p>This is <em>probably</em> not the use case for WASM but no one can stop me.</p>
+<h2>More Rust resources</h2>
+<ul>
+<li><a href="https://www.rust-lang.org/">Rust homepage</a></li>
+<li><a href="https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html">More about safe concurrency</a></li>
+<li><a href="https://doc.rust-lang.org/book/">The Rust Book</a></li>
+<li><a href="https://medium.com/@bugaevc/understanding-rust-ownership-borrowing-lifetimes-ff9ee9f79a9c">More on Ownership and Borrowing</a></li>
+</ul>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/faradays-law-of-induction" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">Maxwell's Equations</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/troubleshooting-db-cpu-error" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Troubleshooting Rails Database Connection Issue</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"I Learned Rust!",date:"2019-03-25T00:00:00.000Z",description:"I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust.",tags:["Code"],slug:"learning-rust",next:{title:"Troubleshooting Rails Database Connection Issue",date:"2019-10-13T00:00:00.000Z",description:"Production died then I fixed it.",tags:["Code"],slug:"troubleshooting-db-cpu-error"},previous:{title:"Maxwell's Equations",subtitle:"Faraday's Law of Induction",description:"Now we're back to complicated.",date:"2019-02-27T00:00:00.000Z",tags:["Science","Math"],slug:"faradays-law-of-induction"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

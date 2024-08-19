@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>Troubleshooting Rails Database Connection Issue</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>Troubleshooting Rails Database Connection Issue</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>October 12, 2019</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>A few weeks ago I was seeing a lot of these errors in production:</p>
+<pre><code class="language-bash">ActiveRecord::ConnectionTimeoutError - could not obtain
+a database connection within 5 seconds.
+</code></pre>
+<p>And then production went down.</p>
+<p>For context, our stack is composed of a Ruby on Rails app with some React peppered in that is containerized by Docker, orchestrated by Kubernetes, and served up from AWS. We use AWS for our MySQL database instances, too.</p>
+<p>We were getting a lot of 500 errors and users posting about not being able to use the app. I had the error above as a clue that either something was misconfigured (very unlikely since that would have been caught during our QA process) or the database itself was having trouble.</p>
+<p>We went with the second option and opened up RDS in the AWS console. We have an m4.large instance serving up MySQL 5.6 to our production app. The instance was over 100% CPU usage.</p>
+<p>So what do to next?</p>
+<p>I knew from my time at Lessonly, that sometimes there's not enough available threads in the database connection pool. I remember reading <a href="https://devcenter.heroku.com/articles/concurrency-and-database-connections#connection-pool">this article on Heroku</a> for insights. The relevant line in here is</p>
+<blockquote>
+<p>Active Record limits the total number of connections per application through a database setting pool; this is the maximum size of the connections your app can have to the database.</p>
+</blockquote>
+<p>I thought that since we have more customers and it was peak usage time then maybe there just wasn't enough database to go around. And the Heroku article laid out a simple solution, so I edited our <em>database.yml</em> file.</p>
+<pre><code class="language-yml"><span class="hljs-attr">production:</span>
+  <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*default</span>
+  <span class="hljs-attr">database:</span> <span class="hljs-string">iris_app_production</span>
+  <span class="hljs-attr">reconnect:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">username:</span> &lt;%=<span class="language-ruby"> <span class="hljs-variable constant_">ENV</span>[<span class="hljs-string">&#x27;RAILS_DB_USER&#x27;</span>] </span>%&gt;
+  <span class="hljs-attr">password:</span> &lt;%=<span class="language-ruby"> <span class="hljs-variable constant_">ENV</span>[<span class="hljs-string">&#x27;RAILS_DB_PASS&#x27;</span>] </span>%&gt;
+  <span class="hljs-attr">host:</span> &lt;%=<span class="language-ruby"> <span class="hljs-variable constant_">ENV</span>[<span class="hljs-string">&#x27;RAILS_DB_HOST&#x27;</span>] </span>%&gt;
+  <span class="hljs-attr">pool:</span> <span class="hljs-number">1</span><span class="hljs-string">̶0̶</span> <span class="hljs-number">40</span> <span class="hljs-comment"># Just to be dramatic.</span>
+</code></pre>
+<p>That didn't do much after it was deployed so we nixed that, especially since it didn't explain the massive amount of CPU usage. The next thing we could do was narrow down where the problem was coming from. That meant temporarily disabling cron jobs to see if the source was a specific cron job or the main Rails app itself. We have four cron jobs: a daily job that runs in the early AM, an hourly job, and two every-5-minute jobs.</p>
+<p>The daily job could be dismissed off the bat because it had already run. The other jobs we disabled one by one to see if helped CPU consumption.</p>
+<p>But that didn't work either. We saw no drop in CPU usage. The source of the problem was definitely with the app itself. At this point, an hour had already passed and I was stressed out of my fucking mind because production was down. Not a great feeling and I had to fix it regardless.</p>
+<p>I decided to switch tactics and try to investigate the actual queries that were running on the database. I connected to the production database and typed in</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> PROCESSLIST
+</code></pre>
+<p>This gave me back a table of all the active threads that were running in the production database.</p>
+<p>(In retrospect, I should have started with this but <code>¯\_(ツ)_/¯</code>).</p>
+<p>The most relevant columns <code>SHOW PROCESSLIST</code> gives back are:</p>
+<ul>
+<li><strong>Command</strong>: the command the thread is executing in the DB
+<ul>
+<li>Read more <a href="https://dev.mysql.com/doc/refman/8.0/en/thread-commands.html">here</a></li>
+</ul>
+</li>
+<li><strong>Time</strong>: the time in seconds the command is taking to execute</li>
+<li><strong>Info</strong>: the statement the thread is executing</li>
+</ul>
+<p>This was it.</p>
+<p>We had several rows stuck on execution with the same type of query:</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> communications
+<span class="hljs-keyword">WHERE</span> communications.access_token <span class="hljs-operator">=</span> &quot;EXAMPLE&quot;
+</code></pre>
+<p>The communications table had almost 600k records, which isn't a lot of records for a properly indexed table to perform a lookup. And lo and behold, the table wasn't indexed by the column <strong>access_token</strong>. All that was left was to create a migration:</p>
+<pre><code class="language-ruby"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AddIndexToCommunications</span> &lt; <span class="hljs-title class_ inherited__">ActiveRecord::Migration</span>
+  disable_ddl_transaction!
+
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">change</span>
+    add_index <span class="hljs-symbol">:communications</span>, <span class="hljs-symbol">:access_token</span>, <span class="hljs-symbol">algorithm:</span> <span class="hljs-symbol">:inplace</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We use the algorithm <code>:inplace</code> to prevent the table from locking as its being indexed — the app still needs to use the table! If you're using PostgresQL then use the algorithm <code>:concurrently</code>. Since adding concurrent indexes can't be wrapped in transaction, we need <code>disable_ddl_transaction!</code>.</p>
+<p>After the migration was deployed and run, CPU usage dropped from 100% to 2% when jobs weren't running, which is insane. This is why we properly index tables.</p>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/learning-rust" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">I Learned Rust!</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/goals-for-blog" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Goals for this Blog</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"Troubleshooting Rails Database Connection Issue",date:"2019-10-13T00:00:00.000Z",description:"Production died then I fixed it.",tags:["Code"],slug:"troubleshooting-db-cpu-error",next:{title:"Goals for this Blog",date:"2020-05-09T00:00:00.000Z",description:"I wrote my last blog post last year. I was ashamed so I redid my site and wanted to talk about it.",tags:["Personal"],slug:"goals-for-blog"},previous:{title:"I Learned Rust!",date:"2019-03-25T00:00:00.000Z",description:"I'm taking a break from Maxwell's Equations to talk about something else I've done recently: learned Rust.",tags:["Code"],slug:"learning-rust"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>How to set up Guard in Docker</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>How to set up Guard in Docker</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>May 29, 2021</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>My new place uses the same stack as my last place (React + Rails on Docker). However, when I started we didn't have a configured testing environment (or a test suite) to isolate our tests in. I like to use <a href="https://github.com/guard/guard">Guard</a> with <a href="https://github.com/rspec/rspec">RSpec</a> to keep RSpec &quot;warm&quot;. It's also super helpful when doing TDD so you can just keep running your specs over and over.</p>
+<p>I'm assuming you already have a Guardfile and Dockerfile. In case you don't have a Dockerfile, here's a simple one that leverages MySQL.</p>
+<blockquote>
+<p><a href="https://lipanski.com/posts/dockerfile-ruby-best-practices">This is my favorite best practice guide</a> for creating a Dockerfile.</p>
+</blockquote>
+<pre><code class="language-bash"><span class="hljs-comment"># Pick your version of Ruby.</span>
+FROM ruby:2.7.2
+
+<span class="hljs-comment"># Update the package lists before installing.</span>
+RUN apt-get update -qq
+
+<span class="hljs-comment"># This installs</span>
+<span class="hljs-comment"># * build-essential because Nokogiri requires gcc</span>
+<span class="hljs-comment"># * common CA certs</span>
+<span class="hljs-comment"># * the mysql CLI and client library</span>
+RUN apt-get install -y \
+  build-essential \
+  ca-certificates \
+  default-libmysqlclient-dev
+
+<span class="hljs-comment"># Install your version of Node.</span>
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+  &amp;&amp; apt-get install -y nodejs
+
+<span class="hljs-comment"># Create working directory</span>
+ENV APP_HOME /app
+RUN <span class="hljs-built_in">mkdir</span> <span class="hljs-variable">${APP_HOME}</span>
+WORKDIR <span class="hljs-variable">${APP_HOME}</span>
+
+<span class="hljs-comment"># Copy the Gemfile</span>
+COPY Gemfile <span class="hljs-variable">${APP_HOME}</span>/Gemfile
+COPY Gemfile.lock <span class="hljs-variable">${APP_HOME}</span>/Gemfile.lock
+
+<span class="hljs-comment"># Make sure we are running bundler version 2.0</span>
+RUN gem install bundler -v 2.1.4
+RUN bundle install
+
+<span class="hljs-comment"># Copy the project over</span>
+COPY . <span class="hljs-variable">${APP_HOME}</span>
+
+<span class="hljs-comment"># Run guard</span>
+CMD [<span class="hljs-string">&quot;bundle&quot;</span>, <span class="hljs-string">&quot;exec&quot;</span>, <span class="hljs-string">&quot;guard&quot;</span>, <span class="hljs-string">&quot;--no-bundler-warning&quot;</span>, <span class="hljs-string">&quot;--no-interactions&quot;</span>]
+</code></pre>
+<p>Then create a new <code>docker-compose.test.yml</code> file.</p>
+<pre><code class="language-yml"><span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;3.8&#x27;</span>
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">db:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.7</span>
+    <span class="hljs-attr">env_file:</span> <span class="hljs-string">.env</span>
+
+  <span class="hljs-attr">redis:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">&#x27;redis:5-alpine&#x27;</span>
+
+  <span class="hljs-attr">guard:</span>
+    <span class="hljs-attr">tty:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">stdin_open:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">depends_on:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">db</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">redis</span>
+    <span class="hljs-attr">build:</span>
+      <span class="hljs-attr">context:</span> <span class="hljs-string">.</span>
+      <span class="hljs-attr">dockerfile:</span> <span class="hljs-string">Dockerfile.test</span>
+    <span class="hljs-attr">env_file:</span> <span class="hljs-string">.env</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;.:/app&#x27;</span>
+</code></pre>
+<p>So as is, we can run <code>docker compose -f docker-compose.test.yml --build up</code> and Guard will start up. You can then edit and save one of your specs to execute it.</p>
+<p>But what if you want to use the <code>pry</code> gem and stop execution of your tests?</p>
+<p>This part of the Docker Compose file is key:</p>
+<pre><code class="language-yml"><span class="hljs-attr">tty:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">stdin_open:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>These keys map to the <code>-t</code> and <code>-i</code> flags, respectively, when running <code>docker run exec -it CONTAINER_NAME</code>. This command opens a pseudo terminal that connects your machine's terminal (iTerm, Terminal, CommandPrompt) to the <code>stdin</code>/<code>stdout</code> stream of the container. It lets you &quot;login&quot; to the container to run commands and view the output of said commands, basically.</p>
+<p>Tying this back to spec execution, you could then attach yourself to the Docker container running guard using <code>docker attach CONTAINER_ID</code> and you'd see a REPL session from <code>pry</code> wherever you added <code>binding.pry</code> in your spec.</p>
+<p>For example:</p>
+<pre><code class="language-ruby">describe <span class="hljs-string">&quot;validations&quot;</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&#x27;is valid with valid attributes&#x27;</span> <span class="hljs-keyword">do</span>
+    binding.pry <span class="hljs-comment"># &lt;---- Here</span>
+    expect(build(<span class="hljs-symbol">:user</span>)).to be_valid
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Running this spec will stop execution at the <code>binding.pry</code> where you can then attach to the container and see the REPL session so you can test what <code>build(:user)</code> yields and other variables or logic in your spec.</p>
+<blockquote>
+<p>A quick way to attach to a container in one line is <code>docker attach $(docker ps -aqf &quot;ancestor=CONTAINER_NAME | head -n 1)</code>.</p>
+</blockquote>
+<p>Happy testing!</p>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/graphql-fun" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">GraphQL and Schema Stitching</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/electrical-components" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Electrical Components: Resistor</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"How to set up Guard in Docker",date:"2021-05-30T00:00:00.000Z",description:"For when you want to run your test environment completely separate.",tags:["Code"],slug:"guard-in-docker",next:{title:"Electrical Components: Resistor",date:"2021-12-01T00:00:00.000Z",description:"Now that Maxwell's equations are covered, we can dive into some hardware.",tags:["Science"],slug:"electrical-components"},previous:{title:"GraphQL and Schema Stitching",date:"2020-08-23T00:00:00.000Z",description:"We recently built a support app that combines two GraphQL schemas. This is just a guide for how to make it work in Typescript.",tags:["Code"],slug:"graphql-fun"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>

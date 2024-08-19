@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.0aUjidVN.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.Ov-9iytD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sXjjn1Co.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.H21PiljT.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.4iiOYp7d.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.05hzbzow.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.A0pRLW15.js"><title>Electrical Components: Resistor</title><!--ssr:0--><!--ssr:0-->
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<h1>Cal Perez</h1>
+			<p>
+				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>Electrical Components: Resistor</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>November 30, 2021</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+<p>A while ago I purchased an <a href="https://www.elegoo.com/product/elegoo-uno-project-super-starter-kit/">Arduino kit from Elegoo</a>. I have zero experience with Arduinos, Raspberry Pis, and other nerd hardware outside of the basic experiments I did in school, but I figured I'd give it a shot.</p>
+<p>I spent a lot of time researching and writing about Maxwell's Equations because I want to understand why computers work at the most fundamental level and slowly move up levels of abstraction to software. The next level, in this case, are circuits and the components that make the circuits interesting. I won't be diving into the Arduino kit itself (yet), but rather the pieces that are in the kit.</p>
+<p>I want to start with the resistor because it's the simplest.</p>
+<h2>What is a resistor?</h2>
+<p><img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/resistor.jpg" alt="Resistor"></p>
+<p>The name itself is a huge clue for what the resistor does: it resists <em>something</em>. Within a circuit, where electrons are flowing freely as a current, that <em>something</em> is the current. But how does it work?</p>
+<p>Well if we break apart the resistor and look at what's inside we'd see...</p>
+<p><img src="https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/cut-resistor.jpg" alt="Cut resistor"></p>
+<p>...not metal in the middle. (Excuse the shitty picture.)</p>
+<p>But this makes sense! If you remember electric permittivity (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ε</span></span></span></span>) then we know that metallic materials have a high electric permittivity while rubber and plastic materials have low electric permittivity. The material that's inside this resistor is a <a href="https://en.wikipedia.org/wiki/Resistor">&quot;mixture of finely powdered carbon and an insulating material, usually ceramic&quot;.</a> The more ceramic in the mixture, the more resistance, because ceramic is an insulator and hinders the flow of electrons through itself.</p>
+<p>I think I should pause here and clarify the difference between the terms resistance (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>) and electric permittivity (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ε</span></span></span></span>).</p>
+<h3>Resistance</h3>
+<p>Resistance influences the current and can be described by Ohm's Law</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">V = IR
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span></span></p>
+<p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> is voltage, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span> is current, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> is resistance. The higher the resistance, the lower the current, and vice versa.</p>
+<p>I recommend checking out this <a href="https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_en.html">Ohm's Law Simulator</a> since it can better visualize what this equation is saying.</p>
+<blockquote>
+<p>A disclaimer about this law though: it's only applied to systems that have a constant resistance, material, and temperature. So like the circuits that professors draw in class, which are meant to be ideal ohmic systems. When you add a resistor to the circuit, the resistance is constant, so the system is still ohmic. If you add resistance that changes, the system is non-ohmic. The circuits I draw out will be ohmic by default unless I say otherwise.</p>
+</blockquote>
+<h3>Electric Permittivity</h3>
+<p>Electric permittivity is an inherent trait of whatever material a current is flowing through. This trait comes from the bonds between atoms and the material's atomic structure. We know metal has high permittivity and is considered a conductor because of it. But what about the atomic structure makes this so?</p>
+<p>In metal, electrons are <em>delocalized</em>, which means there's a bunch of &quot;loose&quot; electrons not interacting with a particular atom or covalent bond.</p>
+<p>Think of the bonds between atoms as a net. The weaker the bonds, the bigger the holes in the net, and more of a chance for electrons to get through because they're too busy interacting with the atoms of the net and pushing out the delocalized electrons.</p>
+<p><img src="https://caryssa-perez-images.s3.us-east-2.amazonaws.com/posts/bf-looking-at-electron.PNG" alt="Boyfriend looking back meme but with electrons and protons"></p>
+<p>By contrast, an insulator, or something that's not as effective for conducting electricity,has stronger atomic bonds so there's a lot less <em>delocalized</em> electrons. In the net metaphor, the holes would be a lot smaller.</p>
+<p><img src="https://caryssa-perez-images.s3.us-east-2.amazonaws.com/posts/nah-man-electron.PNG" alt="Electron stopping proton"></p>
+<h3>Back to the resistor</h3>
+<p>Resistance and permittivity are two separate concepts but they are related to one another. They're just separated by an order of magnitude.</p>
+<p>Insulators, or materials with low permittivity, are effectively super-resistors that make the current so small that it's negligible and not useful in a circuit. Resistors, on the other hand, are meant to slightly modulate a current and are not made completely of insulating material.</p>
+<p>In a future post, I can dive into how slight variations in current affect circuits, but I want to keep this post short.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/voltage-current-resistance-relate/">Ohm's Law</a></li>
+<li><a href="https://www.thoughtco.com/definition-of-delocalized-electron-605003">Delocalized Electrons</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Resistor">Always helpful wiki page</a></li>
+</ul>
+<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/guard-in-docker" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">How to set up Guard in Docker</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:false--><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+			
+			<script>
+				{
+					__sveltekit_1onsyu0 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{title:"Electrical Components: Resistor",date:"2021-12-01T00:00:00.000Z",description:"Now that Maxwell's equations are covered, we can dive into some hardware.",tags:["Science"],slug:"electrical-components",next:0,previous:{title:"How to set up Guard in Docker",date:"2021-05-30T00:00:00.000Z",description:"For when you want to run your test environment completely separate.",tags:["Code"],slug:"guard-in-docker"}}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.Ov-9iytD.js"),
+						import("../../_app/immutable/entry/app.4iiOYp7d.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>
