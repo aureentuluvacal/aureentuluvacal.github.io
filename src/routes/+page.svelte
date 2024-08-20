@@ -51,6 +51,10 @@
 				width: 100%;
 				height: 100%;
 			}
+
+			@media screen and (max-width: 760px) {
+				padding: 0;
+			}
 		}
 	}
 
@@ -71,6 +75,11 @@
 			display: flex;
 			justify-content: space-between;
 			font-weight: 100;
+
+			@media screen and (max-width: 760px) {
+				flex-direction: column;
+				gap: 8px;
+			}
 		}
 
 		&-title {

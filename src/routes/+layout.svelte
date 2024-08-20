@@ -29,6 +29,10 @@
 		a h1 {
 			text-decoration: none;
 		}
+
+		@media screen and (max-width: 760px) {
+			padding: 10px 24px;
+		}
 	}
 
 	:global(#content-container) {
@@ -39,6 +43,11 @@
 		display: flex;
 		flex-direction: column;
 		font-size: 18px;
+
+		@media screen and (max-width: 760px) {
+			width: auto;
+			padding: 0 24px;
+		}
 	}
 
 	:global(p:has(img), a:has(img)) {
