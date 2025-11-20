@@ -43,10 +43,6 @@
 			border-left: 6px solid colors.$alice-blue;
 			border-right: 6px solid colors.$alice-blue;
 
-			&:hover {
-				border-color: colors.$amber;
-			}
-
 			a {
 				width: 100%;
 				height: 100%;
@@ -60,7 +56,9 @@
 
 	.post {
 		font-family: 'Rubik', serif;
-		padding-bottom: 20px;
+		border: 1px solid colors.$alice-blue;
+		border-radius: 8px;
+		padding: 24px;
 
 		a {
 			font-weight: normal;

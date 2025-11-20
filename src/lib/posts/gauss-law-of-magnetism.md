@@ -18,7 +18,7 @@ Let's first discuss what a magnetic field is and what magnetic flux represents t
 
 Unlike an electric field, where you can find solo positive and negative charges that emit their own "push" and "pull", magnetic fields are created from a pair of poles: the north and south poles. Just like with positive and negative charges, like repels like and opposites attract.
 
-![Magnetic field](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/magnetic-field.png)
+![Magnetic field](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/f9b42743-a251-44b8-ef27-227c0d600800/public)
 
 The north pole behaves like a positive charge and "pushes" out from itself and the south pole behaves like a negative charge and "pulls" in towards itself.
 
@@ -30,11 +30,11 @@ Magnetic fields are induced by the movement of electrons. Permanent magnets have
 
 However, I do want to present a similar example that illustrates this concept. Imagine two rows of panels that have the ability to rotate. If the panels are all aligned and we introduce some air flow parallel to the panels then the most of the air flow is unobstructed and reaches the other side.
 
-![Unobstructed air flow](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/good-configuration.png)
+![Unobstructed air flow](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/93a2d00f-d719-429b-db91-2f09ed215400/public)
 
 On the other hand, if some of the panels are rotated, some of the air flow is obstructed and doesn't reach the other side.
 
-![Obstructed air flow](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/bad-configuration.png)
+![Obstructed air flow](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/acf52f56-9439-41ed-2635-a2f6ee98a400/public)
 
 While this isn't exactly what happens with electrons and magnetism, it's a similar concept that relies on the arrangement of the medium that what we're observing is flowing through.
 In other words, if we have just the right electron configuration throughout a material we get more magnetism. So materials like lodestones and other ferromagnetic materials have that right alignment for permanent magnetism, while other materials like plastic or lead don't.
@@ -43,7 +43,7 @@ In other words, if we have just the right electron configuration throughout a ma
 
 Magnetic flux is how much of a magnetic field is passing through a surface. If we used the image of the magnetic field above and had a fake wall across the magnet, we can understand visually what this means.
 
-![Magnetic flux](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/magnetic-flux.png)
+![Magnetic flux](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/9ec03abe-4409-487a-d15e-58c50a6a3900/public)
 
 The number of lines in this image passing through the wall would be the magnetic flux.
 
@@ -57,7 +57,7 @@ That's what the equation tells us, yes, but why is this the case?
 
 Let's use the bar magnet again — since I already drew it — and imagine that bar inside of a sphere.
 
-![Bar magnet with Gaussian sphere](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/gauss-law-magnetism.png)
+![Bar magnet with Gaussian sphere](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/3438b89f-6d67-457e-97f2-947a1a6ce500/public)
 
 The magnetic flux through the sphere's surface is simply how many of those lines travel in and out of the sphere. We can completely ignore the normal component of the magnetic flux since this equation's core concept is easily understood without math.
 

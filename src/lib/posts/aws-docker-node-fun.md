@@ -19,10 +19,6 @@ We already use AWS, Docker, and Kubernetes for our app so it made sense to use a
 
 > I could have made it one app that did server-side rendering but we're already doing that with Rails for the main app and I wanted to do something new.
 
-In my head the architecture looked like this:
-
-![First version of the architecture](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/supportal-architecture-1.jpg)
-
 I Dockerized the apps with no problems and, with that momentum, plunged into AWS. First, I booted up one t2.micro instance in EC2 and a t2.micro instance in RDS running MySQL. We use Route 53 for all our _\*.iris-works.com_ sites, so a new subdomain that pointed to the EC2 instance was just a simple paste of the public IPv4 address of the instance.
 
 I tried to access the new site that pointed to the React app and got nothing. Then for the next several hours I struggled. It was one of those moments where I understood from a high level what was going on, but then also had no idea what was going on.
@@ -82,9 +78,7 @@ Anyway, I know EC2 instances are just someone else's servers and that security g
 
 I could take advantage of the ALB to handle HTTPS requests then forward to the running nginx container. ALBs set this up with target groups, which are also under the EC2 service page, to redirect to specific ports for the destination server. My target group had to point to port 80 for HTTP and HTTPS requests. All I had left to do was point the Route 53 record to the new ALB.
 
-After all this clicked, the architecture looks more like this:
-
-![Second version of the architecture](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/supportal-architecture-2.jpg)
+After all this clicked, the architecture looked a little different, but not much.
 
 It felt good to finally see the site over HTTPS. Now I can actually build the damn thing and I'm super excited for it. Typescript, React, TypeORM, GraphQL; it's going to be good.
 

@@ -29,8 +29,6 @@ Instead of studying all of the possible configurations, I started with the probl
 
 Anyway, I noticed in AWS that CPU usage for one k8s node was the only one spiking.
 
-![y tho](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/y.jpg)
-
 I dug into it and noticed that most of our pods were running in this node. By default, the k8s scheduler decides where pods should run based on the resources available. However, production was using most of the node's resources. I needed to spread it out across the other three m4.larges(!) we have in the cluster.
 
 We weren't using the _replica_ setting at all. I upped only production to four because we have four worker nodes and the other environments will never get as much traffic. Just in case, I put in some CPU and memory limits under the _resources_ setting.

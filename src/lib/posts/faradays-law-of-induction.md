@@ -22,7 +22,7 @@ In the list above, the first item encompasses a completely separate law, called 
 
 Watch this awesome video and then we'll break down what is going on. You don't have to watch all of it, it's just good to have a visual of what I'm going to explain. And he has a delightful accent.
 
-[![image](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/lenzs-law-video-screenshot.png)](https://www.youtube.com/watch?v=copZj1WF0Y8)
+[![image](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/719b41f1-28b3-490e-0b63-dd0cbef12700/public)](https://www.youtube.com/watch?v=copZj1WF0Y8)
 
 Even though we're covering Ampere's Law next, it's important to understand the basic idea of what it tells us. In a nutshell, Ampere's Law states that a changing electric field will induce a magnetic field. Faraday's law is the opposite, where a changing magnetic flux will induce an electric field.
 
@@ -36,21 +36,21 @@ Let's use the example in the video with a conducting tube and a ball magnet.
 
 > A conducting tube is a tube made of metal like aluminum or some other conducting material. If the tube were made of rubber, the magnet would just fall through the tube normally.
 
-![Tube and ball magnet](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/tube-and-magnet.png)
+![Tube and ball magnet](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/2bf1101f-0a5f-4a2e-8bdf-aa2f93b0bf00/public)
 
 We drop the magnet into the tube. The magnet has a magnetic field, as we know.
 
 > Quick side note: I'm drawing lines like this for illustration purposes only. Those lines do not exist in real life, they just help me show you what is happening. The exact lines don't matter either, what matters is the direction.
 
-![Dropping magnet into tube](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/tube-and-magnetic-field.png)
+![Dropping magnet into tube](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/98d05ad0-0001-4d22-6c46-4c762e3dd200/public)
 
 And the magnetic field interacts with the tube. If we took a slice of the tube right below the magnet, we can look at how the magnetic flux through that surface changes. Remember, if there is a flux then there is a surface involved.
 
-![Strip of tube](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/strip-of-tube.png)
+![Strip of tube](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/01c07b46-a03b-4cfd-46f0-fa2396b84700/public)
 
 At this point in time the magnet has not yet passed this slice of the tube. We'll call that time $t_}$, for simplicity. The magnet will fall past this slice at some time $t_{2}$. The two moments will have very different levels of magnetic flux. In other words, $t_{1}$ has very little of the magnet's magnetic field traveling through it, while $$t$$ has a lot more. This is considered a change in magnetic flux over time ($d \phi_{B} \over dt$).
 
-![Changing magnetic flux in tube](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/changing-magnetic-flux.png)
+![Changing magnetic flux in tube](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/47cc32ec-88bc-4191-c65a-f8476d117200/public)
 
 Two things to keep in mind:
 
@@ -59,7 +59,7 @@ Two things to keep in mind:
 
 This magnetic field ($\vec{B}$) will induce an electric field ($\vec{E}$). The induced electric field is perpendicular to the magnet's magnetic field and will create an electric current ($I$). The electrons in the conductor will want to follow the direction of the electric field and when electrons move, we get a current.
 
-![Induced electric field](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/induced-electric-field.png)
+![Induced electric field](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/eee76166-68d7-4eb2-5531-d2aa4cf22f00/public)
 
 At $t_{1}$, the magnetic flux traveling through that section of the tube is neglibile and at $t_{2}$ the magnetic flux increases. This change in magnetic flux is what induces the electric field and the current.
 
@@ -68,17 +68,17 @@ Lenz's Law comes into play for the induced magnetic field. This magnetic field _
 1. Point your thumb in the direction that opposes the original magnetic field, $\vec{B}$
 2. Your fingers will naturally curl clockwise in the direction of $I$, which also reflects the direction of the electric field, $\vec{E}$
 
-![Induced magnetic field](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/induced-magnetic-field.png)
+![Induced magnetic field](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/d638eedf-c000-40ef-2126-4970ac7f0500/public)
 
 The two magnetic fields interact with one another, and when two magnetic fields interact we get magnetic forces, which cause attraction or repulsion. Since the fields oppose one another, they will introduce a repulsive force. Finally, the magnet slows down because the induced repulsive force is opposing the force of gravity.
 
 The magnet still succumbs to gravity, however, and the magnetic flux will change again.
 
-![Induced electric field reverse](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/induced-electric-field-reverse.png)
+![Induced electric field reverse](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/72fd5c1d-fbb0-467e-15b2-7e8cd6074200/public)
 
 This time the magnetic field will point down, inducing an electric field and current in the opposite direction. And since the induced magnetic field must oppose the changing magnetic field, it will now point in the opposite direction as well.
 
-![Induced magnetic field reverse](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/induced-magnetic-field-reverse.png)
+![Induced magnetic field reverse](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/9f7f4baf-5ef7-4440-e13d-bccd58512400/public)
 
 The magnetic fields will cause a repulsive force, which causes the magnet to accelerate slightly through the tube. When something accelerates, the time it takes to go from one place to the next decreases, which causes our $$dt$$ to decrease. This makes the magnetic flux go back up, which requires a larger opposing induced magnetic field according to Lenz's Law, making the magnet slow down again.
 

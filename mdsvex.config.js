@@ -1,8 +1,9 @@
+/** @type {import('mdsvex').MdsvexOptions} */
 const config = {
-	extensions: ['.svx', '.md'],
-	smartypants: {
-		dashes: 'oldschool'
-	}
-};
+  extensions: ['.svx', '.md'],
+  smartypants: {
+    dashes: 'oldschool',
+  },
+}
 
-export default config;
+export default config

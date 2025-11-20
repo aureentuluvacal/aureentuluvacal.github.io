@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import Markdown from '$lib/components/Markdown.svelte';
 
 	export let data: PageData;
@@ -29,7 +29,7 @@
 		</div>
 		<div class="post-controlContainer">
 			{#if data.post.previous.slug}
-				<a href={`${base}/posts/${data.post.previous.slug}`} target="_self" class="post-control">
+				<a href={resolve(`/posts/${data.post.previous.slug}`)} target="_self" class="post-control">
 					<p>
 						<i class="icons-arrow icons-arrow--left"></i>
 						Previous
@@ -39,7 +39,7 @@
 			{/if}
 			{#if data.post.next.slug}
 				<a
-					href={`${base}/posts/${data.post.next.slug}`}
+					href={resolve(`/posts/${data.post.next.slug}`)}
 					target="_self"
 					class="post-control"
 					style="text-align: right;"
@@ -71,7 +71,17 @@
 
 	#post-content {
 		font-family: 'Rubik', serif;
-		line-height: 28px;
+		font-weight: 300;
+		line-height: 30px;
+	}
+
+	:global(#post-content > div > p > code) {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 16px;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		background-color: color.adjust(colors.$azure-web, $lightness: 70%);
+		padding: 2px 8px;
+		border-radius: 8px;
 	}
 
 	:global(.post-controlContainer) {

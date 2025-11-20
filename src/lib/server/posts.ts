@@ -11,25 +11,23 @@ export interface PostType {
 	description: string;
 	content: string;
 	date: string;
+	draft?: boolean;
 	slug: string;
 	previous: PostType | number;
 	next: PostType | number;
 }
 
-// Get all posts and add metadata
 export const posts  = Object.entries(
 	import.meta.glob<GlobEntry>('/src/lib/posts/**/*.md', { eager: true })
 )
 	.map(([filepath, globEntry]) => {
 		return {
 			...globEntry.metadata,
-
-			// generate the slug from the file path
 			slug: parse(filepath).name,
 		};
 	})
-	// sort by date
 	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	.filter((post) => !post.draft)
 	// add references to the next/previous post
 	.map((post, index, allPosts) => ({
 		...post,

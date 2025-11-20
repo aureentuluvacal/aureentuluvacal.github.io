@@ -31,7 +31,7 @@ If we defined a systems programming language as a language that we use to intera
 
 Every language from there would just be abstractions away from the hardware.
 
-![Hierarchy of programming languages](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/hierarchy-of-languages.png)
+![Hierarchy of programming languages](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/752e4475-63e2-4454-2e12-0170d9ed8800/public)
 
 On the far left we have hardware, which is ultimately what our programs operate on. Then there's machine language, binaries that the hardware can understand and run. All programs eventually compile down to machine language. If we go up a layer in abstraction, we get to assembly languages, which are the first human readable programming languages tailored specifically to their respective types of hardware. Each line in an assembly program represents an actual operation that the computer does (and a massive amount of machine language). Rust, C, and Javascript are another abstraction up. They represent the high-level languages, where the code is even more undertstandable than assembly and represents an even more massive amount of binary.
 
@@ -39,7 +39,7 @@ As we progress in the levels of abstraction, we're basically asking, _How can we
 
 Naturally, as we get more and more abstract, we have to rely on more under the hood, which decreases speed and performance.
 
-![Hierarchy of programming languages](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/systems-languages.png)
+![Systems languages](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/9aaf3b07-5665-4edc-0c3e-2b3587bf4800/public)
 
 Systems programming languages need to be fast, like an assembly language or C, so languages like Ruby and Javascript don't quite cut it. They also need to be directly compilable to machine language or binary. Ruby and Javascript rely on an intermediate stage before they're compiled to machine language.
 

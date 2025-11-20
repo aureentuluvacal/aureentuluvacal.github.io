@@ -22,7 +22,7 @@ There's a few questions we need to answer first in order to understand the value
 
 Say we had a mix of charges around each other.
 
-![Positive and negative charge](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/electric-field.png)
+![Positive and negative charge](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/e291b2e1-d7b8-4a42-9283-9ddcedc6f200/public)
 
 A positive charge exhibits an electric field that "pushes" outward from itself and a negative charge exhibits an electric field that "pulls" inward towards itself. The interaction of these fields produces electrical forces between those charges where opposites attract and like repels like.
 
@@ -44,21 +44,21 @@ Let me illustrate with a contrived example.
 
 Say I have some charges that are either positive or negative and randomly spread out.
 
-![Random charges](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/contrived-field.png)
+![Random charges](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/a3ef2c73-8f47-44ee-90b3-3d103287a300/public)
 
 I want to draw a line for every unit of charge. So a $3+$ charge will have three lines "pushing" out of it. The lines have to either connect to other charges (purple) or shoot off into infinity (red or blue).
 
-![Random electric lines](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/contrived-field-lines.png)
+![Random electric lines](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/c43d44ce-192d-4e29-4ee2-3664ea9d8800/public)
 
 Now, if I draw a random shape anywhere on this, I can count how many lines enter and leave the shape. If a line enters and leaves the shape it counts as a positive and if a line enters but does not leave the shape it counts as a negative. Finally, the lines that connect charges are a single line since they "pair off" and will interact with one another to create an electrical force.
 
 Let's count the lines leaving.
 
-![Random electric lines](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/contrived-field-leaving.png)
+![Lines leaving](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/449dd7c4-798b-4bdf-49da-68a625ada500/public)
 
 And the lines that enter but do not leave the shape.
 
-![Random electric lines](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/contrived-field-staying.png)
+![Lines not leaving](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/dcf927ed-af19-4c62-514d-727aa192e800/public)
 
 In this case, we have four lines that enter and leave the shape and one line that enters but remains in the shape. So $+4 - 1 = +3$. And look at the net charge encompassed by the shape. It's $+3$!
 
@@ -74,19 +74,22 @@ A **source** is a location in the field that vectors seemingly appear out of. We
 
 An example of a source looks like the origin of this graph.
 
-![Vector Field Source](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/vector-field-example.jpg)
+![Vector Field Source](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/93d1774e-9708-43f6-d106-5cf8b5982300/public)
+Source: [3Blue1Brown's video](https://www.youtube.com/watch?v=mBoezvLrUGw)
 
 A **sink** on the other hand, is the opposite. Locations of sinks tell us where there are net negative charges in the field.
 
 An example of a sink looks like the origin of this graph.
 
-![Vector Field Sink](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/vector-field-sink.jpg)
+![Vector Field Sink](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/539361ef-3ad7-4318-9f4a-ba7757710200/public)
+
+Source: [Wolfram Alpha](https://reference.wolfram.com/language/howto/Files/PlotAVectorField.en/O_2.png)
 
 #### One thing to keep in mind
 
 It's important to note that both of these vector fields might be snapshots of moments in time for their respective fields. You'll find gifs on the internet of vector fields in motion like this:
 
-![Vector Field Gif From the OU Math Department](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/vector-field-gif.gif)
+![Vector Field Gif From the OU Math Department](https://math.ou.edu/~amiller/math/images/vf4.gif)
 
 (This gif isn't mine and can be found [here](http://www.math.ou.edu/~amiller/math/vfield.htm))
 
@@ -96,7 +99,7 @@ Think of the snapshots as depictions of the electric flux at a moment in time. T
 
 If we had a positive charge enclosed in a cube it would look something like this,
 
-![Positive charge in a Gaussian cube](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/gauss_law_electricity.png)
+![Positive charge in a Gaussian cube](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/dd899c70-82dc-418e-3f5c-2c6a69e04500/public)
 
 where the positive charge creates an electric field that "pushes" out from itself.
 
@@ -106,7 +109,7 @@ Now we have this positive charge enclosed in the cube, which is exuding an elect
 
 Going back to the equation: the left side, $\oint \vec{E} \cdotp d\vec{A}$, describes the total amount of electric flux that is flowing out or into the surface and is _normal_ to said surface. So if we took one of the electric lines, we'd try to get $d\vec{A}$ or the components of $E$ that are normal to the surface it crosses.
 
-![Example electric line and dA](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/gauss_law_sphere_complex.png)
+![Example electric line and dA](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/26b51ff1-7d27-4bc4-15d1-4cbd5ebddb00/public)
 
 If we did that to all the lines, we'd get all of the normal components ($E_{n}$) of all the electric lines and thus all of the components of the electric flux that are directly leaving or entering the surface. The tangential components ($E_{t}$) don't matter since they don't contribute to what is leaving the surface.
 
@@ -120,7 +123,7 @@ But, bottom line, the left side of the equation is a surface area calculation wi
 
 Now for a real example where we'll crunch some math. Let's say we have a distribution of charges within a sphere centered at the origin that follows $\rho(r) = \rho_{0}/r^2$ and we want to find the charge enclosed in a sphere of radius $r$.
 
-![Distribution of charges](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/distribution-of-charges.png)
+![Distribution of charges](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/4a25c0de-4cc3-49b3-933f-5f9c15418100/public)
 
 Rho is used to represent the volume charge density which will help us calculate $Q_{enc}$. The function $\rho(r)$ is the charge density with respect to the radius $r$ where $\rho_{0}$ is the charge at the origin of the sphere. So as we go further and further away from the origin the charge density decreases because $r$ is inversely proportional.
 
@@ -140,7 +143,7 @@ Since $E_{n}$ lines up with $\hat{r}$, this big jumble of letters — $r^2\sin\v
 
 We want all of the components of $\vec{E}$ that are normal to the sphere (all the $E_n$ as illustrated in the previous section). $\vec{E}$'s magnitude doesn't rely on $\varPhi$ or $\varTheta$; the angle of $\vec{E}$ doesn't change how strong or weak $\vec{E}$ is. The only thing that affects $\vec{E}$ is $r$. Therefore, since $\vec{E}$ is a function of $r$, we'll represent it like this: $\vec{E}_{n}(r)$.
 
-![Distribution of charges](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/distribution-angles.png)
+![Distribution of charges](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/3e751be0-bc6a-43bc-a33f-baa6c0fccd00/public)
 
 (Pretend this is a sphere with lines shooting out of it)
 

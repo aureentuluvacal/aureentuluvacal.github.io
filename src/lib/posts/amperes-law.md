@@ -29,21 +29,21 @@ In other words, a changing electric field induces a magnetic field.
 
 If you've ever done that experiment where you ran a current through a wire and used a series of compasses to track the change in direction of the magnetic field, then you've encountered Ampere's Law. Here's an example:
 
-[![image](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/amperes-law-example.PNG)](https://www.youtube.com/watch?v=4BvHq5CwfT8&t=0m34s)
+[![image](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/c5d565b9-1c64-497e-1128-83108b160900/public)](https://www.youtube.com/watch?v=4BvHq5CwfT8&t=0m34s)
 
 This experiment includes a closed circuit, one large compass underneath the metal line the current is traveling through, and six smaller compasses that are surrounding the line after it bends outward towards you.
 
-![Compasses and circuit](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/compasses-and-current.jpg)
+![Compasses and circuit](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/b92482a2-aed3-45d7-c31b-5c531cf40900/public)
 
 When the current travels up, the compasses reflect the direction of the magnetic field that is traveling through the metal.
 
 > Pretend there's something actually generating the current like in the experiment.
 
-![Current flowing up, inducing a magnetic field](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/current-up-amperes.jpg)
+![Current flowing up, inducing a magnetic field](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/bcd9bf48-a8f5-464b-297c-a9d421115000/public)
 
 And when the current flows the opposite direction, the compasses reflect it as well.
 
-![Current flowing down, inducing a magnetic field in the opposite direction](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/current-down-amperes.jpg)
+![Current flowing down, inducing a magnetic field in the opposite direction](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/26aae5e1-9e2b-4da0-3213-2e17cfd29200/public)
 
 The compasses behave like tangent lines along the path and direction the magnetic field is following. We can use the right hand rule to verify the direction of the induced magnetic field.
 
@@ -58,19 +58,19 @@ Ampere's law is helpful when the shape of the circuit the current is traveling t
 
 The second term on the right hand side of Ampere's Law is the addendum that Maxwell added to take this into account when there is no current enclosed by the magnetic field.
 
-I really like this image from the University of Louisville's Physics department:
+I really like this image:
 
-![When the magnetic field doesn't enclose a current](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/mag_displacement_fig3.jpg)
+![When the magnetic field doesn't enclose a current](https://img.brainkart.com/imagebk39/GW4k9z4.jpg)
 
-Source: [University of Louisville](http://www.physics.louisville.edu/cldavis/phys299/notes/mag_displacement.html)
+Source: [BrainKart](https://www.brainkart.com/article/Displacement-current-and-Maxwell-s-correction-to-Ampere-s-circuital-law_38540/)
 
-Surface 3 doesn't have current traveling through it because the circuit is non-continuous, bisected by the plates of the capacitor. So how does current get to the other side? Notice that the Maxwell's addendum captures the change in electric flux. The presence of electric flux means the presence of an electric field that is moving, which means something is causing the field to move.
+The right plate doesn't have current traveling through it because the circuit is non-continuous, bisected by the plates of the capacitor. So how does current get to the other side? Notice that the Maxwell's addendum captures the change in electric flux. The presence of electric flux means the presence of an electric field that is moving, which means something is causing the field to move.
 
-![A simple circuit with a capacitor](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/capacitor-and-circuit.jpg)
+![A simple circuit with a capacitor](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/a8da225f-f4f4-4421-19b3-075f444e4a00/public)
 
 Similar to the diagram from University of Lousiville, there is no direct connection between the capacitor plates because of the insulating material between them. Insulating material has a very low electric permittivity ($\epsilon$) which means electrons have trouble flowing through it. Because of this, the electrons are trapped and the top plate starts to get more negatively charged.
 
-![Charged plates on capacitor](https://s3.us-east-2.amazonaws.com/caryssa-perez-images/posts/buildup-of-charges-capacitor.jpg)
+![Charged plates on capacitor](https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/54afcbec-7d75-47e9-43d6-31f2f0397e00/public)
 
 The capacitor is dielectric, which means that it will polarize in the presence of an electric field. As the top plate gets more negative, it pushes away the electrons in the bottom plate, causing the bottom plate to become more positive and creating an electric flux. The two poles are the result of displacement current. Once the capacitor is fully charged, up to the voltage of the battery it's attached to, then the current will stop flowing.
 

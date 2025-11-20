@@ -16,8 +16,8 @@
 
 	:global(h1, h2, h3, h4, h5, h6) {
 		font-family: 'JetBrains Mono', monospace;
-		font-weight: 100;
-		margin: 50px 0 10px;
+		font-weight: 600;
+		margin: 48px 0 24px;
 	}
 
 	:global(#header-container) {
@@ -73,8 +73,11 @@
 		color: colors.$royal-blue-traditional;
 	}
 
-	:global(a:hover) {
-		color: colors.$amber;
+	:global(.post:hover) {
+		background-color: color.adjust(colors.$azure-web, $lightness: 90%);
+		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+		border-color: colors.$azure-web;
+		cursor: pointer;
 	}
 
 	:global(table) {
@@ -123,30 +126,30 @@
 	}
 
 	:global(
-			.hljs-variable,
-			.hljs-attribute,
-			.hljs-tag,
-			.hljs-regexp,
-			.hljs-ruby .constant,
-			.hljs-xml .tag .title,
-			.hljs-xml .pi,
-			.hljs-xml .doctype,
-			.hljs-html .doctype,
-			.hljs-css .id,
-			.hljs-css .class,
-			.hljs-css .pseudo
-		) {
+		.hljs-variable,
+		.hljs-attribute,
+		.hljs-tag,
+		.hljs-regexp,
+		.hljs-ruby .constant,
+		.hljs-xml .tag .title,
+		.hljs-xml .pi,
+		.hljs-xml .doctype,
+		.hljs-html .doctype,
+		.hljs-css .id,
+		.hljs-css .class,
+		.hljs-css .pseudo
+	) {
 		color: colors.$flame;
 	}
 
 	:global(
-			.hljs-number,
-			.hljs-preprocessor,
-			.hljs-built_in,
-			.hljs-literal,
-			.hljs-params,
-			.hljs-constant
-		) {
+		.hljs-number,
+		.hljs-preprocessor,
+		.hljs-built_in,
+		.hljs-literal,
+		.hljs-params,
+		.hljs-constant
+	) {
 		color: colors.$amber;
 	}
 
@@ -155,13 +158,13 @@
 	}
 
 	:global(
-			.hljs-string,
-			.hljs-value,
-			.hljs-inheritance,
-			.hljs-header,
-			.hljs-ruby .symbol,
-			.hljs-xml .cdata
-		) {
+		.hljs-string,
+		.hljs-value,
+		.hljs-inheritance,
+		.hljs-header,
+		.hljs-ruby .symbol,
+		.hljs-xml .cdata
+	) {
 		color: colors.$emerald;
 	}
 
@@ -170,16 +173,16 @@
 	}
 
 	:global(
-			.hljs-function,
-			.hljs-python .decorator,
-			.hljs-python .title,
-			.hljs-ruby .function .title,
-			.hljs-ruby .title .keyword,
-			.hljs-perl .sub,
-			.hljs-javascript .title,
-			.hljs-coffeescript .title,
-			.hljs-punctuation
-		) {
+		.hljs-function,
+		.hljs-python .decorator,
+		.hljs-python .title,
+		.hljs-ruby .function .title,
+		.hljs-ruby .title .keyword,
+		.hljs-perl .sub,
+		.hljs-javascript .title,
+		.hljs-coffeescript .title,
+		.hljs-punctuation
+	) {
 		color: colors.$azure-web;
 	}
 
