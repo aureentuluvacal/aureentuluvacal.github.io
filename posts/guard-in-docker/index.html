@@ -3,6 +3,12 @@
 
 <head>
 	<meta charset="utf-8" />
+	<title>Cal Perez - Senior Full-Stack Software Engineer</title>
+	<meta name="description"
+		content="Cal Perez's personal website. Senior Full-Stack Software Engineer. I also like to cook, paint, and play D&D and Warhammer RPG." />
+	<meta name="author" content="Cal Perez" />
+	<meta name="theme-color" content="#ffffff" />
+	<meta name="apple-mobile-web-app-title" content="Cal Perez" />
 	<link rel="icon" href="../../favicon.ico" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,18 +22,24 @@
 		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
 
 	
-		<link href="../../_app/immutable/assets/0.3y05DKKR.css" rel="stylesheet">
-		<link href="../../_app/immutable/assets/3.jv80lpkj.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.8cMOEWIk.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/main-client.0o2Jgazd.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.n4xba1mo.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.sVj-N1A0.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.iy-VLetV.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.7MFGk77v.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.0HuHagjb.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.kKvJJDcG.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.xghMeD4U.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/3.8CIxIkOL.js"><title>How to set up Guard in Docker</title><!--ssr:0--><!--ssr:0-->
+		<link href="../../_app/immutable/assets/0.DR9Fwpx3.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.CuKR4By3.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.BDwDbY6L.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Q5lv9jAR.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/B--_me8g.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CYOjpWgn.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DY3f2A3c.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/emixGKS3.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.CIzNT4jO.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/PPVm8Dsz.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BtKH4osW.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/C3lhIoM1.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CxWILt3V.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CzrqgCgR.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DBnQcEIv.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.Xa7Zii-y.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CVPHKifM.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CIys7790.js"><!--14u6r3i--><!----><title>How to set up Guard in Docker</title>
 </head>
 
 <body data-sveltekit-preload-data="hover">
@@ -37,12 +49,12 @@
 				<h1>Cal Perez</h1>
 			</a>
 			<p>
-				Senior Software Engineer. I also like to cook, paint, and play D&D and
+				Senior Full-Stack Software Engineer. I also like to cook, paint, and play D&D and
 				Warhammer RPG.
 			</p>
 		</div>
 		<div id="content-container">
-			<!--ssr:0--><!--ssr:1--><!--ssr:if:true--><!--ssr:3--><div class="container"><!--ssr:4--><!--ssr:5--><div><article class="svelte-k80i5u"><header><h1>How to set up Guard in Docker</h1> <!--ssr:6--><!--ssr:if:false--><!--ssr:6--> <h5>May 29, 2021</h5></header> <div id="post-content" class="svelte-k80i5u"><!--ssr:7--><div><!--ssr:10-->
+			<!--[--><!--[--><!----><div class="container"><!--[--><!----><div><article class="svelte-14u6r3i"><header class="svelte-14u6r3i"><h1>How to set up Guard in Docker</h1> <!--[!--><!--]--> <h5>May 29, 2021</h5></header> <div id="post-content" class="svelte-14u6r3i"><div><!---->
 <p>My new place uses the same stack as my last place (React + Rails on Docker). However, when I started we didn't have a configured testing environment (or a test suite) to isolate our tests in. I like to use <a href="https://github.com/guard/guard">Guard</a> with <a href="https://github.com/rspec/rspec">RSpec</a> to keep RSpec &quot;warm&quot;. It's also super helpful when doing TDD so you can just keep running your specs over and over.</p>
 <p>I'm assuming you already have a Guardfile and Dockerfile. In case you don't have a Dockerfile, here's a simple one that leverages MySQL.</p>
 <blockquote>
@@ -130,26 +142,23 @@ CMD [<span class="hljs-string">&quot;bundle&quot;</span>, <span class="hljs-stri
 <p>A quick way to attach to a container in one line is <code>docker attach $(docker ps -aqf &quot;ancestor=CONTAINER_NAME | head -n 1)</code>.</p>
 </blockquote>
 <p>Happy testing!</p>
-<!--ssr:10--></div><!--ssr:7--></div> <div class="post-controlContainer"><!--ssr:8--><!--ssr:if:true--><a href="../../posts/graphql-fun" target="_self" class="post-control svelte-k80i5u"><p class="svelte-k80i5u"><i class="icons-arrow icons-arrow--left svelte-k80i5u"></i> Previous</p> <p class="svelte-k80i5u">GraphQL and Schema Stitching</p></a><!--ssr:8--> <!--ssr:9--><!--ssr:if:true--><a href="../../posts/electrical-components" target="_self" class="post-control svelte-k80i5u" style="text-align: right;"><p class="svelte-k80i5u">Next <i class="icons-arrow icons-arrow--right svelte-k80i5u"></i></p> <p class="svelte-k80i5u">Electrical Components: Resistor</p></a><!--ssr:9--></div></article></div><!--ssr:5--><!--ssr:4--></div><!--ssr:3--><!--ssr:1--> <!--ssr:2--><!--ssr:if:false--><!--ssr:2--><!--ssr:0-->
+<!----></div><!----></div> <div class="post-controlContainer"><!--[--><a href="../../posts/graphql-fun" target="_self" class="post-control svelte-14u6r3i"><p class="svelte-14u6r3i"><i class="icons-arrow icons-arrow--left svelte-14u6r3i"></i> Previous</p> <p class="svelte-14u6r3i">GraphQL and Schema Stitching</p></a><!--]--> <!--[--><a href="../../posts/electrical-components" target="_self" class="post-control svelte-14u6r3i" style="text-align: right;"><p class="svelte-14u6r3i">Next <i class="icons-arrow icons-arrow--right svelte-14u6r3i"></i></p> <p class="svelte-14u6r3i">Electrical Components: Resistor</p></a><!--]--></div></article></div><!----><!--]--></div><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_112sdgx = {
-						base: new URL("../..", location).pathname.slice(0, -1),
-						env: null
+					__sveltekit_quruan = {
+						base: new URL("../..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
-					const data = [null,{"type":"data","data":{post:{title:"How to set up Guard in Docker",date:"2021-05-30T00:00:00.000Z",description:"For when you want to run your test environment completely separate.",tags:["Code"],slug:"guard-in-docker",next:{title:"Electrical Components: Resistor",date:"2021-12-01T00:00:00.000Z",description:"Now that Maxwell's equations are covered, we can dive into some hardware.",tags:["Science"],slug:"electrical-components"},previous:{title:"GraphQL and Schema Stitching",date:"2020-08-23T00:00:00.000Z",description:"We recently built a support app that combines two GraphQL schemas. This is just a guide for how to make it work in Typescript.",tags:["Code"],slug:"graphql-fun"}}},"uses":{"params":["slug"]}}];
-
 					Promise.all([
-						import("../../_app/immutable/entry/start.8cMOEWIk.js"),
-						import("../../_app/immutable/entry/app.7MFGk77v.js")
+						import("../../_app/immutable/entry/start.BDwDbY6L.js"),
+						import("../../_app/immutable/entry/app.CIzNT4jO.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
-							data,
+							data: [null,{type:"data",data:{post:{title:"How to set up Guard in Docker",date:"2021-05-30T00:00:00.000Z",description:"For when you want to run your test environment completely separate.",tags:["Code"],slug:"guard-in-docker",next:{title:"Electrical Components: Resistor",date:"2021-12-01T00:00:00.000Z",description:"Now that Maxwell's equations are covered, we can dive into some hardware.",tags:["Science"],slug:"electrical-components"},previous:{title:"GraphQL and Schema Stitching",date:"2020-08-23T00:00:00.000Z",description:"We recently built a support app that combines two GraphQL schemas. This is just a guide for how to make it work in Typescript.",tags:["Code"],slug:"graphql-fun"}}},uses:{params:["slug"]}}],
 							form: null,
 							error: null
 						});
