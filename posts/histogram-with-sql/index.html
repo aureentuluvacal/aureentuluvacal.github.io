@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Cal Perez - Senior Full-Stack Software Engineer</title>
+	<meta name="description"
+		content="Cal Perez's personal website. Senior Full-Stack Software Engineer. I also like to cook, paint, and play D&D and Warhammer RPG." />
+	<meta name="author" content="Cal Perez" />
+	<meta name="theme-color" content="#ffffff" />
+	<meta name="apple-mobile-web-app-title" content="Cal Perez" />
+	<link rel="icon" href="../../favicon.ico" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Katex -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+		integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+	
+		<link href="../../_app/immutable/assets/0.DR9Fwpx3.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/3.CuKR4By3.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.MYaH6rZF.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/By5Ce1Ts.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/B--_me8g.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CYOjpWgn.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Sdioxf3_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/emixGKS3.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.ON7tn07t.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/PPVm8Dsz.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BtKH4osW.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/C3lhIoM1.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CxWILt3V.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CzrqgCgR.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DBnQcEIv.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/3.ZEn7WmAy.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CVPHKifM.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CIys7790.js"><!--14u6r3i--><!----><title>Histograms with Postgres</title>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+		<div id="header-container">
+			<a href="https://calperez.dev">
+				<h1>Cal Perez</h1>
+			</a>
+			<p>
+				Senior Full-Stack Software Engineer. I also like to cook, paint, and play D&D and
+				Warhammer RPG.
+			</p>
+		</div>
+		<div id="content-container">
+			<!--[--><!--[--><!----><div class="container"><!--[--><!----><div><article class="svelte-14u6r3i"><header class="svelte-14u6r3i"><h1>Histograms with Postgres</h1> <!--[!--><!--]--> <h5>November 19, 2025</h5></header> <div id="post-content" class="svelte-14u6r3i"><div><!---->
+<p>I was tasked with figuring out if we needed to truncate a chunky table. First, I had to understand the rate of growth and, second, I had to  identify any discrepancies in how the data was generated in the table.</p>
+<p>This post will cover the second task since I could easily see in PGAnalyze that the rate was linear.</p>
+<h2>Generating a histogram</h2>
+<p>Rows in this table have an association to another table so there was the possibility that some records have dozens of associated records, which would be concerning.</p>
+<p>In order to visualize this, I needed to create a <strong>histogram</strong>.</p>
+<blockquote>
+<p>Remember a histogram graphs the distribution of frequencies for a data set into a series of buckets or bins. So I'd be able to see how many associated records there are for the table. Ideally I'd like to see the most records with low amounts of associated records, but we'll see.</p>
+</blockquote>
+<p>I have access to Snowflake, but this table wasn't a part of the schema since it's not relevant to customers, so I couldn't just generate a histogram directly.</p>
+<p>So raw SQL it is. (I'm using PostgreSQL 17.6)</p>
+<h3>Generate the data</h3>
+<p>You just need to use a simple <code>COUNT</code> and <code>GROUP BY</code> to get frequencies.</p>
+<pre><code class="language-sql"> <span class="hljs-keyword">SELECT</span>
+    <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> amt
+ <span class="hljs-keyword">FROM</span>
+    versions
+ <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    item_id;
+</code></pre>
+<p>The column you aggregate by would take the place of <code>item_id</code>.</p>
+<h3>Using <code>width_bucket</code></h3>
+<p>We want to use the built-in function <code>width_bucket</code>, described <a href="https://www.postgresql.org/docs/17/functions-math.html#FUNCTIONS-MATH-FUNC-TABLE">here</a>, to generate the histogram.</p>
+<pre><code class="language-c">width_bucket ( operand numeric, low numeric, high numeric, count integer ) → integer
+</code></pre>
+<p>This function return the bucket that the <code>operand</code> falls in based on the highest and lowest values from the aggregate above (<code>high</code> and <code>low</code>, respectively) and the width of the bucket (<code>count</code>). The examples in the docs are pretty clear.</p>
+<p>Now, we need to get our values for <code>high</code> and <code>low</code> with:</p>
+<pre><code class="language-sql"><span class="hljs-keyword">WITH</span>
+    version_counts <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> amt
+        <span class="hljs-keyword">FROM</span>
+            versions
+        <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+            item_id
+    ),
+    stats <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-built_in">min</span>(amt) <span class="hljs-keyword">AS</span> MIN,
+            <span class="hljs-built_in">max</span>(amt) <span class="hljs-keyword">AS</span> MAX
+        <span class="hljs-keyword">FROM</span>
+            version_counts
+    )
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-built_in">width_bucket</span>(amt, MIN, MAX, <span class="hljs-number">20</span>)
+<span class="hljs-keyword">FROM</span>
+    version_counts,
+    stats
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    version_counts.amt,
+    stats.min,
+    stats.max;
+</code></pre>
+<p>But that's not quite enough to get the histogram since <code>width_bucket</code> returns the bucket number. We still need to show how many records are in each bucket.</p>
+<pre><code class="language-sql"><span class="hljs-comment">-- WITH clause</span>
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-built_in">width_bucket</span>(amt, MIN, MAX, <span class="hljs-number">20</span>) <span class="hljs-keyword">AS</span> bucket,
+    <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> freq
+<span class="hljs-keyword">FROM</span>
+    version_counts,
+    stats
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    version_counts.amt,
+    stats.min,
+    stats.max;
+</code></pre>
+<p><img src="https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/998d806b-0f64-41b1-24bd-a94e9e472600/public" alt="Frequencies and bucket numbers"></p>
+<p>Getting somewhere, but notice how the <code>bucket</code> number is repeated. We can use another <code>GROUP BY</code> to get what we need.</p>
+<h3>Showing the buckets</h3>
+<p>This means we can use another CTE to set the histogram data and use it in another query to show the distribution via a bar. It's also possible to show the ranges for each bucket. In other words, bucket 1 would be 1 to (MAX / 20), or <code>high / count</code> from <code>width_bucket</code>, and so on.</p>
+<p>We need another Postgres function to show the bucket ranges: <code>int4range</code>, found <a href="https://www.postgresql.org/docs/current/rangetypes.html">here</a>. This function will give us a range for each bucket or grouping.</p>
+<p>To generate the bar part of the graph, we make use of the <code>repeat</code> function that functions similarly to any iterator you've used in other languages like <code>times</code> in Ruby or like <code>iter::repeat</code> in Rust.</p>
+<pre><code class="language-sql">repeat(<span class="hljs-string">&#x27;■&#x27;</span>, (freq::<span class="hljs-type">float</span> <span class="hljs-operator">/</span> <span class="hljs-built_in">max</span>(freq) <span class="hljs-keyword">OVER</span> () <span class="hljs-operator">*</span> <span class="hljs-number">30</span>)::<span class="hljs-type">int</span>) <span class="hljs-keyword">AS</span> bar
+</code></pre>
+<p>Using the fraction between the <code>freq</code> and the max frequency we see, we can use <code>repeat</code> to render a block with a max width of 30 characters. So the bar should have the correct relationship to the data we see.</p>
+<h2>The final result</h2>
+<p>Here's the complete query.</p>
+<pre><code class="language-sql"><span class="hljs-keyword">WITH</span>
+    version_counts <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> amt
+        <span class="hljs-keyword">FROM</span>
+            versions
+        <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+            item_id
+    ),
+    stats <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-built_in">min</span>(amt) <span class="hljs-keyword">AS</span> MIN,
+            <span class="hljs-built_in">max</span>(amt) <span class="hljs-keyword">AS</span> MAX
+        <span class="hljs-keyword">FROM</span>
+            version_counts
+    ),
+    histogram <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span>
+            <span class="hljs-built_in">width_bucket</span>(amt, MIN, MAX, <span class="hljs-number">20</span>) <span class="hljs-keyword">AS</span> bucket,
+            int4range(<span class="hljs-built_in">min</span>(amt)::int4, <span class="hljs-built_in">max</span>(amt)::int4) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">range</span>,
+            <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> freq
+        <span class="hljs-keyword">FROM</span>
+            version_counts,
+            stats
+        <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+            bucket
+        <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span>
+            bucket
+    )
+<span class="hljs-keyword">SELECT</span>
+    bucket,
+    <span class="hljs-keyword">range</span>,
+    freq,
+    repeat(<span class="hljs-string">&#x27;■&#x27;</span>, (freq::<span class="hljs-type">float</span> <span class="hljs-operator">/</span> <span class="hljs-built_in">max</span>(freq) <span class="hljs-keyword">OVER</span> () <span class="hljs-operator">*</span> <span class="hljs-number">30</span>)::<span class="hljs-type">int</span>) <span class="hljs-keyword">AS</span> bar
+<span class="hljs-keyword">FROM</span>
+    histogram;
+</code></pre>
+<p>and the final result:</p>
+<p><img src="https://imagedelivery.net/tnNoV47DPhCG-2BhLDY4IQ/85d5dec6-5c2a-4b42-7e57-a9d3cf1a3000/public" alt="Generated histogram"></p>
+<p>An ugly histogram! Yay!</p>
+<p>But it tells a relieving story: The vast majority of rows in this table have 1-15 versions, which makes sense in our business logic. It also points to some associated records having 50 or more versions, which is a nice clue for further investigation.</p>
+<!----></div><!----></div> <div class="post-controlContainer"><!--[--><a href="../../posts/electrical-components" target="_self" class="post-control svelte-14u6r3i"><p class="svelte-14u6r3i"><i class="icons-arrow icons-arrow--left svelte-14u6r3i"></i> Previous</p> <p class="svelte-14u6r3i">Electrical Components: Resistor</p></a><!--]--> <!--[!--><!--]--></div></article></div><!----><!--]--></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_niwnhy = {
+						base: new URL("../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.MYaH6rZF.js"),
+						import("../../_app/immutable/entry/app.ON7tn07t.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data: [null,{type:"data",data:{post:{title:"Histograms with Postgres",date:"2025-11-20T00:00:00.000Z",description:"How to use built-in Postgres functions to generate a histogram so you don't have to use another tool.",tags:["Code"],slug:"histogram-with-sql",next:0,previous:{title:"Electrical Components: Resistor",date:"2021-12-01T00:00:00.000Z",description:"Now that Maxwell's equations are covered, we can dive into some hardware.",tags:["Science"],slug:"electrical-components"}}},uses:{params:["slug"]}}],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+		</div>
+	</div>
+</body>
+
+</html>
