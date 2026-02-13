@@ -44,7 +44,7 @@
 		"@types/markdown-it": "^14.1.2",
 		"@wangjiezhe/markdown-it-katex": "^4.0.3",
 		"highlight.js": "^11.11.1",
-		"markdown-it": "^14.1.0",
+		"markdown-it": "^14.1.1",
 		"markdown-it-front-matter": "^0.2.4",
 		"markdown-it-katex": "^2.0.3"
 	}
